@@ -14,7 +14,7 @@ public class Event {
     private int id;
 
 
-    @Column(name = "id")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "date")
@@ -26,7 +26,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
-    @OneToMany(mappedBy = "events")
+    @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
 
     public List<Ticket> getTickets() {

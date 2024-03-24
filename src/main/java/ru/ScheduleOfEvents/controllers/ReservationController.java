@@ -21,15 +21,19 @@ public class ReservationController {
 
         // Создайте JSON объект
         String jsonReservedSeats = "";
+        String jsonPriceSeats = "";
+
         try {
             jsonReservedSeats = mapper.writeValueAsString(List.of("26 1", "26 2"));
+            jsonPriceSeats = mapper.writeValueAsString(List.of("1000", "1200", "1300", "1500", "1600"));;
         } catch (Exception e) {
             // Обработка ошибки сериализации в JSON
             e.printStackTrace();
         }
-        Set<String> reservedSeats = new HashSet<>(List.of("1 1", "1 2"));
         model.addAttribute("seatData", new SeatData());
         model.addAttribute("reservedSeats", jsonReservedSeats);
+        model.addAttribute("priceSeats", jsonPriceSeats);
+        model.addAttribute("priceSeatsForHtml", List.of("1000", "1200", "1300", "1500", "1600"));
         return "order/show";
     }
 
