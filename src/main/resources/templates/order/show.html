@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Схема зала</title>
+    <style>
+        /* CSS стили */
+        svg {
+            border: 1px solid black;
+            display: block;
+            margin: 20px auto 0;
+
+        }
+        .seat {
+            fill: #00c5ff;
+            user-select: none;
+
+        }
+        .seat.selected {
+            fill: red;
+        }
+        .seat, text {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!--<div th:value="${reservedSeats}" id="reservedSeats"></div>-->
+<div th:attr="data-reserved-seats=${reservedSeats}" id="reservedSeats"></div>
+<svg id="cinema-hall" width="1000" height="600" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+
+</svg>
+
+
+<form id="booking-form"  th:action=" @{/order/more}" th:method="POST" th:object="${seatData}">
+    <input th:field="*{seat}"  type="hidden" id="selectedSeats" th:value="${seatData.seat}"/>
+    <button type="submit">Забронировать</button>
+</form>
+
+<script>
+    // let reservedSeatsData = document.getElementById('reservedSeats').outerHTML;
+    let reservedSeatsData = document.getElementById('reservedSeats').dataset.reservedSeats.replace("[", '')
+        .replace("]", "")
+        .replace(/"/g, '').split(",");
+
+    console.log(reservedSeatsData);
+    let selectedSeats = [];
+    document.addEventListener('DOMContentLoaded', function() {
+        const cinemaHall = document.getElementById('cinema-hall');
+        createSeats();
+
+        function createSeats() {
+            const size = 15;
+            const yCoord = 25;
+            // Создаем места в зале
+            // левый  верхний
+            createSideSeats(200,30, 3, 1, 26, 1);
+            createSideSeats(200 - size,30 + yCoord, 4, 1, 25, 1);
+            createSideSeats(200 - 3 * size,30 + yCoord * 2, 9, 1, 24, 1);
+            createSideSeats(200 - 4 * size,30 + yCoord * 3, 11, 1, 23, 1);
+            createSideSeats(200 - 5 * size,30 + yCoord * 4, 12, 1, 22, 1);
+            createSideSeats(200 - 6 * size,30 + yCoord * 5, 13, 1, 21, 1);
+            createSideSeats(200 - 6 * size,30 + yCoord * 6, 13, 1, 20, 1);
+            createSideSeats(200 - 6 * size,30 + yCoord * 7, 13, 1, 19, 1);
+
+            for (let i = 0; i < 7; i++) {
+                createSideSeats(200 - size,30 + yCoord * (8 + i), 8, 1, (18 - i), 1);
+            }
+            createSideSeats(200 + 9 * size,30 + yCoord * 2 , 24, 1, 24,  10);
+            createSideSeats(200 + 9 * size,30 + yCoord * 3 , 24, 1, 24,  12);
+            createSideSeats(200 + 9 * size,30 + yCoord * 4 , 24, 1, 24,  13);
+            for (let i = 0; i < 3; i++) {
+                createSideSeats(200 + 9 * size,30 + yCoord * (5 + i) , 24, 1, 24 - i,  14);
+            }
+            for (let i = 0; i < 7; i++) {
+                createSideSeats(200 + 9 * size,30 + yCoord * (8 + i) , 24, 1, 24 - i,  9);
+            }
+
+            // правый верхний
+            createSideSeats(200 + 38 * size,30, 3, 1, 26, 4);
+            createSideSeats(200 + 38 * size,30 + yCoord, 4,1, 25, 5);
+            createSideSeats(200 + 35 * size,30 + yCoord * 2, 9, 1, 24, 34);
+            createSideSeats(200 + 35 * size,30 + yCoord * 3, 10, 1, 23, 36);
+            createSideSeats(200 + 35 * size,30 + yCoord * 4, 11, 1, 22, 37);
+
+            createSideSeats(200 + 35 * size,30 + yCoord * 5, 12, 1, 21, 38);
+            createSideSeats(200 + 35 * size,30 + yCoord * 6, 12, 1, 20, 38);
+            createSideSeats(200 + 35 * size,30 + yCoord * 7, 12, 1, 19, 38);
+            for (let i = 0; i < 7; i++) {
+                createSideSeats(200 + 35 * size,30 + yCoord * (8 + i), 7, 1, 18 - i, 33);
+            }
+
+            // левый нижний
+            for (let i = 0; i < 10; i++) {
+                createSideSeats(200 - size * 5 ,30 + yCoord * (17 + i), 12, 1, 11 - i, 1);
+            }
+            createSideSeats(200 - size * 4 ,30 + yCoord * 27, 11, 1, 1, 1);
+
+
+
+            // центральный нижний
+            for (let i = 0; i < 10; i++) {
+                createSideSeats(200 + 9 * size,30 + yCoord * (17 + i), 24, 1, (11  - i), 13);
+            }
+            createSideSeats(200 + 9 * size,30 + yCoord * 27 , 24, 1, 1, 12);
+
+
+
+            // правый нижный
+            for (let i = 0; i < 5; i++) {
+                createSideSeats(200 + 35 * size,30 + yCoord * (17 + i), 11, 1, 11 - i, 37);
+            }
+
+            for (let i = 0; i < 5; i++) {
+                createSideSeats(200 + 35 * size,30 + yCoord * (22 + i), 7, 1, 6 - i, 37);
+            }
+            createSideSeats(200 + 35 * size,30 + yCoord * 27, 7, 1,1, 36);
+
+
+
+
+
+
+        }
+
+
+        function createSideSeats(x, y,  miniRectangleWidth, miniRectangleHeight, row, col) {
+            // Создаем мини-прямоугольник
+            for (let i = 0; i < miniRectangleWidth; i+= 1) {
+                for (let j = 0; j < miniRectangleHeight; j += 15) {
+                    createSeat(x +  i * 15 , y +  20 + j, row, col++);
+                }
+            }
+        }
+
+
+
+        // function createSeat(x, y, row, col) {
+        //
+        //     const seat = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+        //     const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        //
+        //
+        //     //  console.log(row);
+        //
+        //     seat.setAttribute('cx', x);
+        //     seat.setAttribute('cy', y);
+        //     seat.setAttribute('r', '7')
+        //
+        //     seat.setAttribute('fill', 'gray');
+        //     seat.setAttribute('data-coords', row + " " + col);
+        //     // const text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+        //     // text.setAttribute('x', x); // Установить x-координату текста
+        //     // text.setAttribute('y', y + 2); // Установить y-координату текста
+        //     // text.setAttribute('text-anchor', 'middle'); // Выравнивание текста по центру
+        //     // text.setAttribute('fill', 'black'); // Установить цвет текста
+        //     // text.setAttribute('font-size', '8'); // Установить размер шрифта
+        //     // text.textContent = col;
+        //
+        //     seat.classList.add('seat');
+        //     group.appendChild(seat);
+        //   //  group.appendChild(text);
+        //
+        //     cinemaHall.appendChild(seat);
+        //  //   cinemaHall.appendChild(text);
+        //
+        //
+        //
+        //
+        //     // seat.addEventListener('click', function(event) {
+        //     //     console.log(111);
+        //     //     const targetGroup = event.target.parentNode;
+        //     //     if(!reservedSeatsData.includes(seat.getAttribute("data-coords"))){
+        //     //         if (seat.classList.contains('selected')) {
+        //     //             // Если элемент имеет класс 'selected'
+        //     //             let index = selectedSeats.indexOf(seat.getAttribute("data-coords"));
+        //     //             if (index !== -1) {
+        //     //                 selectedSeats.splice(index, 1);
+        //     //             }
+        //     //             console.log('Элемент seat больше не выделен');
+        //     //         }
+        //     //         else {
+        //     //             selectedSeats.push(seat.getAttribute("data-coords"));
+        //     //             console.log('Элемент seat  выделен');
+        //     //         }
+        //     //         event.target.classList.toggle('selected');
+        //     //
+        //     //         console.log(document.getElementById("selectedSeats"));
+        //     //         document.getElementById('selectedSeats').value = selectedSeats.join(',');
+        //     //
+        //     //         console.log(selectedSeats);
+        //     //     }
+        //     //     }
+        //     //
+        //     // );
+        //     seat.addEventListener('click', function(event) {
+        //
+        //         const seatCoords = event.target.getAttribute("data-coords");
+        //
+        //         if (!reservedSeatsData.includes(seatCoords)) {
+        //             const isSeatSelected = event.target.classList.contains('selected');
+        //             if (isSeatSelected) {
+        //                 // Deselect the seat
+        //                 const index = selectedSeats.indexOf(seatCoords);
+        //                 if (index !== -1) {
+        //                     selectedSeats.splice(index, 1);
+        //                 }
+        //                 console.log('Seat deselected');
+        //             } else {
+        //                 // Open a confirmation dialog for seat reservation
+        //                 const reserve = confirm('Вы действительно хотите забронировать место ' + seatCoords + '?');
+        //                 if (reserve) {
+        //                     selectedSeats.push(seatCoords);
+        //                     console.log('Seat selected');
+        //                 }
+        //             }
+        //             event.target.classList.toggle('selected');
+        //             document.getElementById('selectedSeats').value = selectedSeats.join(',');
+        //             console.log(selectedSeats);
+        //         }
+        //     });
+        //     seat.addEventListener('mouseover', function(event) {
+        //         const seatCoords = event.target.getAttribute("data-coords");
+        //         event.target.setAttribute('title', 'Р: ' + seatCoords.split(' ')[0] + ', Место: ' + seatCoords.split(' ')[1]);
+        //
+        //
+        //
+        //
+        //
+        // }
+
+        // Inside the createSeat function
+        function createSeat(x, y, row, col) {
+            const seat = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+            const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+            seat.setAttribute('cx', x);
+            seat.setAttribute('cy', y);
+            seat.setAttribute('r', '7');
+            seat.setAttribute('fill', 'gray');
+            seat.setAttribute('data-coords', row + " " + col);
+
+            seat.classList.add('seat');
+            group.appendChild(seat);
+            cinemaHall.appendChild(group);
+
+            seat.addEventListener('click', function(event) {
+                const seatCoords = event.target.getAttribute("data-coords");
+
+                if (!reservedSeatsData.includes(seatCoords)) {
+                    const isSeatSelected = event.target.classList.contains('selected');
+                    if (isSeatSelected) {
+                        // Deselect the seat
+                        const index = selectedSeats.indexOf(seatCoords);
+                        if (index !== -1) {
+                            selectedSeats.splice(index, 1);
+                        }
+                        console.log('Seat deselected');
+                    } else {
+                        // Open a confirmation dialog for seat reservation
+                        const reserve = confirm('Вы действительно хотите забронировать место ' + seatCoords + '?');
+                        if (reserve) {
+                            selectedSeats.push(seatCoords);
+                            console.log('Seat selected');
+                        }
+                    }
+                    event.target.classList.toggle('selected');
+                    document.getElementById('selectedSeats').value = selectedSeats.join(',');
+                    console.log(selectedSeats);
+                }
+            });
+
+            // seat.addEventListener('mouseover', function(event) {
+            //     const seatCoords = event.target.getAttribute("data-coords");
+            //     const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+            //     tooltip.textContent = 'Row: ' + seatCoords.split(' ')[0] + ', Seat: ' + seatCoords.split(' ')[1];
+            //     event.target.appendChild(tooltip);
+            // });
+            //
+            // seat.addEventListener('mouseout', function(event) {
+            //     const tooltip = event.target.querySelector('title');
+            //     if (tooltip) {
+            //         tooltip.remove();
+            //     }
+            // });
+            seat.addEventListener('mouseover', function(event) {
+                seat.setAttribute('r', '10');  // Increase the radius on hover
+                const infoBox = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                // Set attributes for the rectangle
+                rect.setAttribute('x', x - 15); // Customize position based on your design
+                rect.setAttribute('y', y + 15); // Customize position based on your design
+                rect.setAttribute('width', '80');
+                rect.setAttribute('height', '20');
+                rect.setAttribute('fill', 'white');
+                rect.setAttribute('stroke', 'black');
+                rect.setAttribute('stroke-width', '1');
+                // Create text element for info
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x); // Customize position based on your design
+                text.setAttribute('y', y + 30); // Customize position based on your design
+                text.setAttribute('text-anchor', 'middle');
+                text.textContent = 'Row: ' + row + ', Seat: ' + col;
+                // Append rect and text to the info box
+                infoBox.appendChild(rect);
+                infoBox.appendChild(text);
+                cinemaHall.appendChild(infoBox);  // Append the info box to the SVG
+            });
+
+            // Add functionality to revert changes on mouseout
+            seat.addEventListener('mouseout', function(event) {
+                seat.setAttribute('r', '');  // Revert the radius on mouseout
+                const infoBox = cinemaHall.querySelector('g');  // Find the info box
+                if (infoBox) {
+                    infoBox.remove();  // Remove the info box on mouseout
+                }
+            });
+        }
+
+    });
+</script>
+</body>
+</html>
