@@ -5,8 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.util.SeatData;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -22,7 +27,10 @@ public class ReservationController {
         // Создайте JSON объект
         String jsonReservedSeats = "";
         String jsonPriceSeats = "";
-
+        Event event = new Event("Кунг-Фу Панда 4 ", new Date(),
+                "Hello!This is test event, pu-pu-pu");
+        LocalDateTime dateTime = LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow"));
+        String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         try {
             jsonReservedSeats = mapper.writeValueAsString(List.of("26 1", "26 2"));
             jsonPriceSeats = mapper.writeValueAsString(List.of("1000", "1200", "1300", "1500", "1600"));;
@@ -31,8 +39,10 @@ public class ReservationController {
             e.printStackTrace();
         }
         model.addAttribute("seatData", new SeatData());
+        model.addAttribute("event", event);
         model.addAttribute("reservedSeats", jsonReservedSeats);
         model.addAttribute("priceSeats", jsonPriceSeats);
+        model.addAttribute("time", formattedDateTime);
         model.addAttribute("priceSeatsForHtml", List.of("1000", "1200", "1300", "1500", "1600"));
         return "order/show";
     }
