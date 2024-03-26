@@ -347,17 +347,23 @@
                         if (index !== -1) {
                             selectedSeats.splice(index, 1);
                         }
+                        event.target.classList.toggle('selected');
                         console.log('Seat deselected');
                     } else {
                         const reserve = confirm('Вы действительно хотите забронировать место ' + seatCoords + '?');
                         if (reserve) {
+                            console.log('da');
                             selectedSeats.push(seatCoords);
                             console.log('Seat selected');
+                            event.target.classList.toggle('selected');
+                            document.getElementById('selectedSeats').value = selectedSeats.join(',');
+                            console.log(selectedSeats);
+                        }
+                        else {
+                            console.log('net');
                         }
                     }
-                    event.target.classList.toggle('selected');
-                    document.getElementById('selectedSeats').value = selectedSeats.join(',');
-                    console.log(selectedSeats);
+
                 }
             });
         }
