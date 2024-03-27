@@ -283,8 +283,13 @@
             seat.setAttribute('data-row', row);
             seat.setAttribute('data-col', col);
             seat.setAttribute('data-text', "");
-            seat.setAttribute('fill', COLORS[price]);
             seat.setAttribute('price', priceSeats[price]);
+            if (!reservedSeatsData.includes(row + " " + col)){
+                seat.setAttribute('fill', COLORS[price]);
+            }
+            else {
+                seat.setAttribute('fill', 'grey');
+            }
             seat.classList.add('seat');
             cinemaHall.appendChild(seat);
             const tooltip = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
@@ -323,34 +328,41 @@
             cinemaHall.appendChild(text);
             cinemaHall.appendChild(text);
 
+
             seat.addEventListener('mouseover', function(event) {
-                const mouseX = event.target.getAttribute("cx");
-                const mouseY = event.target.getAttribute("cy");
+                if (!reservedSeatsData.includes(event.target.getAttribute("data-coords"))) {
 
-                tooltip.setAttribute('x', mouseX - 70);
-                tooltip.setAttribute('y', mouseY - 70);
-                tooltip.setAttribute('fill', 'grey');
-                text.setAttribute('x', mouseX + 20);
-                text.setAttribute('y', mouseY - 30);
-                tspan1.setAttribute('x', mouseX - 25);
 
-                tspan1.setAttribute('y', mouseY - 70);
+                    const mouseX = event.target.getAttribute("cx");
+                    const mouseY = event.target.getAttribute("cy");
 
-                tspan2.setAttribute('x', mouseX);
-                tspan2.textContent =  event.target.getAttribute("data-row") + " ряд, " + event.target.getAttribute("data-col") + ' место';
-                tspan1.textContent =  event.target.getAttribute("price") + ' ₽';
-                event.target.setAttribute('r', '11');
-                event.target.setAttribute('fill', '#483D8B');
-                cinemaHall.appendChild(tooltip);
-                cinemaHall.appendChild(text);
+                    tooltip.setAttribute('x', mouseX - 70);
+                    tooltip.setAttribute('y', mouseY - 70);
+                    tooltip.setAttribute('fill', 'grey');
+                    text.setAttribute('x', mouseX + 20);
+                    text.setAttribute('y', mouseY - 30);
+                    tspan1.setAttribute('x', mouseX - 25);
+
+                    tspan1.setAttribute('y', mouseY - 70);
+
+                    tspan2.setAttribute('x', mouseX);
+                    tspan2.textContent =  event.target.getAttribute("data-row") + " ряд, " + event.target.getAttribute("data-col") + ' место';
+                    tspan1.textContent =  event.target.getAttribute("price") + ' ₽';
+                    event.target.setAttribute('r', '11');
+                    event.target.setAttribute('fill', '#483D8B');
+                    cinemaHall.appendChild(tooltip);
+                    cinemaHall.appendChild(text);
+                }
             });
 
             seat.addEventListener('mouseout', function(event) {
-                event.target.setAttribute('r', '7');
-                event.target.setAttribute('fill', COLORS[price]);
-                tooltip.textContent = '';
-                tooltip.remove();
-                text.remove();
+                if (!reservedSeatsData.includes(event.target.getAttribute("data-coords"))) {
+                    event.target.setAttribute('r', '7');
+                    event.target.setAttribute('fill', COLORS[price]);
+                    tooltip.textContent = '';
+                    tooltip.remove();
+                    text.remove();
+                }
             });
 
             seat.addEventListener('click', function(event) {
@@ -366,20 +378,14 @@
                         event.target.classList.toggle('selected');
                         console.log('Seat deselected');
                     } else {
-                        const reserve = confirm('Вы действительно хотите забронировать место ' + seatCoords + '?');
-                        if (reserve) {
                             console.log('da');
                             selectedSeats.push(seatCoords);
                             console.log('Seat selected');
                             event.target.classList.toggle('selected');
                             document.getElementById('selectedSeats').value = selectedSeats.join(',');
                             console.log(selectedSeats);
-                        }
-                        else {
-                            console.log('net');
-                        }
-                    }
 
+                    }
                 }
             });
         }

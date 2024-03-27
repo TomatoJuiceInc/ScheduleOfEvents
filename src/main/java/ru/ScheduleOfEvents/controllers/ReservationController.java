@@ -37,6 +37,8 @@ public class ReservationController {
         } catch (Exception e) {
             // Обработка ошибки сериализации в JSON
             e.printStackTrace();
+
+            // todo сделать другим цветом
         }
         model.addAttribute("seatData", new SeatData());
         model.addAttribute("event", event);
