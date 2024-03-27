@@ -18,16 +18,17 @@ public class Hall {
     @Column(name = "count_seats")
     private int count_seats;
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
 
     @OneToMany(mappedBy = "hall")
     private List<Event> events;
+
+    public Hall(String name, int count_seats) {
+        this.name = name;
+        this.count_seats = count_seats;
+    }
+
+    public Hall() {}
+
     public int getId() {
         return id;
     }
@@ -52,13 +53,13 @@ public class Hall {
         this.count_seats = count_seats;
     }
 
-    public Hall(String name, int count_seats) {
-        this.name = name;
-        this.count_seats = count_seats;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public Hall(){
-
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
+
 
 }

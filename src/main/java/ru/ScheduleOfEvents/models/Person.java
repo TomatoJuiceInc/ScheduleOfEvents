@@ -47,13 +47,6 @@ public class Person {
     private List<Ticket> tickets;
 
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
 
     public Person(String username, String email, String phone_number, String role, int age, String password, List<Event> events) {
         this.username = username;
@@ -75,13 +68,6 @@ public class Person {
         this.tickets = tickets;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
 
     public  Person(){
 
@@ -95,6 +81,14 @@ public class Person {
         this.age = age;
         this.password = password;
     }
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
 
     public int getId() {
         return id;
@@ -151,4 +145,12 @@ public class Person {
     public void setPassword(String password) {
         this.password = password;
     }
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
 }

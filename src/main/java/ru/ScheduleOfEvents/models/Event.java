@@ -29,22 +29,17 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Ticket> ticket;
 
-    public List<Ticket> getTicket() {
-        return ticket;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.ticket = tickets;
-    }
 
     @ManyToOne
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
+
     public Event(String name, Date date, String description) {
         this.name = name;
         this.date = date;
         this.description = description;
     }
+
     public Event(String name, Date date, String description, Person owner, Hall hall) {
         this.name = name;
         this.date = date;
@@ -53,7 +48,7 @@ public class Event {
         this.hall = hall;
     }
 
-    public Event(){
+    public Event() {
 
     }
 
@@ -90,7 +85,6 @@ public class Event {
     }
 
 
-
     public Person getOwner() {
         return owner;
     }
@@ -103,15 +97,21 @@ public class Event {
         return hall;
     }
 
+    public void setTicket(List<Ticket> ticket) {
+        this.ticket = ticket;
+    }
+
     public void setHall(Hall hall) {
         this.hall = hall;
     }
 
+    public List<Ticket> getTicket() {
+        return ticket;
+    }
 
-
-
-
-
+    public void setTickets(List<Ticket> tickets) {
+        this.ticket = tickets;
+    }
 
 
 }
