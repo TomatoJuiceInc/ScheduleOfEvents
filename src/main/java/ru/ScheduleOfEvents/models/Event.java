@@ -26,7 +26,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event",  cascade = CascadeType.ALL)
     private List<Ticket> ticket;
 
 

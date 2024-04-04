@@ -19,7 +19,7 @@ public class Hall {
     private int count_seats;
 
 
-    @OneToMany(mappedBy = "hall")
+    @OneToMany(mappedBy = "hall",  cascade = CascadeType.ALL)
     private List<Event> events;
 
     public Hall(String name, int count_seats) {
