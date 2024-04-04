@@ -21,7 +21,7 @@ import java.util.*;
 public class ReservationController {
 
     @GetMapping()
-    public String showPage(Model model){
+    public String showPage(Model model, @RequestParam("type") int type){
         ObjectMapper mapper = new ObjectMapper();
 
         // Создайте JSON объект
@@ -46,6 +46,7 @@ public class ReservationController {
         model.addAttribute("priceSeats", jsonPriceSeats);
         model.addAttribute("time", formattedDateTime);
         model.addAttribute("priceSeatsForHtml", List.of("1000", "1200", "1300", "1500", "1600"));
+        model.addAttribute("typeHall", type);
         return "order/show";
     }
 

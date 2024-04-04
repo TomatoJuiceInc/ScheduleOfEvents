@@ -1,0 +1,102 @@
+body{
+    background-color: #1c1b1b;
+}
+svg {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #1c1b1b;
+
+}
+.seat {
+    /*fill: #00c5ff;*/
+    user-select: none;
+
+}
+.seat.selected {
+    fill: red;
+}
+.seat, text {
+    cursor: pointer;
+}
+.submit-container{
+    position: absolute;
+    right: 100px;
+
+}
+#tooltip {
+    position: absolute;
+    display: none;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 1;
+
+}
+.container {
+    display: flex;
+}
+
+.svg-container {
+    flex: 1;
+
+}
+
+
+
+.table-container {
+    padding: 0 20px;
+}
+
+table {
+    background-color: #1c1b1b;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th, td {
+    color: whitesmoke;
+    font-family: "Arialsans-serif",serif;
+    padding: 8px;
+    text-align: center;
+}
+
+.color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.table-container {
+    margin-top: 30px;
+}
+.btn {
+    padding: 10px 20px;
+    background-color: #8D917A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #DDADAF;
+}
+.event-name {
+    margin-right: 110px;
+    color: #cccccc;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Style the event date */
+.event-date {
+    margin-right: 110px;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
