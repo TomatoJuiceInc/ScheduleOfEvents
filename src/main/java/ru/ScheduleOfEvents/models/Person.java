@@ -39,11 +39,11 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner",  cascade = CascadeType.ALL)
     private List<Event> events;
 
 
-    @OneToMany(mappedBy = "ownerTicket")
+    @OneToMany(mappedBy = "ownerTicket",  cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
 

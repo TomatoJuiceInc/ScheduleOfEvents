@@ -1,7 +1,6 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
