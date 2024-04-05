@@ -3,7 +3,8 @@ body{
 }
 svg {
     display: block;
-    margin: 20px auto 0;
+    /*margin: 20px auto 0;*/
+    margin-left: 50px;
     background-color: #1c1b1b;
 
 }
