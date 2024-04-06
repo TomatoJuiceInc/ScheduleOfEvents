@@ -1,9 +1,14 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Ticket")
+@Data
+@NoArgsConstructor
 public class Ticket {
     @Id
     @Column(name = "id")
@@ -14,42 +19,12 @@ public class Ticket {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person ownerTicket;
 
-    public Person getOwnerTicket() {
-        return ownerTicket;
-    }
     @ManyToOne
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;
-    public Ticket(){
 
-    }
-
-    public void setOwnerTicket(Person ownerTicket) {
+    public Ticket(Person ownerTicket, Event event) {
         this.ownerTicket = ownerTicket;
-    }
-
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
         this.event = event;
     }
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Ticket(int id) {
-        this.id = id;
-    }
-
-
-
 }
