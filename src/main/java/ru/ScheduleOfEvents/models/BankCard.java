@@ -16,8 +16,7 @@ public class BankCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-    @Column(name = "card_number")
+    @Column(name = "card_number", unique = true)
     private String cardNumber;
 
     @Column(name = "owner")
@@ -29,17 +28,21 @@ public class BankCard {
     @Column(name = "cvc")
     private String cvc;
 
+    @Override
+    public String toString() {
+        return "BankCard{" +
+                "cardNumber='" + cardNumber + '\'' +
+                ", cvc='" + cvc + '\'' +
+                ", duration='" + duration + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 
     @Column(name = "duration")
     private String duration;
 
     @Column(name = "balance")
     private int balance;
-
-
-
-
-
 
 
 

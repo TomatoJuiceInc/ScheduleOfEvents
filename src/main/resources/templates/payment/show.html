@@ -23,7 +23,7 @@
         <div class="creditCardForm">
 
             <div class="payment">
-                <form>
+                <form th:method="POST" th:action="@{/payment/buy/{price}(price=${amount})}" th:object="${bankCard}">
                     <div class="form-group-second" style="width: 40%; margin-left: 70px">
                         <h3>Tomato Juice</h3>
                         <img src="logo.jpeg" alt="Описание изображения" width="50" height="50">
@@ -35,10 +35,10 @@
                         <h5 class="right-text">Tomato Juice </h5>
                         <br>
                         <h5 class="left-text">Сумма</h5>
-                        <h5 class="right-text">2,00₽</h5>
+                        <h5 class="right-text" th:text="${amount} + '₽'">2,00₽</h5>
                         <br>
                         <h5 class="left-text" >Комиссия </h5>
-                        <h5 class="right-text">0,01₽</h5>
+                        <h5 class="right-text" >0,00₽</h5>
 
                     </div>
 
@@ -46,15 +46,14 @@
                     <div >
                         <div class="form-group-second">
                             <div class="inputBox" >
-
-                                <input  type="text"  id="card-number-field" required="required">
+                                <input  type="text"  th:field="*{cardNumber}" id="card-number-field" required="required">
                                 <span >Номер карты</span>
                                 <i></i>
 
                             </div>
                             <div class="inputBox" >
 
-                                <input type="text"  id="card-dur" required="required">
+                                <input  type="text"  th:field="*{duration}" id="card-dur" required="required">
                                 <span>Действует</span>
                                 <i style="width: 30%;"></i>
                             </div>
@@ -64,14 +63,14 @@
 
                             <div class="inputBox" >
 
-                                <input style="width: 80%" type="text"  id="owner" required="required">
+                                <input style="width: 80%" type="text" th:field="*{owner}"  id="owner" required="required">
                                 <span>Владелец</span>
                                 <i></i>
                             </div>
                             <div class="inputBox" >
 
-                                <input type="text"  id="cvv" required="required">
-                                <span>CVV</span>
+                                <input type="text"  id="cvv" th:field="*{cvc}" required="required">
+                                <span>CVC</span>
                                 <i style="width: 30%;"></i>
                             </div>
                         </div>
@@ -82,7 +81,7 @@
 
 
                     <div class="form-group" id="pay-now">
-                        <button type="submit" class="btn btn-default" id="confirm-purchase">Оплатить</button>
+                        <button th:text="'Оплатить ' + ${amount} + '₽'" type="submit" class="btn btn-default" id="confirm-purchase">Оплатить</button>
                     </div>
                 </form>
             </div>
