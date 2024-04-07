@@ -1,12 +1,14 @@
 let reservedSeatsData = document.getElementById('reservedSeats')
-    .dataset.reservedSeats.replace("[", '')
+    .dataset.reservedSeats
+    .replace("[", "")
     .replace("]", "")
-    .replace(/"/g, '')
-    .split(",");
+    .replace(/"/g, '').split(',');
+
 
 const typeHall = document.getElementById('typeHall').dataset.typehall;
 let COLORS = ['#FF6347', '#008B8B', '#228B22', '#00BFFF', '#9370DB']
-
+console.log(123);
+console.log(document.getElementById('priceSeats').dataset.priceSeats);
 let priceSeats = document.getElementById('priceSeats')
     .dataset.priceSeats.replace("[", '')
     .replace("]", '')

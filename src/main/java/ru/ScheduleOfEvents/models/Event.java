@@ -3,6 +3,7 @@ package ru.ScheduleOfEvents.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,8 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
 
+    @OneToMany(mappedBy = "ownerEvent")
+    private List<Price> prices;
 
     @ManyToOne
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
@@ -46,16 +49,6 @@ public class Event {
         this.hall = hall;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", date=" + date +
-                ", description='" + description + '\'' +
-                ", owner=" + owner +
-                ", tickets=" + tickets +
-                ", hall=" + hall +
-                '}';
-    }
+
+
 }

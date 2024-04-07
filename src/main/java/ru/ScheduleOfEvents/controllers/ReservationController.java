@@ -1,12 +1,14 @@
 package ru.ScheduleOfEvents.controllers;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.Price;
 import ru.ScheduleOfEvents.sevices.EventsService;
 import ru.ScheduleOfEvents.util.SeatData;
 
@@ -29,32 +31,45 @@ public class ReservationController {
     }
 
     @GetMapping()
-    public String showPage(Model model, @RequestParam("type") int type,  @RequestParam("e") int eventId){
+    public String showPage(Model model, @RequestParam("type") int type,  @RequestParam("e") int eventId)  {
         ObjectMapper mapper = new ObjectMapper();
 
         // Создайте JSON объект
         String jsonReservedSeats = "";
         String jsonPriceSeats = "";
         Event event = eventsService.findOne(eventId);
-        System.out.println(event);
         if (event == null){
             return "error/error.html";
         }
+
         LocalDateTime dateTime = LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow"));
         String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         try {
-            jsonReservedSeats = mapper.writeValueAsString(List.of("26 1", "26 2"));
-            jsonPriceSeats = mapper.writeValueAsString(List.of("1000", "1200", "1300", "1500", "1600"));;
-        } catch (Exception e) {
-            e.printStackTrace();
+            jsonReservedSeats = mapper.writeValueAsString(
+                    event.getTickets()
+                            .stream()
+                            .map(t -> (t.getCol() + " " + t.getRow()))
+                            .toList());
 
+            jsonPriceSeats = mapper.writeValueAsString(event.getPrices()
+                    .stream()
+                    .map(Price::getPrice)
+                    .toList().stream().sorted(Integer::compareTo).toList());
         }
+        catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
+
+
         model.addAttribute("seatData", new SeatData());
         model.addAttribute("event", event);
         model.addAttribute("reservedSeats", jsonReservedSeats);
         model.addAttribute("priceSeats", jsonPriceSeats);
         model.addAttribute("time", formattedDateTime);
-        model.addAttribute("priceSeatsForHtml", List.of("1000", "1200", "1300", "1500", "1600"));
+        model.addAttribute("priceSeatsForHtml", event.getPrices()
+                .stream()
+                .map(Price::getPrice)
+                .toList().stream().sorted(Integer::compareTo).toList());
         model.addAttribute("typeHall", type);
         return "order/show";
     }
