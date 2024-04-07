@@ -41,7 +41,7 @@ document.getElementById('card-dur').addEventListener('input', function (e) {
     e.target.value = formattedInput;
 });
 document.getElementById('owner').addEventListener('input', function (e) {
-    var input = e.target.value.replace(/[^a-zA-Z] /g, '');
+    var input = e.target.value.replace(/[^a-zA-Z\s]/g, '');
     var formattedInput = input.toUpperCase();
     e.target.value = formattedInput;
 });
