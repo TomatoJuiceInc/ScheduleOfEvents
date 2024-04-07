@@ -1,0 +1,105 @@
+#card-number-field, #cvv,  #owner, #card-dur {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+
+.creditCardForm {
+    max-width: 500px;
+    background-color: #fff;
+    margin: 100px auto;
+    overflow: hidden;
+    padding: 25px;
+    color: #4c4e56;
+}
+
+
+.creditCardForm label {
+    font-size: 14px;
+    line-height: 15px;
+}
+
+.creditCardForm .heading h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4e56;
+}
+
+.creditCardForm .payment {
+    float: left;
+    font-size: 18px;
+    padding: 10px 25px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.creditCardForm .payment .form-group {
+    float: left;
+    margin-bottom: 15px;
+}
+
+.creditCardForm .payment  {
+
+    line-height: 40px;
+    height: auto;
+    padding: 0 16px;
+}
+
+.creditCardForm .owner {
+    width: 73%;
+    margin-right: 10px;
+}
+
+.creditCardForm .CVV {
+    width: 10%;
+}
+.creditCardForm .card-dur {
+    width: 10%;
+}
+.CVV input[type="text"] {
+    width: 80px;
+}
+.card-dur input[type="text"] {
+    width: 80px;
+}
+.card-num input[type="text"] {
+    width: 300px;
+}
+.owner input[type="text"] {
+    width: 300px;
+}
+
+.creditCardForm .card-num {
+    width: 73%;
+    margin-right: 10px;
+}
+
+
+
+.creditCardForm #pay-now {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.creditCardForm .payment .btn {
+    width: 65%;
+    margin-top: 3px;
+    font-size: 24px;
+    background-color: #2ec4a5;
+    color: white;
+}
+
+.left-text {
+    float: left;
+}
+
+.right-text {
+    color: grey;
+    font-size: 11px;
+    float: right;
+}
+.labels-p{
+    width: 70%;
+}
+
+
