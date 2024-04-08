@@ -3,33 +3,35 @@ package ru.ScheduleOfEvents.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.ScheduleOfEvents.models.Person;
+import ru.ScheduleOfEvents.models.UserModel;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class PersonDetails implements UserDetails {
-    private final Person person;
+public class UserDetailsImpl implements UserDetails {
+    private UserModel user;
 
-    public PersonDetails(Person person) {
-        this.person = person;
+    public UserDetailsImpl(UserModel user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-
-        return Collections.singletonList(new SimpleGrantedAuthority("USER_ROLE"));
+        return Arrays.stream(user.getRoles().split(", "))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return user.getUsername();
     }
 
     @Override
@@ -50,9 +52,5 @@ public class PersonDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public Person getPerson() {
-        return person;
     }
 }
