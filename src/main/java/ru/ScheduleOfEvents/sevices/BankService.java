@@ -23,4 +23,12 @@ public class BankService {
 
         return bankRepository.findBankCardByCardNumber(cardNumber);
     }
+
+
+    @Transactional
+    public void pay(String id,  int price){
+        BankCard bankCard = findByCardNumber(id);
+        bankCard.setBalance(bankCard.getBalance() - price);
+
+    }
 }

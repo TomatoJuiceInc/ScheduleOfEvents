@@ -18,6 +18,8 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Controller
 @RequestMapping("/order")
 
@@ -76,10 +78,12 @@ public class ReservationController {
 
     @PostMapping("/more")
     public String bookSeats(@ModelAttribute("seatData") SeatData seatData ) {
-        System.out.println(Arrays.toString(seatData.getSeat().split(",")));
+        System.out.println(String.join(";", seatData.getSeat().split(",")));
+        int price = 300;
+        int id  = 1;
 
+        return String.format("redirect:/payment?a=%d&u=%d&s=%s", price, id, String.join(";", seatData.getSeat().split(",")));
 
-        return "redirect:/order";
     }
 
 
