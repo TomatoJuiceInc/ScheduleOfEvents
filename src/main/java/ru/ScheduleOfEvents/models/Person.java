@@ -53,6 +53,9 @@ public class Person {
     @OneToMany(mappedBy = "ownerTicket")
     private List<Ticket> tickets;
 
+    @OneToMany(mappedBy = "ownerUserForTT")
+    private List<TemporaryTicket> temporaryTickets;
+
     public Person(String username, String email, String phone_number, String role, int age, String password, List<Event> events, List<Ticket> tickets) {
         this.username = username;
         this.email = email;
@@ -62,5 +65,13 @@ public class Person {
         this.password = password;
         this.events = events;
         this.tickets = tickets;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                '}';
     }
 }

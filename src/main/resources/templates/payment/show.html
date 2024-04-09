@@ -23,7 +23,7 @@
         <div class="creditCardForm">
 
             <div class="payment">
-                <form th:method="POST" th:action="@{/payment/buy/{price}/{id}/{s}(price=${amount}, id=${user_id}, s=${seats})}" th:object="${bankCard}">
+                <form th:method="POST" th:action="@{/payment/buy/{price}/{id}/{event}(price=${amount}, id=${user_id}, event=${event_id})}" th:object="${bankCard}">
                     <div class="form-group-second" style="width: 40%; margin-left: 70px">
                         <h3>Tomato Juice</h3>
                         <img src="logo.jpeg" alt="Описание изображения" width="50" height="50">

@@ -17,9 +17,9 @@ public class Ticket {
     private int id;
 
     @Column(name = "col")
-    private int col;
+    private String col;
     @Column(name = "row")
-    private int row;
+    private String row;
 
 
     @ManyToOne
@@ -33,6 +33,14 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "price_id", referencedColumnName = "id")
     private Price price;
+
+    public Ticket(String col, String row, Person ownerTicket, Event event, Price price) {
+        this.col = col;
+        this.row = row;
+        this.ownerTicket = ownerTicket;
+        this.event = event;
+        this.price = price;
+    }
 
     public Ticket(Person ownerTicket, Event event, Price price) {
         this.ownerTicket = ownerTicket;

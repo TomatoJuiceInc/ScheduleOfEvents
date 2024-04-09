@@ -20,6 +20,7 @@
 <div th:attr="data-reserved-seats=${reservedSeats}" id="reservedSeats"></div>
 <div th:attr="data-typeHall=${typeHall}" id="typeHall"></div>
 <div th:attr="data-price-seats=${priceSeats}" id="priceSeats"></div>
+<div th:attr="data-priceId=${priceId}" id="priceId"></div>
 <div id="tooltip"></div>
 <div class="container">
     <div th:if="${typeHall == 2}">
@@ -79,7 +80,7 @@
 
 
 <div class="submit-container">
-    <form id="booking-form"  th:action=" @{/order/more}" th:method="POST" th:object="${seatData}">
+    <form id="booking-form"  th:action="@{/order/more/{id}/{event}(id=${userId}, event=${event.getId()})}" th:method="POST" th:object="${seatData}">
         <input th:field="*{seat}"  type="hidden" id="selectedSeats" th:value="${seatData.seat}"/>
         <button type="submit" class="btn">Забронировать</button>
     </form>

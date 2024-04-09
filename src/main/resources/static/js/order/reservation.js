@@ -7,13 +7,16 @@ let reservedSeatsData = document.getElementById('reservedSeats')
 
 const typeHall = document.getElementById('typeHall').dataset.typehall;
 let COLORS = ['#FF6347', '#008B8B', '#228B22', '#00BFFF', '#9370DB']
-console.log(123);
 console.log(document.getElementById('priceSeats').dataset.priceSeats);
 let priceSeats = document.getElementById('priceSeats')
     .dataset.priceSeats.replace("[", '')
     .replace("]", '')
     .replace(/"/g, '')
     .split(",");
+let priceId = document.getElementById('priceId')
+    .dataset.priceid.replace("[", '').replace("]", '').split(",");
+
+
 
 let selectedSeats = [];
 document.addEventListener('DOMContentLoaded', function () {
@@ -232,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
         seat.setAttribute('data-col', col);
         seat.setAttribute('data-text', "");
         seat.setAttribute('price', priceSeats[price]);
+        seat.setAttribute('priceId', priceId[price]);
         if (!reservedSeatsData.includes(row + " " + col)) {
             seat.setAttribute('fill', COLORS[price]);
         } else {
@@ -330,18 +334,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         seat.addEventListener('click', function (event) {
             const seatCoords = event.target.getAttribute("data-coords");
+            const price = event.target.getAttribute("priceId");
 
             if (!reservedSeatsData.includes(seatCoords)) {
                 const isSeatSelected = event.target.classList.contains('selected');
                 if (isSeatSelected) {
-                    const index = selectedSeats.indexOf(seatCoords);
+                    const index = selectedSeats.indexOf(seatCoords + ":" + price);
                     if (index !== -1) {
                         selectedSeats.splice(index, 1);
                     }
                     event.target.classList.toggle('selected');
                     console.log('Seat deselected');
                 } else {
-                    selectedSeats.push(seatCoords);
+                    selectedSeats.push(seatCoords + ':' + price);
                     event.target.classList.toggle('selected');
                     document.getElementById('selectedSeats').value = selectedSeats.join(',');
                 }

@@ -34,6 +34,9 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
 
+    @OneToMany(mappedBy = "ownerEventForTT")
+    private List<TemporaryTicket> temporaryTickets;
+
     @OneToMany(mappedBy = "ownerEvent")
     private List<Price> prices;
 
@@ -50,5 +53,11 @@ public class Event {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
