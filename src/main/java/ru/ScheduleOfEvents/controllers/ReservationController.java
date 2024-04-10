@@ -56,12 +56,17 @@ public class ReservationController {
 
         LocalDateTime dateTime = LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow"));
         String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        Set<String> reserved =new HashSet<>(event.getTemporaryTickets()
+                .stream()
+                .map(t -> (t.getCol() + " " + t.getRow()))
+                .toList());
+        Set<String> purchased = new HashSet<>(event.getTickets()
+                .stream()
+                .map(t -> (t.getCol() + " " + t.getRow()))
+                .toList());
+        reserved.addAll(purchased);
         try {
-            jsonReservedSeats = mapper.writeValueAsString(
-                    event.getTickets()
-                            .stream()
-                            .map(t -> (t.getCol() + " " + t.getRow()))
-                            .toList());
+            jsonReservedSeats = mapper.writeValueAsString(reserved);
 
             jsonPriceSeats = mapper.writeValueAsString(event.getPrices()
                     .stream()

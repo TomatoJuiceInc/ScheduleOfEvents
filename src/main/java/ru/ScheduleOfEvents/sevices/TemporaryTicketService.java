@@ -54,7 +54,7 @@ public class TemporaryTicketService {
         Event event = eventsService.findOne(eventId);
         for (TemporaryTicket ticket: tickets){
             Price price = priceService.findOne(ticket.getOwnerPriceForTT().getId());
-            Ticket currentTicket = new Ticket( ticket.getCol(),  ticket.getRow(),  person,  event,  priceService.findOne(ticket.getOwnerPriceForTT().getId()));
+            Ticket currentTicket = new Ticket(ticket.getCol(), ticket.getRow(),   person,  event,  priceService.findOne(ticket.getOwnerPriceForTT().getId()));
             price.getTickets().add(currentTicket);
             ticketService.save(currentTicket);
             priceService.save(price);

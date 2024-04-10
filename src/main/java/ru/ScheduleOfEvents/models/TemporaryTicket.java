@@ -51,7 +51,7 @@ public class TemporaryTicket {
     @JoinColumn(name = "price_id", referencedColumnName = "id")
     private Price ownerPriceForTT;
 
-    public TemporaryTicket(String row, String col, Date time, Event ownerEventForTT, Person ownerUserForTT, Price ownerPriceForTT) {
+    public TemporaryTicket(String col, String row, Date time, Event ownerEventForTT, Person ownerUserForTT, Price ownerPriceForTT) {
         this.row = row;
         this.col = col;
         this.time = time;
