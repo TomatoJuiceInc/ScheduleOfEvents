@@ -36,12 +36,20 @@ public class PaymentController {
     public String showPage(Model model,
                            @RequestParam("a") int amount,
                            @RequestParam("u") int userId,
-                           @RequestParam("e") int eventId)
+                           @RequestParam("e") int eventId,
+                           @RequestParam(value = "error", required = false) String  isError)
     {
         model.addAttribute("bankCard", new BankCard());
         model.addAttribute("amount", amount);
         model.addAttribute("user_id", userId);
         model.addAttribute("event_id", eventId);
+        if (isError != null){
+            model.addAttribute("error", true);
+        }
+        else {
+            model.addAttribute("error", false);
+        }
+
         return "payment/show";
     }
     @GetMapping("/successful-payment")
@@ -56,8 +64,7 @@ public class PaymentController {
                             @PathVariable("id") int id,  @PathVariable("event") int eventId) {
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
         if (bCard == null){
-            System.out.println("неправильная карта");
-            return "redirect:/payment?a=" + price + "&u=" + id + "&e=" + eventId;
+            return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
         }
         if (bCard.getCvc().equals(bankCard.getCvc())
                 && bCard.getDuration().equals(bankCard.getDuration())
@@ -69,12 +76,10 @@ public class PaymentController {
                 // todo отправить чек
                 return "redirect:/payment/successful-payment" ;
             }
-            System.out.println("нет денег");
 
-            return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId;
+            return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
         }
-        System.out.println("неправильные данные");
-        return "redirect:/payment?a=" + price + "&u=" + id + "&e=" + eventId;
+        return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
     }
 
 

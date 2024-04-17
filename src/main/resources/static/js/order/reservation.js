@@ -4,7 +4,8 @@ let reservedSeatsData = document.getElementById('reservedSeats')
     .replace("]", "")
     .replace(/"/g, '').split(',');
 
-
+var button = document.getElementById('reservation-button');
+button.disabled = true;
 const typeHall = document.getElementById('typeHall').dataset.typehall;
 let COLORS = ['#FF6347', '#008B8B', '#228B22', '#00BFFF', '#9370DB']
 console.log(document.getElementById('priceSeats').dataset.priceSeats);
@@ -335,6 +336,8 @@ document.addEventListener('DOMContentLoaded', function () {
         seat.addEventListener('click', function (event) {
             const seatCoords = event.target.getAttribute("data-coords");
             const price = event.target.getAttribute("priceId");
+            var button = document.getElementById('reservation-button');
+
 
             if (!reservedSeatsData.includes(seatCoords)) {
                 const isSeatSelected = event.target.classList.contains('selected');
@@ -343,9 +346,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (index !== -1) {
                         selectedSeats.splice(index, 1);
                     }
+                    if (selectedSeats.length === 0){
+                        button.disabled = true;
+                    }
                     event.target.classList.toggle('selected');
-                    console.log('Seat deselected');
                 } else {
+                    button.disabled = false;
                     selectedSeats.push(seatCoords + ':' + price);
                     event.target.classList.toggle('selected');
                     document.getElementById('selectedSeats').value = selectedSeats.join(',');

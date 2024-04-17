@@ -100,6 +100,9 @@ public class ReservationController {
     public String bookSeats(@ModelAttribute("seatData") SeatData seatData,
                             @PathVariable("id") int id,
                             @PathVariable("event") int event ) {
+        if (seatData == null){
+            return "error/error.html";
+        }
         List<TemporaryTicket> temporaryTickets = temporaryTicketService.findAll();
         for (TemporaryTicket temporaryTicket: temporaryTickets){
             if (checkTempTicket(temporaryTicket)){
@@ -111,15 +114,18 @@ public class ReservationController {
         Person person = peopleService.findOne(id);
         Event eventDB = eventsService.findOne(id);
         System.out.println(seatData.getSeat());
+        int price = 0;
         for(String seat: seatData.getSeat().split(",")){
             String[] currentSeat = seat.split(":");
+            Price price1 = priceService.findOne(Integer.parseInt(currentSeat[1]));
+            price += price1.getPrice();
             TemporaryTicket temporaryTicket =  new TemporaryTicket(
                     currentSeat[0].split(" ")[0],
                     currentSeat[0].split(" ")[1],
                     currentDate ,
                     eventsService.findOne(event),
                     peopleService.findOne(id),
-                    priceService.findOne(Integer.parseInt(currentSeat[1])));
+                    price1);
 
             temporaryTicket.setOwnerEventForTT(eventDB);
             temporaryTicket.setOwnerUserForTT(person);
@@ -129,7 +135,6 @@ public class ReservationController {
         }
         peopleService.save(person);
         eventsService.save(eventDB);
-        int price = 300;
         return String.format("redirect:/payment?a=%d&u=%d&e=%d", price, id, event);
 
     }
