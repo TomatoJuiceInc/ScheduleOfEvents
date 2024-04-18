@@ -157,7 +157,12 @@ body {
     background-color: black;
 }
 
-
+.frame-for-text{
+    padding: 20px; /* Добавляем отступ вокруг текста внутри рамки */
+    border-radius: 10px; /* Устанавливаем скругление углов рамки */
+    background-color: #171616; /* Устанавливаем цвет фона внутри рамки */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавляем тень для элемента */
+}
 .header__container {
     position: relative;
     isolation: isolate;

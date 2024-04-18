@@ -3,7 +3,7 @@
 
 <head th:fragment="basehead">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Оплата</title>
+    <title>Tomato Juice</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"  rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -23,7 +23,10 @@
             </h1>
             <h3 class="section__subheader">билеты на концерты, вечеринки, матчи
                 и многое другое!</h3>
-            <button  class="btn-event" id="confirm-purchase">перейти к мероприятиям</button>
+            <form th:method="POST" th:action="@{/welcome}" th:object="${bankCard}">
+                <button type="submit"  class="btn-event" id="confirm-purchase">перейти к мероприятиям</button>
+            </form>
+
             <div class="scroll__btn" >
                 <a href="#about" style="color: #cbd5e1">
                     У нас можно
@@ -41,10 +44,13 @@
         </div>
         <div class="about__content about__content-1">
             <h3 class="section__subheader">ПОКУПКА БИЛЕТОВ</h3>
-            <p>
-                Покупайте билеты на концерты ваших любимых исполнителей, а также посещайте интересные меропрития.
-                Вы можете добавлять мероприятия в избранное, чтобы их не потерять.
-            </p>
+            <div class="frame-for-text">
+                <p>
+                    Покупайте билеты на концерты ваших любимых исполнителей, а также посещайте интересные меропрития.
+                    Вы можете добавлять мероприятия в избранное, чтобы их не потерять.
+                </p>
+
+            </div>
             <div class="about__btn">
                 <a href="#">
                     Перейти в избранное
@@ -57,10 +63,14 @@
         </div>
         <div class="about__content about__content-2">
             <h3 class="section__subheader">Следите за мероприятиями</h3>
-            <p>
-                Все текущие и будущие события в удобном формате для наших пользователей
-                Поиск определенного мероприятия по названию, поиск по категориям и многое другое
-            </p>
+
+            <div class="frame-for-text">
+                <p>
+                    Все текущие и будущие события в удобном формате для наших пользователей
+                    Поиск определенного мероприятия по названию, поиск по категориям и многое другое
+                </p>
+
+            </div>
             <div class="about__btn">
                 <a href="#">
                     К расписанию
@@ -71,12 +81,16 @@
         <div class="about__image about__image-3" id="blog">
             <img src="welcome/asset3.jpg" alt="about" />
         </div>
-        <div class="about__content about__content-3">
+        <div class="about__content about__content-3" >
             <h3 class="section__subheader">Организация мероприятия</h3>
-            <p>
-               А теперь самое главное! Вы можете сами стать организатором какого-либо мероприятия, арендовав зал.
-                Для этого вам нужно стать нашим VIP-клиентом, заполнив форму с данными!
-            </p>
+            <div class="frame-for-text">
+                <p>
+                    А теперь самое главное! Вы можете сами стать организатором какого-либо мероприятия, арендовав зал.
+                    Для этого вам нужно стать нашим VIP-клиентом, заполнив форму с данными!
+                </p>
+
+            </div>
+
             <div class="about__btn">
                 <a href="#">
                     Стать VIP-клиентом
