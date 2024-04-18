@@ -4,24 +4,30 @@ html {
 }
 .nav-link{
     color: #fff;
+    display: flex;
+    align-items: center;
+}
+.navbar{
+    height: 68px;
+    display: flex;
+    align-items: center;
 }
 body{
     height: 100vh;
-    background-color: firebrick;
+    background-color: white;
 }
-.btn-outline-success{
-    color: bisque;
+.navbar-nav{
+    margin-left: 90px;
+    display: flex;
+    align-items: center;
 }
 
-.btn-primary {
-    background-color: firebrick; /* Замените #ff0000 на нужный вам цвет в формате HEX, RGB или названии цвета */
-    color: #ffffff;/* Замените #ffffff на цвет текста, который хорошо виден на новом фоне */
-    border: none;
+.bi-door-open{
+    color: orange;
+    font-size: large;
+    margin-right: 4px;
 }
-.btn-primary:hover{
-    background-color: #202529;
-    color: bisque;
-}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -31,8 +37,8 @@ body{
     background-color: #202529;
     color: #fff;
 }
-.l{
-    font-size: xx-large;
-    color: #fff;
-    margin-left: 10px;
+.bi-ticket-perforated{
+    color: orange;
+    font-size: x-large;
+    margin-right: 4px;
 }
