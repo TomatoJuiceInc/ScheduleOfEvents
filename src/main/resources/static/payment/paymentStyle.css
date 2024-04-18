@@ -8,10 +8,11 @@
 .creditCardForm {
     max-width: 500px;
     background-color: #fff;
-    margin: 100px auto;
+    margin: 100px  70px;
     overflow: hidden;
     padding: 25px;
     color: #4c4e56;
+
 }
 
 
@@ -150,11 +151,36 @@
 }
 .form-group-second {
     display: flex;
-    justify-content: space-between; /* Чтобы разместить элементы на одном уровне с промежутком между ними */
-    align-items: center; /* Центрировать по вертикали */
-    margin-bottom: 15px; /* Добавить отступ снизу */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
+.center-content {
+    max-width: 600px; /* Ширина контейнера */
+}
+@media (max-width: 768px) {
+    .creditCardForm {
+        margin: 50px 10px; /* Уменьшаем отступы */
+        padding: 15px; /* Уменьшаем внутренний отступ */
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
 
+    .inputBox {
+        width: 100%; /* Ширина инпутов на всю длину */
+    }
+
+    .creditCardForm .heading h1 {
+        font-size: 24px; /* Увеличиваем размер заголовка */
+    }
+
+    .creditCardForm .payment {
+        width: 100%; /* Растягиваем блок с оплатой на всю ширину */
+    }
+
+    .right-text {
+        font-size: 10px; /* Уменьшаем размер шрифта у текста справа */
+    }
+}
 
 
 

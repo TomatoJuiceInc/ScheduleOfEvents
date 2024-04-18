@@ -63,6 +63,7 @@ public class PaymentController {
                             @PathVariable("price") int price,
                             @PathVariable("id") int id,  @PathVariable("event") int eventId) {
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
+        System.out.println(bankCard);
         if (bCard == null){
             return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
         }

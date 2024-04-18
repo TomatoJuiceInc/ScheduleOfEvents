@@ -1,98 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="basehead">
     <title>Оплата</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="base/style.css"/>
     <link rel="stylesheet" type="text/css"  href="payment/paymentStyle.css">
+
 </head>
+<header th:insert="base/base :: baseheader">
+</header>
 <body>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-lg-6 center-content">
+            <div class="creditCardForm">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://bootstraptema.ru/snippets/form/2017/jquery.payform.min.js"></script>
-<script src="https://bootstraptema.ru/snippets/form/2017/script.js"></script>
+                <div class="payment">
+                    <form th:method="POST" th:action="@{/payment/buy/{price}/{id}/{event}(price=${amount}, id=${user_id}, event=${event_id})}" th:object="${bankCard}">
+                        <div class="form-group-second" style="width: 40%; margin-left: 70px">
+                            <h3>Tomato Juice</h3>
+                            <img src="logo.jpeg" alt="Описание изображения" width="50" height="50">
 
-<div class="container">
-    <div class="row">
+                        </div>
 
-        <div class="creditCardForm">
+                        <div class="labels-p">
+                            <h5 class="left-text">Оплата в </h5>
+                            <h5 class="right-text">Tomato Juice </h5>
+                            <br>
+                            <h5 class="left-text">Сумма</h5>
+                            <h5 class="right-text" th:text="${amount} + '₽'">2,00₽</h5>
+                            <br>
+                            <h5 class="left-text" >Комиссия </h5>
+                            <h5 class="right-text" >0,00₽</h5>
 
-            <div class="payment">
-                <form th:method="POST" th:action="@{/payment/buy/{price}/{id}/{event}(price=${amount}, id=${user_id}, event=${event_id})}" th:object="${bankCard}">
-                    <div class="form-group-second" style="width: 40%; margin-left: 70px">
-                        <h3>Tomato Juice</h3>
-                        <img src="logo.jpeg" alt="Описание изображения" width="50" height="50">
+                        </div>
 
-                    </div>
-
-                    <div class="labels-p">
-                        <h5 class="left-text">Оплата в </h5>
-                        <h5 class="right-text">Tomato Juice </h5>
                         <br>
-                        <h5 class="left-text">Сумма</h5>
-                        <h5 class="right-text" th:text="${amount} + '₽'">2,00₽</h5>
-                        <br>
-                        <h5 class="left-text" >Комиссия </h5>
-                        <h5 class="right-text" >0,00₽</h5>
+                        <div >
+                            <div class="form-group-second">
+                                <div class="inputBox" >
+                                    <input  type="text"  th:field="*{cardNumber}" id="card-number-field" required="required">
+                                    <span >Номер карты</span>
+                                    <i></i>
 
-                    </div>
+                                </div>
+                                <div class="inputBox" >
 
-                    <br>
-                    <div >
-                        <div class="form-group-second">
-                            <div class="inputBox" >
-                                <input  type="text"  th:field="*{cardNumber}" id="card-number-field" required="required">
-                                <span >Номер карты</span>
-                                <i></i>
-
+                                    <input  type="text"  th:field="*{duration}" id="card-dur" required="required">
+                                    <span>Действует</span>
+                                    <i style="width: 30%;"></i>
+                                </div>
                             </div>
-                            <div class="inputBox" >
+                            <div class="bank-logo-container" id="bank-logo-container"></div>
+                            <div class="form-group-second">
 
-                                <input  type="text"  th:field="*{duration}" id="card-dur" required="required">
-                                <span>Действует</span>
-                                <i style="width: 30%;"></i>
+                                <div class="inputBox" >
+
+                                    <input style="width: 80%" type="text" th:field="*{owner}"  id="owner" required="required">
+                                    <span>Владелец</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox" >
+
+                                    <input type="text"  id="cvv" th:field="*{cvc}" required="required">
+                                    <span>CVC</span>
+                                    <i style="width: 30%;"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="bank-logo-container" id="bank-logo-container"></div>
-                        <div class="form-group-second">
-
-                            <div class="inputBox" >
-
-                                <input style="width: 80%" type="text" th:field="*{owner}"  id="owner" required="required">
-                                <span>Владелец</span>
-                                <i></i>
+                            <div th:if="${error}">
+                                ошибочка
                             </div>
-                            <div class="inputBox" >
 
-                                <input type="text"  id="cvv" th:field="*{cvc}" required="required">
-                                <span>CVC</span>
-                                <i style="width: 30%;"></i>
-                            </div>
-                        </div>
-                        <div th:if="${error}">
-                            ошибочка
+
                         </div>
 
 
-                    </div>
 
-
-
-                    <div class="form-group" id="pay-now">
-                        <button th:text="'Оплатить ' + ${amount} + '₽'" type="submit" class="btn btn-default" id="confirm-purchase">Оплатить</button>
-                    </div>
-                </form>
+                        <div class="form-group" id="pay-now">
+                            <button th:text="'Оплатить ' + ${amount} + '₽'" type="submit" class="btn btn-default" id="confirm-purchase">Оплатить</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://bootstraptema.ru/snippets/form/2017/jquery.payform.min.js"></script>
+<script src="https://bootstraptema.ru/snippets/form/2017/script.js"></script>
 <script src="js/payment/payment.js"></script>
 
 </body>
+<footer th:insert="base/base::basefooter"></footer>
 </html>

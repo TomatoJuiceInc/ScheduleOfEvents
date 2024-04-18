@@ -1,5 +1,7 @@
 body{
     background-color: #1c1b1b;
+    position: relative;
+    min-height: 100%;
 }
 svg {
     display: block;
@@ -33,8 +35,12 @@ svg {
     z-index: 1;
 
 }
-.container {
+
+.container-reserv {
     display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивание по центру по вертикали */
+    justify-content: center; /* Выравнивание по центру по горизонтали */
 }
 
 .svg-container {
@@ -72,8 +78,7 @@ th, td {
 .table-container {
     margin-top: 30px;
 }
-.btn {
-    padding: 10px 20px;
+.btn-sb {
     background-color: #8D917A;
     color: white;
     border: none;
@@ -82,11 +87,10 @@ th, td {
     cursor: pointer;
 }
 
-.btn:hover {
+.btn-sb:hover {
     background-color: #DDADAF;
 }
 .event-name {
-    margin-right: 110px;
     color: #cccccc;
     text-align: center;
     font-size: 40px;
@@ -95,7 +99,6 @@ th, td {
 
 /* Style the event date */
 .event-date {
-    margin-right: 110px;
     text-align: center;
     font-size: 18px;
     color: #666;
