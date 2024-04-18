@@ -8,9 +8,13 @@ html {
     align-items: center;
 }
 .navbar{
+
     height: 68px;
     display: flex;
     align-items: center;
+}
+.navbar-custom {
+    background-color: black;
 }
 body{
     height: 100vh;

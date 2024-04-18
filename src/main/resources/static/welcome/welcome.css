@@ -137,6 +137,25 @@ body {
     z-index: -1;
 }
 
+.btn-event {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    font-family: var(--header-font);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-event:hover {
+    background-color: black;
+}
 
 
 .header__container {
