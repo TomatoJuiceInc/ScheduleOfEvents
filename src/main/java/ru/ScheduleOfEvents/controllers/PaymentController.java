@@ -65,7 +65,7 @@ public class PaymentController {
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
         System.out.println(bankCard);
         if (bCard == null){
-            return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
+            return String.format("redirect:/payment?a=%d&u=%d&e=%d&error=%b", price, id, eventId, true);
         }
         if (bCard.getCvc().equals(bankCard.getCvc())
                 && bCard.getDuration().equals(bankCard.getDuration())
@@ -77,10 +77,8 @@ public class PaymentController {
                 // todo отправить чек
                 return "redirect:/payment/successful-payment" ;
             }
-
-            return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
         }
-        return "redirect:/payment?a=" + price + "&u=" + id  + "&e=" + eventId + "&error=true";
+        return String.format("redirect:/payment?a=%d&u=%d&e=%d&error=%b", price, id, eventId, true);
     }
 
 
