@@ -1,22 +1,14 @@
 package ru.ScheduleOfEvents.controllers;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.BankCard;
-import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.models.Price;
-import ru.ScheduleOfEvents.models.TemporaryTicket;
-import ru.ScheduleOfEvents.repositories.PeopleRepository;
 import ru.ScheduleOfEvents.sevices.BankService;
 import ru.ScheduleOfEvents.sevices.PeopleService;
 import ru.ScheduleOfEvents.sevices.TemporaryTicketService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/payment")
@@ -54,7 +46,7 @@ public class PaymentController {
     }
     @GetMapping("/successful-payment")
     public String successPage()  {
-        return "payment/successfulPayment";
+        return "succes/successfulPayment";
     }
 
 
