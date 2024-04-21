@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в аккаунт</title>
+    <link rel="stylesheet" type="text/css" href="../auth/signin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form th:method="POST" th:action="@{/auth}" th:object="${user}">
+            <h2>Добро пожаловать!</h2>
+            <h1>Вход</h1>
+            <div class="input-box">
+                <i class='bx bxs-user'></i>
+                <input type="text" th:field="*{username}" autocomplete="off" placeholder="Имя пользователя" required/>
+            </div>
+            <div class="input-box">
+                <i class='bx bxs-lock' ></i>
+                <input type="password" th:field="*{password}" autocomplete="off" placeholder="Пароль" required/>
+            </div>
+            <div class="remember">
+                <label><input type="checkbox"/>Запомнить меня</label>
+                <a href="#">Забыли пароль?</a>
+            </div>
+            <button type="submit" class="btn">Войти</button>
+            <div class="register-link">
+                <p>Ещё не зарегистрировались? <a class="registration" href="signup.html">Регистрация</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

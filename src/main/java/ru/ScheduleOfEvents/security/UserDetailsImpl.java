@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
-    private UserModel user;
+    private final UserModel user;
 
     public UserDetailsImpl(UserModel user) {
         this.user = user;

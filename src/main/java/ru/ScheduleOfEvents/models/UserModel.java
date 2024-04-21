@@ -24,26 +24,26 @@ public class UserModel {
     @Column(name = "username", unique = true)
     private String username;
 
-//    @Column(name = "email", unique = true)
-//    @Email
-//    private String email;
+    @Column(name = "email", unique = true)
+    @Email
+    private String email;
 
-//    @Column(name = "phone_number")
-//    private String phone_number;
+    @Column(name = "phone_number")
+    private String phone_number;
 
     @Column(name = "roles")
     private String roles;
 
-//    @Min(value = 1)
-//    @Column(name = "age")
-//    private int age;
+    @Min(value = 1)
+    @Column(name = "age")
+    private int age;
 
     @Column(name = "password")
     private String password;
 
-//    @OneToMany(mappedBy = "owner")
-//    private List<Event> events;
-//
-//    @OneToMany(mappedBy = "ownerTicket")
-//    private List<Ticket> tickets;
+    @OneToMany(mappedBy = "owner")
+    private List<Event> events;
+
+    @OneToMany(mappedBy = "ownerTicket")
+    private List<Ticket> tickets;
 }
