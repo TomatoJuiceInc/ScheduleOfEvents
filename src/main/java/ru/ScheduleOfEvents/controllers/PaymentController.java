@@ -1,14 +1,20 @@
 package ru.ScheduleOfEvents.controllers;
 
 
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.BankCard;
-import ru.ScheduleOfEvents.sevices.BankService;
-import ru.ScheduleOfEvents.sevices.PeopleService;
-import ru.ScheduleOfEvents.sevices.TemporaryTicketService;
+import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.MailStructure;
+import ru.ScheduleOfEvents.sevices.*;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/payment")
@@ -16,12 +22,16 @@ public class PaymentController {
     private final BankService bankService;
     private final PeopleService peopleService;
     private final TemporaryTicketService ticketService;
+    private final MailService mailService;
+    private final EventsService eventsService;
 
     @Autowired
-    public PaymentController(BankService bankService, PeopleService peopleService, TemporaryTicketService ticketService) {
+    public PaymentController(BankService bankService, PeopleService peopleService, TemporaryTicketService ticketService, MailService mailService, EventsService eventsService) {
         this.bankService = bankService;
         this.peopleService = peopleService;
         this.ticketService = ticketService;
+        this.mailService = mailService;
+        this.eventsService = eventsService;
     }
 
     @GetMapping()
@@ -51,7 +61,7 @@ public class PaymentController {
 
 
     @PostMapping("/buy/{price}/{id}/{event}")
-    public String bookSeats(BankCard bankCard,
+    public String buy(BankCard bankCard,
                             @PathVariable("price") int price,
                             @PathVariable("id") int id,  @PathVariable("event") int eventId) {
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
@@ -63,10 +73,26 @@ public class PaymentController {
                 && bCard.getDuration().equals(bankCard.getDuration())
                 && bCard.getOwner().equals(bankCard.getOwner())){
             if (bCard.getBalance() >= price){
+
+
+                //
+                Event event = eventsService.findOne(eventId);
+                MailStructure mailStructure = new MailStructure();
+                mailStructure.setPrice(price);
+                mailStructure.setPlace(event.getHall().getName());
+                mailStructure.setEventTimeAndName(LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow")).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))
+                        + " " + event.getName());
+                mailStructure.setTimeOfPurchase(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.of("Europe/Moscow")).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
+                mailStructure.setSubject("SheduleOfEvents");
+                mailStructure.setTickets(ticketService.findAllById(id, eventId));
                 ticketService.saveTickets(id, eventId);
                 bankService.pay(bankCard.getCardNumber(), price);
-
-                // todo отправить чек
+                try {
+                    mailService.sendMail( "khairullov.ruslan2405@yandex.ru", mailStructure);
+                }
+                catch (MessagingException e){
+                    System.out.println("pu pu pu");
+                }
                 return "redirect:/payment/successful-payment" ;
             }
         }
