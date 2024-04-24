@@ -21,13 +21,14 @@ body{
     display: flex;
     align-items: center;
 }
-
 .bi-door-open{
     color: orange;
     font-size: large;
     margin-right: 4px;
 }
-
+.navbar-custom{
+    background-color: black;
+}
 .footer {
     position: absolute;
     bottom: 0;
