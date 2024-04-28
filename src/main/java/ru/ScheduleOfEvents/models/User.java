@@ -33,7 +33,7 @@ public class User {
     @Column(name = "phone_number")
     private String phone_number;
 
-//    @ManyToMany
+    //    @ManyToMany
 //    @JoinTable(
 //            name = "user_roles",
 //            joinColumns = @JoinColumn(name = "user_id"),
@@ -42,7 +42,7 @@ public class User {
 //    private Collection<Role> roles;
     private String role;
 
-//    @Min(value = 1)
+    //    @Min(value = 1)
     @Column(name = "age")
     private int age;
 

@@ -24,5 +24,6 @@ public class Price {
     @OneToMany(mappedBy = "eventPrice")
     private List<Ticket> tickets;
 
-    public Price() {}
+    public Price() {
+    }
 }
