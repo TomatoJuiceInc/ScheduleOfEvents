@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
 import ru.ScheduleOfEvents.services.AdminService;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
@@ -16,11 +14,6 @@ import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 public class MainController {
     private final AdminService adminService;
     private final UserDetailsServiceImpl userDetailsServiceImpl;
-
-    @GetMapping("/home")
-    public String sayHello() {
-        return "auth/homepage";
-    }
 
     @GetMapping("/showUserInfo")
     public String showUserInfo() {
