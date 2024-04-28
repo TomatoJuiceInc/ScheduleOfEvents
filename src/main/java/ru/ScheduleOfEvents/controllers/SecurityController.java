@@ -1,46 +1,43 @@
 package ru.ScheduleOfEvents.controllers;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import ru.ScheduleOfEvents.models.UserModel;
-import ru.ScheduleOfEvents.sevices.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.services.RegistrationService;
+import ru.ScheduleOfEvents.util.UserValidator;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/auth")
-@AllArgsConstructor
 public class SecurityController {
-    private UserService service;
+    private final UserValidator userValidator;
+    private final RegistrationService registrationService;
 
-    @GetMapping("/signup")
-    public String signup(Model model) {
-        model.addAttribute("user", new UserModel());
-        return "auth/signup";
+    @GetMapping("/login")
+    public String signInPage() {
+        return "auth/login";
     }
-    @PostMapping("/signup")
-//    @PostMapping()
-    // @RequestBody UserModel user
-    public String createUser(@RequestParam("username") String username,
-                             @RequestParam("email") String email,
-                             @RequestParam("password") String password,
-                             @RequestParam("passwordConfirm") String passwordConfirm,
-                             BindingResult bindingResult,
-                             Model model) {
-        if (password.equals(passwordConfirm)) {
-            bindingResult.rejectValue("confirmPassword", "error.userModel", "Пароли не совпадают");
-        }
 
-        if (bindingResult.hasErrors()) {
-            return "auth/signup";
-        } else {
-            UserModel user = new UserModel();
-            user.setUsername(username);
-            user.setEmail(email);
-            user.setPassword(password);
-            service.createUser(user);
-            return "redirect:/main";
-        }
+    @GetMapping("/registration")
+    public String signUpPage(Model model) {
+        model.addAttribute("user", new User());
+        return "auth/registration";
     }
+
+//    @PostMapping("/registration")
+//    public String performSignUpPage(@ModelAttribute("user") @Valid User user,
+//                                    BindingResult bindingResult) {
+//        userValidator.validate(user, bindingResult);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "/registration";
+//        }
+//
+//        registrationService.register(user);
+//
+//        return "redirect:/login?success";
+//    }
 }

@@ -11,10 +11,10 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "User_Model")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
-public class UserModel {
+public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,9 @@ public class UserModel {
     @Column(name = "username", unique = true)
     private String username;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "email", unique = true)
     @Email
     private String email;
@@ -31,15 +34,18 @@ public class UserModel {
     @Column(name = "phone_number")
     private String phone_number;
 
-    @Column(name = "roles")
-    private String roles;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+//    private Collection<Role> roles;
+    private String role;
 
     @Min(value = 1)
     @Column(name = "age")
     private int age;
-
-    @Column(name = "password")
-    private String password;
 
     @OneToMany(mappedBy = "owner")
     private List<Event> events;

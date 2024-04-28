@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Event")
+@Table(name = "events")
 @Data
 public class Event {
     @Id
@@ -26,7 +26,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserModel owner;
+    private User owner;
     @OneToMany(mappedBy = "event")
     private List<Ticket> ticket;
 

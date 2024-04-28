@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "Ticket")
+@Table(name = "tickets")
 @Data
 public class Ticket {
     @Id
@@ -19,7 +19,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserModel ownerTicket;
+    private User ownerTicket;
 
     @ManyToOne
     @JoinColumn(name = "price_id", referencedColumnName = "id")

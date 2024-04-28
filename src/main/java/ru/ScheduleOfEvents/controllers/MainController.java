@@ -1,26 +1,39 @@
 package ru.ScheduleOfEvents.controllers;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
+import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.security.UserDetailsImpl;
+import ru.ScheduleOfEvents.services.AdminService;
+import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
 @Controller
-//@RestController
-//@RequestMapping("/secured")
+@RequiredArgsConstructor
 public class MainController {
+    private final AdminService adminService;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-    @GetMapping("/main")
-    public String mainPage() {
-        return "main";
+    @GetMapping("/home")
+    public String sayHello() {
+        return "auth/homepage";
     }
 
-    @GetMapping("/user")
-    public String userAccess(Principal principal) {
-        if (principal == null)
-            return null;
-        return principal.getName();
+    @GetMapping("/showUserInfo")
+    public String showUserInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        System.out.println(userDetails.getUser());
+
+        return "hello";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        adminService.doAdminStuff();
+        return "admin";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,16 +10,16 @@
 
 <body>
     <div class="wrapper">
-        <form th:method="POST" th:action="@{/auth}" th:object="${user}">
+        <form method="post" th:action="@{/login}">
             <h2>Добро пожаловать!</h2>
             <h1>Вход</h1>
             <div class="input-box">
                 <i class='bx bxs-user'></i>
-                <input type="text" th:field="*{username}" autocomplete="off" placeholder="Имя пользователя" required/>
+                <input type="text" name="username" id="username" autocomplete="off" placeholder="Имя пользователя" required/>
             </div>
             <div class="input-box">
                 <i class='bx bxs-lock' ></i>
-                <input type="password" th:field="*{password}" autocomplete="off" placeholder="Пароль" required/>
+                <input type="password" name="password" id="password" autocomplete="off" placeholder="Пароль" required/>
             </div>
             <div class="remember">
                 <label><input type="checkbox"/>Запомнить меня</label>
@@ -27,7 +27,15 @@
             </div>
             <button type="submit" class="btn">Войти</button>
             <div class="register-link">
-                <p>Ещё не зарегистрировались? <a class="registration" href="signup.html">Регистрация</a></p>
+                <p>Ещё не зарегистрировались? <a class="registration" href="registration">Регистрация</a></p>
+            </div>
+
+            <div th:if="${param.error}" style="color: red">
+                Неправильные логин или пароль
+            </div>
+
+            <div th:if="${param.success}" style="color: red">
+                Вы зарегались введите данные
             </div>
         </form>
     </div>
