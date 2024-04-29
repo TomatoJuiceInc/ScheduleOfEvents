@@ -12,21 +12,13 @@ import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
-    private final AdminService adminService;
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     @GetMapping("/showUserInfo")
     public String showUserInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        System.out.println(userDetails.getUser());
 
-        return "hello";
-    }
-
-    @GetMapping("/admin")
-    public String adminPage() {
-        adminService.doAdminStuff();
-        return "admin";
+        return "test";
     }
 }

@@ -1,13 +1,30 @@
 package ru.ScheduleOfEvents.services;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.models.UserRole;
+import ru.ScheduleOfEvents.repositories.UserRepository;
 
 @Service
+//@RequiredArgsConstructor
+@AllArgsConstructor
 public class AdminService {
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') and hasRole('ROLE_SOME_OTHER')")
-    public void doAdminStuff() {
-        System.out.println("Only admin here");
+    @PostConstruct
+    @Transactional
+    public void postConstruct() {
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode("admin"));
+        admin.setRole(UserRole.ADMIN.name());
+        userRepository.save(admin);
     }
 }
