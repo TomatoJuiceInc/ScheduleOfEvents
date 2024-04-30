@@ -2,7 +2,9 @@ package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -10,6 +12,8 @@ import java.util.Date;
 @Table(name = "temporary_ticket")
 @Data
 @NoArgsConstructor
+@Getter
+@Setter
 public class TemporaryTicket {
     @Id
     @Column(name = "id")

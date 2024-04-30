@@ -1,12 +1,18 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "Event")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Event {
     @Id
     @Column(name = "id")
@@ -55,9 +61,7 @@ public class Event {
         this.age = age;
     }
 
-    public Event() {
 
-    }
     public int compareAge(String str1){
         str1 = str1.substring(1);
         String str2 = this.age.substring(1);
@@ -65,73 +69,7 @@ public class Event {
     }
 
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-
-    public Hall getHall() {
-        return hall;
-    }
-
-    public void setTicket(List<Ticket> ticket) {
-        this.ticket = ticket;
-    }
-
-    public void setHall(Hall hall) {
-        this.hall = hall;
-    }
-
-    public List<Ticket> getTicket() {
-        return ticket;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.ticket = tickets;
-    }
 
 
 }

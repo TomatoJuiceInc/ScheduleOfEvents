@@ -25,7 +25,6 @@ import java.util.*;
 @Controller
 @RequestMapping("/order")
 
-// todo нароисовать номера рядов, закрыть доступ уже забронированным местам
 public class ReservationController {
     private final EventsService eventsService;
     private final PeopleService peopleService;
@@ -45,7 +44,6 @@ public class ReservationController {
                                         @RequestParam("e") int eventId,
                                         @RequestParam("u") int userId)  {
         ObjectMapper mapper = new ObjectMapper();
-        // Создайте JSON объект
         String jsonReservedSeats = "";
         String jsonPriceSeats = "";
         String jsonPriceId = "";
@@ -113,7 +111,6 @@ public class ReservationController {
         Date currentDate = new Date();
         Person person = peopleService.findOne(id);
         Event eventDB = eventsService.findOne(id);
-        System.out.println(seatData.getSeat());
         int price = 0;
         for(String seat: seatData.getSeat().split(",")){
             String[] currentSeat = seat.split(":");

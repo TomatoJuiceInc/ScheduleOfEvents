@@ -1,15 +1,14 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "Ticket")
 @Data
 @NoArgsConstructor
+@Getter
+@Setter
 public class Ticket {
     @Id
     @Column(name = "id")
@@ -25,9 +24,6 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person ownerTicket;
-    @ManyToOne
-    @JoinColumn(name = "price_id", referencedColumnName = "id")
-    private Price eventPrice;
 
     @ManyToOne
     @JoinColumn(name = "event_id", referencedColumnName = "id")

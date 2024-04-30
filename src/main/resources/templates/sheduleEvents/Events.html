@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="base :: basehead">
+<head th:insert="base/base :: basehead">
     <meta charset="UTF-8">
     <title>Events</title>
 </head>
 <body style="height: 5000px;">
-<script src="script.js"></script>
+<script src="sheduleEvents/script.js"></script>
 
-<header th:insert="base :: baseheader">
+<header th:insert="base/base :: baseheader">
 </header>
 
 <main style="margin-top: 80px;">
-    <link rel="stylesheet" type="text/css" href="events.css"/>
+    <link rel="stylesheet" type="text/css" href="sheduleEvents/events.css"/>
 
     <div class="d-flex justify-content-center position-relative mb-3">
         <form class="d-flex ms-0" role="search">
@@ -36,7 +36,7 @@
             <div class="card text-white bg-dark mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="logo.jpeg" class="img-fluid rounded-start" alt="...">
+                        <img src="sheduleEvents/logo.jpeg" class="img-fluid rounded-start" alt="...">
                         <div th:text="${data.getAge()}" class="age-rating">18+</div>
                     </div>
                     <div class="col-md-8">
@@ -50,7 +50,9 @@
                                 <i class="bi bi-clock"></i>
                                 <span th:text="${#dates.format(data.getDate(), 'HH:mm')}"></span>
                             </p>
-                            <a class="text-decoration-none" href="#">КУПИТЬ БИЛЕТЫ НА ЭТО ЕБЕЙШЕЕ МЕРО</a>
+<!--                            todo add userId-->
+                            <a th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()}, u='1')}">КУПИТЬ БИЛЕТЫ НА ЭТО ЕБЕЙШЕЕ МЕРО</a>
+
                         </div>
                     </div>
                 </div>
@@ -58,6 +60,6 @@
         </div>
     </div>
 </main>
-<footer th:insert="base::basefooter"></footer>
+<footer th:insert="base/base::basefooter"></footer>
 </body>
 </html>

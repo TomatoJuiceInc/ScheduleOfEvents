@@ -15,6 +15,6 @@ public class WelcomeController {
     }
     @PostMapping("welcome")
     public String redirectForEventPage(){
-        return "redirect:/";
+        return "redirect:/events";
     }
 }
