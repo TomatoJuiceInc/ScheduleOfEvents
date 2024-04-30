@@ -22,7 +22,8 @@ public class Event {
 
     @Column(name = "description")
     private String description;
-
+    @Column(name = "age")
+    private String age;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
@@ -40,17 +41,24 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String name, Date date, String description, Person owner, Hall hall) {
+    public Event(String name, Date date, String description, Person owner, Hall hall, String age) {
         this.name = name;
         this.date = date;
         this.description = description;
         this.owner = owner;
         this.hall = hall;
+        this.age = age;
     }
 
     public Event() {
 
     }
+    public int compareAge(String str1){
+        str1 = str1.substring(1);
+        String str2 = this.age.substring(1);
+        return Integer.parseInt(str1) - Integer.parseInt(str2);
+    }
+
 
     public int getId() {
         return id;
@@ -84,6 +92,13 @@ public class Event {
         this.description = description;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
 
     public Person getOwner() {
         return owner;

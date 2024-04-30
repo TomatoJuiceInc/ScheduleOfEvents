@@ -9,15 +9,40 @@
     color: orange;
     font-size: x-large;
 }
+.bi-clock{
+    color: orange;
+    font-size: x-large;
+    padding-left: 30px;
+}
 .card-subtitle{
     color: gray;
 }
 .age-rating {
     position: absolute;
-    top: 10px; /* Положение возрастного ценза относительно верхнего края */
+    top: 7px; /* Положение возрастного ценза относительно верхнего края */
     right: 10px; /* Положение возрастного ценза относительно правого края */ /* Цвет фона возрастного ценза */
     color: orange; /* Цвет текста возрастного ценза */
     padding: 5px; /* Отступ внутри возрастного ценза */
     border-radius: 5px; /* Скругление углов возрастного ценза */
-    font-size: 18px; /* Размер шрифта возрастного ценза */
+    font-size: 19px; /* Размер шрифта возрастного ценза */
+}
+.text-decoration-none:hover {
+    color: orange /* Оранжевый цвет текста */
+}
+.text-decoration-none{
+    color: white;
+    transition: color 0.3s;
+}
+
+#listContainer {
+    background-color: white;
+    position: absolute;
+    top: 50%; /* Position vertically in the middle */
+    left: calc(100% + 10px); /* Position to the right of the button with a 10px gap */
+    transform: translate(-50%, -50%); /* Center vertically */
+    display: none;
+    z-index: 999; /* Ensure it appears above other content */
+}
+#listContainer a{
+    text-decoration: none;
 }
