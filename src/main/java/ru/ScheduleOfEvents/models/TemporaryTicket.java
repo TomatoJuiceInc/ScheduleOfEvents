@@ -2,9 +2,7 @@ package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Date;
 
@@ -12,8 +10,6 @@ import java.util.Date;
 @Table(name = "temporary_ticket")
 @Data
 @NoArgsConstructor
-@Getter
-@Setter
 public class TemporaryTicket {
     @Id
     @Column(name = "id")
@@ -49,13 +45,13 @@ public class TemporaryTicket {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Person ownerUserForTT;
+    private User ownerUserForTT;
 
     @ManyToOne
     @JoinColumn(name = "price_id", referencedColumnName = "id")
     private Price ownerPriceForTT;
 
-    public TemporaryTicket(String col, String row, Date time, Event ownerEventForTT, Person ownerUserForTT, Price ownerPriceForTT) {
+    public TemporaryTicket(String col, String row, Date time, Event ownerEventForTT, User ownerUserForTT, Price ownerPriceForTT) {
         this.row = row;
         this.col = col;
         this.time = time;

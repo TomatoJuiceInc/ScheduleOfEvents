@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.BankCard;
 import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.models.MailStructure;
-import ru.ScheduleOfEvents.sevices.*;
+import ru.ScheduleOfEvents.services.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,15 +20,15 @@ import java.util.Date;
 @RequestMapping("/payment")
 public class PaymentController {
     private final BankService bankService;
-    private final PeopleService peopleService;
+    private final UserDetailsServiceImpl userDetailsService;
     private final TemporaryTicketService ticketService;
     private final MailService mailService;
     private final EventsService eventsService;
 
     @Autowired
-    public PaymentController(BankService bankService, PeopleService peopleService, TemporaryTicketService ticketService, MailService mailService, EventsService eventsService) {
+    public PaymentController(BankService bankService, UserDetailsServiceImpl userDetailsService, TemporaryTicketService ticketService, MailService mailService, EventsService eventsService) {
         this.bankService = bankService;
-        this.peopleService = peopleService;
+        this.userDetailsService = userDetailsService;
         this.ticketService = ticketService;
         this.mailService = mailService;
         this.eventsService = eventsService;

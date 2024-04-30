@@ -47,9 +47,12 @@ public class User {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner",  cascade = CascadeType.ALL)
     private List<Event> events;
 
-    @OneToMany(mappedBy = "ownerTicket")
+    @OneToMany(mappedBy = "ownerTicket",  cascade = CascadeType.ALL)
     private List<Ticket> tickets;
+
+    @OneToMany(mappedBy = "ownerUserForTT")
+    private List<TemporaryTicket> temporaryTickets;
 }

@@ -1,12 +1,10 @@
-package ru.ScheduleOfEvents.sevices;
+package ru.ScheduleOfEvents.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ScheduleOfEvents.models.BankCard;
-import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.repositories.BankRepository;
-import ru.ScheduleOfEvents.repositories.EventRepository;
 
 @Service
 @Transactional(readOnly = true)

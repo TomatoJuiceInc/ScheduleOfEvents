@@ -1,24 +1,21 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "Event")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Event {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
 
     @Column(name = "name")
     private String name;
@@ -32,7 +29,7 @@ public class Event {
     private String age;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person owner;
+    private User owner;
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
 
@@ -52,7 +49,7 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String name, Date date, String description, Person owner, Hall hall, String age) {
+    public Event(String name, Date date, String description, User owner, Hall hall, String age) {
         this.name = name;
         this.date = date;
         this.description = description;
@@ -67,9 +64,4 @@ public class Event {
         String str2 = this.age.substring(1);
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
-
-
-
-
-
 }

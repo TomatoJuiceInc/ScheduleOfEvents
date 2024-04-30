@@ -1,13 +1,11 @@
 package ru.ScheduleOfEvents.models;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 public class MailStructure {
     private int price;
     private String subject;

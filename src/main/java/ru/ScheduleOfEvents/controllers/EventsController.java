@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.sevices.EventsService;
+import ru.ScheduleOfEvents.services.EventsService;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -20,4 +20,14 @@ public class RegistrationService {
         user.setRole(UserRole.USER.name());
         userRepository.save(user);
     }
+
+    public User findOne(long id){
+        return userRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public void save(User user){
+        userRepository.save(user);
+    }
 }
+

@@ -8,16 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.models.Person;
 import ru.ScheduleOfEvents.models.Price;
 import ru.ScheduleOfEvents.models.TemporaryTicket;
-import ru.ScheduleOfEvents.sevices.EventsService;
-import ru.ScheduleOfEvents.sevices.PeopleService;
-import ru.ScheduleOfEvents.sevices.PriceService;
-import ru.ScheduleOfEvents.sevices.TemporaryTicketService;
+import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.services.EventsService;
+import ru.ScheduleOfEvents.services.PriceService;
+import ru.ScheduleOfEvents.services.TemporaryTicketService;
+import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 import ru.ScheduleOfEvents.util.SeatData;
 
-import java.time.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -27,14 +28,14 @@ import java.util.*;
 
 public class ReservationController {
     private final EventsService eventsService;
-    private final PeopleService peopleService;
+    private final UserDetailsServiceImpl userDetailsService;
     private final TemporaryTicketService temporaryTicketService;
     private final PriceService priceService;
 
     @Autowired
-    public ReservationController(EventsService eventsService, PeopleService peopleService, TemporaryTicketService temporaryTicketService, PriceService priceService) {
+    public ReservationController(EventsService eventsService, UserDetailsServiceImpl userDetailsService, TemporaryTicketService temporaryTicketService, PriceService priceService) {
         this.eventsService = eventsService;
-        this.peopleService = peopleService;
+        this.userDetailsService = userDetailsService;
         this.temporaryTicketService = temporaryTicketService;
         this.priceService = priceService;
     }
@@ -109,7 +110,7 @@ public class ReservationController {
         }
 
         Date currentDate = new Date();
-        Person person = peopleService.findOne(id);
+        User user = userDetailsService.findOne(id);
         Event eventDB = eventsService.findOne(id);
         int price = 0;
         for(String seat: seatData.getSeat().split(",")){
@@ -121,16 +122,16 @@ public class ReservationController {
                     currentSeat[0].split(" ")[1],
                     currentDate ,
                     eventsService.findOne(event),
-                    peopleService.findOne(id),
+                    userDetailsService.findOne(id),
                     price1);
 
             temporaryTicket.setOwnerEventForTT(eventDB);
-            temporaryTicket.setOwnerUserForTT(person);
-            person.getTemporaryTickets().add(temporaryTicket);
+            temporaryTicket.setOwnerUserForTT(user);
+            user.getTemporaryTickets().add(temporaryTicket);
             eventDB.getTemporaryTickets().add(temporaryTicket);
             temporaryTicketService.save(temporaryTicket);
         }
-        peopleService.save(person);
+        userDetailsService.save(user);
         eventsService.save(eventDB);
         return String.format("redirect:/payment?a=%d&u=%d&e=%d", price, id, event);
 

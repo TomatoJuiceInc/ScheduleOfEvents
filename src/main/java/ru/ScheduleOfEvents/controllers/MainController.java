@@ -6,7 +6,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
-import ru.ScheduleOfEvents.services.AdminService;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
 @Controller
