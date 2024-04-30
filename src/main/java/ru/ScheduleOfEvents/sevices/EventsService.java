@@ -7,6 +7,8 @@ import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.models.Person;
 import ru.ScheduleOfEvents.repositories.EventRepository;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 public class EventsService {
@@ -25,5 +27,8 @@ public class EventsService {
     @Transactional
     public void save(Event event){
         eventRepository.save(event);
+    }
+    public List<Event> findAll(){
+        return eventRepository.findAll();
     }
 }
