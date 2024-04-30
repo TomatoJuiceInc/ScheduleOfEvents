@@ -26,19 +26,18 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
-    @OneToMany(mappedBy = "event",  cascade = CascadeType.ALL)
-    private List<Ticket> ticket;
+    @OneToMany(mappedBy = "event")
+    private List<Ticket> tickets;
 
+    @OneToMany(mappedBy = "ownerEventForTT")
+    private List<TemporaryTicket> temporaryTickets;
+
+    @OneToMany(mappedBy = "ownerEvent")
+    private List<Price> prices;
 
     @ManyToOne
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
-
-    public Event(String name, Date date, String description) {
-        this.name = name;
-        this.date = date;
-        this.description = description;
-    }
 
     public Event(String name, Date date, String description, Person owner, Hall hall) {
         this.name = name;
@@ -48,70 +47,12 @@ public class Event {
         this.hall = hall;
     }
 
-    public Event() {
 
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-
-    public Hall getHall() {
-        return hall;
-    }
-
-    public void setTicket(List<Ticket> ticket) {
-        this.ticket = ticket;
-    }
-
-    public void setHall(Hall hall) {
-        this.hall = hall;
-    }
-
-    public List<Ticket> getTicket() {
-        return ticket;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.ticket = tickets;
-    }
-
-
 }

@@ -1,0 +1,106 @@
+body{
+    background-color: #1c1b1b;
+    position: relative;
+    min-height: 100%;
+}
+svg {
+    display: block;
+    /*margin: 20px auto 0;*/
+    margin-left: 50px;
+    background-color: #1c1b1b;
+
+}
+.seat {
+    /*fill: #00c5ff;*/
+    user-select: none;
+
+}
+.seat.selected {
+    fill: red;
+}
+.seat, text {
+    cursor: pointer;
+}
+.submit-container{
+    position: absolute;
+    right: 100px;
+
+}
+#tooltip {
+    position: absolute;
+    display: none;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 1;
+
+}
+
+.container-reserv {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивание по центру по вертикали */
+    justify-content: center; /* Выравнивание по центру по горизонтали */
+}
+
+.svg-container {
+    flex: 1;
+
+}
+
+
+
+.table-container {
+    padding: 0 20px;
+}
+
+table {
+    background-color: #1c1b1b;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th, td {
+    color: whitesmoke;
+    font-family: "Arialsans-serif",serif;
+    padding: 8px;
+    text-align: center;
+}
+
+.color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.table-container {
+    margin-top: 30px;
+}
+.btn-sb {
+    background-color: #8D917A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-sb:hover {
+    background-color: #DDADAF;
+}
+.event-name {
+    color: #cccccc;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Style the event date */
+.event-date {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+

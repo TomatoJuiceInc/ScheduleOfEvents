@@ -8,6 +8,7 @@ import ru.ScheduleOfEvents.models.Person;
 import java.util.Collection;
 import java.util.Collections;
 
+// for test
 public class PersonDetails implements UserDetails {
     private final Person person;
 

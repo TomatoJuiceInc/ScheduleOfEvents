@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="basehead">
+    <title>Оплата</title>
+    <link rel="stylesheet" type="text/css"  href="order/style.css">
+</head>
+<header th:insert="base/base :: baseheader">
+</header>
+<body>
+<div>
+    <div class="event-details">
+        <h1 class="event-name" th:text="${event.getName()}"></h1><!-- Display the event name -->
+        <h2 class="event-date" th:text="'КСК Уникс | ' + ${time}">Date and Time: </h2><!-- Display the event date and time -->
+    </div>
+
+
+</div>
+
+<div th:attr="data-reserved-seats=${reservedSeats}" id="reservedSeats"></div>
+<div th:attr="data-typeHall=${typeHall}" id="typeHall"></div>
+<div th:attr="data-price-seats=${priceSeats}" id="priceSeats"></div>
+<div th:attr="data-priceId=${priceId}" id="priceId"></div>
+<div id="tooltip"></div>
+<div class="container-reserv">
+    <div th:if="${typeHall == 2}">
+        <div class="svg-container">
+            <svg id="cinema-hall" width="1200" height="620" viewBox="0 -20 1000 820" xmlns="http://www.w3.org/2000/svg">
+
+            </svg>
+        </div>
+    </div>
+    <div th:if="${typeHall == 1}">
+        <div class="svg-container">
+            <svg id="cinema-hall" width="1200" height="620" viewBox="0 0 1000 820" xmlns="http://www.w3.org/2000/svg">
+
+            </svg>
+        </div>
+    </div>
+<!--    <div class="table-container">-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <div class="color-circle" style="background-color: grey"></div></td>-->
+<!--                <td th:text="Забронировано">erterte</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+
+<!--                <td>-->
+<!--                    <div class="color-circle" style="background-color: #FF6347"></div></td>-->
+<!--                <td th:text="${priceSeatsForHtml[0]}">erterte</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+
+<!--                <td>-->
+<!--                    <div class="color-circle" style="background-color: #008B8B"></div></td>-->
+<!--                <td th:text="${priceSeatsForHtml[1]}">erterte</td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <div class="color-circle" style="background-color: #228B22"></div></td>-->
+<!--                <td th:text="${priceSeatsForHtml[2]}">erterte</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <div class="color-circle" style="background-color: #00BFFF"></div></td>-->
+<!--                <td th:text="${priceSeatsForHtml[3]}">erterte</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <div class="color-circle" style="background-color: #9370DB"></div></td>-->
+<!--                <td th:text="${priceSeatsForHtml[4]}">erterte</td>-->
+<!--            </tr>-->
+
+
+<!--        </table>-->
+<!--    </div>-->
+</div>
+
+
+<div class="submit-container">
+    <form id="booking-form"  th:action="@{/order/more/{id}/{event}(id=${userId}, event=${event.getId()})}" th:method="POST" th:object="${seatData}">
+        <input th:field="*{seat}"  type="hidden" id="selectedSeats" th:value="${seatData.seat}"/>
+        <button id="reservation-button" type="submit" class="btn-sb">Купить</button>
+    </form>
+</div>
+<script src="js/order/reservation.js"></script>
+
+
+</body>
+<footer th:insert="base/base::basefooter"></footer>
+</html>

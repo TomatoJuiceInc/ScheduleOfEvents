@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScheduleOfEvents Чек</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .receipt-details {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total {
+            background-color: #eaeaea;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ScheduleOfEvents Чек</h1>
+
+    <div class="receipt-details">
+        <p><strong>Дата и время:</strong> [[${timeOfP}]]</p>
+        <p><strong>Место:</strong> [[${placeEvent}]]</p>
+        <p><strong>Сеанс:</strong> [[${eventDisc}]]</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Описание</th>
+            <th>Цена</th>
+
+
+        </tr>
+
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.row + ' место ' + ticket.col + ' ряд '}">Место 5 ряд 5</td>
+            <td th:text="${ticket.getOwnerPriceForTT().getPrice()}"></td>
+        </tr>
+
+    </table>
+
+    <div class="total">
+
+
+        <p><strong>Итого:</strong>[[${invoiceAmount}]]₽</p>
+    </div>
+
+    <p><strong>Организация:</strong> "ООО Tomato Juice"</p>
+</div>
+
+</body>
+</html>

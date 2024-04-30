@@ -1,21 +1,25 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "Ticket")
+@Data
+@NoArgsConstructor
 public class Ticket {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "row")
-    private int row;
     @Column(name = "col")
-    private int col;
+    private String col;
+    @Column(name = "row")
+    private String row;
 
 
     @ManyToOne
@@ -25,63 +29,25 @@ public class Ticket {
     @JoinColumn(name = "price_id", referencedColumnName = "id")
     private Price eventPrice;
 
-
     @ManyToOne
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;
 
+    @ManyToOne
+    @JoinColumn(name = "price_id", referencedColumnName = "id")
+    private Price price;
 
-    public Ticket() {
-
-    }
-
-    public Person getOwnerTicket() {
-        return ownerTicket;
-    }
-
-
-    public void setOwnerTicket(Person ownerTicket) {
-        this.ownerTicket = ownerTicket;
-    }
-
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
+    public Ticket(String col, String row, Person ownerTicket, Event event, Price price) {
         this.col = col;
+        this.row = row;
+        this.ownerTicket = ownerTicket;
+        this.event = event;
+        this.price = price;
     }
 
-    public Price getEventPrice() {
-        return eventPrice;
-    }
-
-    public void setEventPrice(Price eventPrice) {
-        this.eventPrice = eventPrice;
+    public Ticket(Person ownerTicket, Event event, Price price) {
+        this.ownerTicket = ownerTicket;
+        this.event = event;
+        this.price = price;
     }
 }

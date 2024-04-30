@@ -1,0 +1,193 @@
+#card-number-field, #cvv,  #owner, #card-dur {
+    border: none;
+    outline: none;
+}
+
+
+
+.creditCardForm {
+    max-width: 500px;
+    background-color: #fff;
+    /*margin: 100px  70px;*/
+    overflow: hidden;
+    padding: 25px;
+    color: #4c4e56;
+    margin-left: auto;
+    margin-right: auto
+
+}
+
+
+.creditCardForm label {
+    font-size: 14px;
+    line-height: 15px;
+}
+
+.creditCardForm .heading h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4e56;
+}
+
+.creditCardForm .payment {
+    align-content: center;
+    max-width: 90%;
+    background-color: black;
+    font-size: 18px;
+    margin-top: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 40px;
+    height: auto;
+    padding: 0 16px;
+}
+
+.creditCardForm .payment .form-group {
+    float: left;
+    margin-bottom: 15px;
+}
+
+
+
+
+.creditCardForm .payment .btn {
+    display: block;
+    margin-top: 3px;
+    font-size: 24px;
+    background-color: #2ec4a5;
+    color: black;
+    width: 100%;
+    /*margin-left: 50px;*/
+
+
+}
+
+.left-text {
+    float: left;
+}
+
+.right-text {
+    color: grey;
+    font-size: 11px;
+    position: absolute;
+    right: 20px;
+}
+
+
+
+.labels-p{
+    width: 70%;
+}
+
+
+
+.inputBox {
+    background-color: black;
+    position: relative;
+
+    /*width: 200px;*/
+}
+.inputBox input{
+
+    width: 100%;
+    background: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+    padding: 10px 0 5px;
+}
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px 0 5px;
+    font-size: 11px;
+    color: rgb(152, 137, 137);
+    text-transform: uppercase;
+    pointer-events: none;
+    letter-spacing: 0.1em;
+    transition: 0.5s;
+}
+
+.inputBox input:valid ~ span,.inputBox input:focus ~ span
+{
+    color: #2196f3;
+    transform: translateY(-16px);
+    font-size: 0.65em;
+}
+
+.inputBox i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 83%;
+    height: 2px;
+    background: #008B8B ;
+    overflow: hidden;
+}
+.inputBox i::before
+{
+    content: '';
+    position: absolute;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(97, 239, 147, 0.77), #84e761,
+    #58c951, #54d0c8, #505bd7, #d1a7d5);
+    animation: animate 2s linear infinite;
+    transition: 0.5s;
+}
+.inputBox input:valid ~ i::before,
+.inputBox input:focus ~ i::before{
+    left: 0;
+}
+@keyframes  animate
+{
+
+    0% {
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: 250px;
+    }
+}
+.form-group-second {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.center-content {
+    max-width: 600px;
+}
+@media (max-width: 768px) {
+    .creditCardForm {
+        margin: 50px 10px;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .inputBox {
+        width: 100%;
+    }
+
+    .creditCardForm .heading h1 {
+        font-size: 24px;
+    }
+
+    .creditCardForm .payment {
+        width: 100%;
+    }
+
+    .right-text {
+        font-size: 10px;
+    }
+}
+
+
+
