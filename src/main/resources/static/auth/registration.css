@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Manrope Medium", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #141414;
+}
+
+.wrapper {
+    width: 420px;
+    color: #fff;
+}
+
+.wrapper h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: "Manrope", sans-serif;
+}
+
+.wrapper h2 {
+    font-size: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: "Manrope ExtraBold", sans-serif;
+}
+
+.wrapper .input-box {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: #2a2a2a;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #fff;
+    padding: 20px 45px 20px 30px;
+}
+
+.input-box input::placeholder {
+    color: #737373;
+}
+
+.wrapper .btn {
+    width: 75%;
+    position: relative;
+    left: 13%;
+    height: 45px;
+    background: #ec7f00;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    margin-top: 50px;
+}
+
+.wrapper .register-link {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-link p a {
+    color: #798c50;
+    text-decoration: none;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
