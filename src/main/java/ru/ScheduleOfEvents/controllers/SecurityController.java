@@ -20,11 +20,6 @@ public class SecurityController {
     private final UserValidator userValidator;
     private final RegistrationService registrationService;
 
-    @GetMapping("/home")
-    public String sayHello() {
-        return "/auth/home";
-    }
-
     @GetMapping("/login")
     public String loginPage() {
         return "auth/login";
