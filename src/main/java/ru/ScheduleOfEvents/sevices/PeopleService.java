@@ -33,7 +33,16 @@ public class PeopleService {
     }
 
     @Transactional
-    public void delete(int id){
-        peopleRepository.deleteById(id);}
+    public void update(int id, Person updatedPerson) {
+        Person personToBeUpdated = findOne(id);
 
+        personToBeUpdated.setUsername(updatedPerson.getUsername());
+        personToBeUpdated.setEmail(updatedPerson.getEmail());
+        personToBeUpdated.setPassword(updatedPerson.getPassword());
+    }
+
+    @Transactional
+    public void delete(int id){
+        peopleRepository.deleteById(id);
+    }
 }

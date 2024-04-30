@@ -31,6 +31,14 @@ public class Person {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "familyName")
+    private String familyName;
+
+    @Column(name = "surname")
+    private String surname;
 
     @Min(value = 1)
     @Column(name = "age")
@@ -46,7 +54,16 @@ public class Person {
     @OneToMany(mappedBy = "ownerTicket",  cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
-
+    public Person(String username, String familyName, String name, String surname, String email, String phone_number, String password, List<Event> events) {
+        this.username = username;
+        this.familyName = familyName;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.password = password;
+        this.events = events;
+    }
 
     public Person(String username, String email, String phone_number, String role, int age, String password, List<Event> events) {
         this.username = username;
@@ -92,6 +109,30 @@ public class Person {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setId(int id) {
