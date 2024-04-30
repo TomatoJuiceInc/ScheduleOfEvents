@@ -1,11 +1,15 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "Event")
 public class Event {
     @Id
@@ -14,11 +18,15 @@ public class Event {
     private int id;
 
 
+
     @Column(name = "name")
     private String name;
 
     @Column(name = "date")
     private Date date;
+
+    @Column(name = "duration")
+    private long duration;
 
     @Column(name = "description")
     private String description;
@@ -34,84 +42,21 @@ public class Event {
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
 
-    public Event(String name, Date date, String description) {
+    public Event(String name, Date date, long duration, String description) {
         this.name = name;
         this.date = date;
+        this.duration = duration;
         this.description = description;
     }
 
-    public Event(String name, Date date, String description, Person owner, Hall hall) {
+    public Event(String name, Date date, long duration, String description, Person owner, Hall hall) {
         this.name = name;
         this.date = date;
+        this.duration = duration;
         this.description = description;
         this.owner = owner;
         this.hall = hall;
     }
 
-    public Event() {
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-
-    public Hall getHall() {
-        return hall;
-    }
-
-    public void setTicket(List<Ticket> ticket) {
-        this.ticket = ticket;
-    }
-
-    public void setHall(Hall hall) {
-        this.hall = hall;
-    }
-
-    public List<Ticket> getTicket() {
-        return ticket;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.ticket = tickets;
-    }
-
-
+    public Event() {}
 }

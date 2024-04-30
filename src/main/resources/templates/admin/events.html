@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+</head>
+<body>
+<h1>Event Details</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event:${events}">
+        <td th:text="${event.getName()}"></td>
+        <td th:text="${event.getDate()}"></td>
+        <td th:text="${event.getDescription()}"></td>
+    </tr>
+    </tbody>
+
+    <a th:href="@{/admin/events/past}">past events page</a>
+</table>
+</body>
+</html>
