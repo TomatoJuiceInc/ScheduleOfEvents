@@ -7,11 +7,16 @@
 </head>
 <header th:insert="base/base :: baseheader">
 </header>
-<body>
+<body style="height: 1200px;">
+<br>
+<br>
 <div>
+    <br>
     <div class="event-details">
-        <h1 class="event-name" th:text="${event.getName()}"></h1><!-- Display the event name -->
-        <h2 class="event-date" th:text="'КСК Уникс | ' + ${time}">Date and Time: </h2><!-- Display the event date and time -->
+
+        <h1 class="event-name" th:text="${event.getName()}"></h1>
+        <h2 class="event-date" th:text="'КСК Уникс | ' + ${time}">Date and Time: </h2>
+        <h2 class="event-date" th:text="${event.getDescription()}">desc </h2>
     </div>
 
 
@@ -32,7 +37,7 @@
     </div>
     <div th:if="${typeHall == 1}">
         <div class="svg-container">
-            <svg id="cinema-hall" width="1200" height="620" viewBox="0 0 1000 820" xmlns="http://www.w3.org/2000/svg">
+            <svg id="cinema-hall" width="1200" height="720" viewBox="0 0 1000 820" xmlns="http://www.w3.org/2000/svg">
 
             </svg>
         </div>
