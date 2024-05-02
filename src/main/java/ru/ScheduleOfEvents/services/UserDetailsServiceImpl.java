@@ -33,4 +33,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void save(User person){
         userRepository.save(person);
     }
+
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username).orElse(null);
+    }
 }
