@@ -1,0 +1,134 @@
+body{
+	background-color: #141414;
+	margin-top: 70px;
+	margin-left: 60px;
+	margin-right: 60px;
+}
+
+.profile-info{
+	margin-top: 20px;
+}
+
+.text-container{
+	margin-left: 20px;
+}
+
+.text-field{
+	width: 495px;
+  	height: 50px;
+  	background-color: #3E3E3E;
+  	padding: 10px;
+  	border-radius: 10px;
+  	margin-bottom: 20px;
+}
+
+.area-for-lastName-text, .area-for-name-text, .area-for-secondLastName-text, .area-for-phone-number-text, .area-for-mail-text, .username-text{
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+.profile-info{
+	display: flex;
+}
+
+.line-after-profile-info{
+	width: 1400px;
+	height: 3px;
+	background-color: #EC7F00;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.username-field{
+	width: 250px;
+  	height: 40px;
+  	background-color: #EC7F00;
+  	padding-top: 3px;
+  	border-radius: 10px;
+  	text-align: center;
+  	margin-top: 20px;
+}
+
+.info-text, .history-text{
+	font-size: 45px;
+}
+
+.image{
+	width: 250px;
+	height: 330px;
+	border-radius: 20px;
+}
+
+.add-image{
+	width: 295px;
+	height: 390px;
+	border-radius: 20px;
+	margin-left: 340px;
+}
+
+.edit-link{
+	font-size: 25px;
+	color: #717171;
+	text-decoration: none;
+	margin-left: 80px;
+}
+
+.event-bar li{
+	list-style-type: none;
+	display: inline-block;
+	margin-right: 40px;
+}
+
+.event-bar{
+	width: 1000px;
+  	height: 45px;
+  	background-color: #3E3E3E;
+  	border-radius: 20px;
+  	color: #FFFFFF;
+}
+
+.event-link-button{
+	width: 200px;
+  	height: 45px;
+  	background-color: #EC7F00;
+  	padding: 10px;
+  	border-radius: 20px;
+  	color: #FFFFFF;
+  	border: none;
+  	margin-left: 20px;
+}
+
+.event-link-button:hover{
+	background-color: #DA6606;
+}
+
+.list-element{
+	display: flex;
+}
+
+.name-event-info, .name-place-info, .date-info, .seat-place-info, .price-info{
+	color: #FFFFFF;
+}
+
+.bi-geo-alt-fill, .bi-calendar3, .bi-ticket-perforated, .bi-tag-fill{
+	color: #EC7F00;
+}
+
+.bi-ticket-perforated{
+	position: relative;
+	top: 3px;
+}
+
+.all-events-link-button{
+	width: 200px;
+  	height: 45px;
+  	background-color: #EC7F00;
+  	padding: 10px;
+  	border-radius: 20px;
+  	color: #FFFFFF;
+  	border: none;
+}
+
+.all-events-link-button:hover {
+	background-color: #DA6606;
+}
