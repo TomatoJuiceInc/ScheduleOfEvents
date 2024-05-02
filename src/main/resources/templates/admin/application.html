@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+<form action="/admin/approve" method="post">
+    <label for="approveId">Enter Application ID to Approve:</label>
+    <input type="text" id="approveId" name="id">
+    <button type="submit">Approve</button>
+</form>
+
+<form action="/admin/reject" method="post">
+    <label for="rejectId">Enter Application ID to Reject:</label>
+    <input type="text" id="rejectId" name="id">
+    <button type="submit">Reject</button>
+</form>
+</body>
+</html>
