@@ -3,10 +3,14 @@ package ru.ScheduleOfEvents.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Event")
 @Data
@@ -43,6 +47,7 @@ public class Event {
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
 
+
     public Event(String name, Date date, String description) {
         this.name = name;
         this.date = date;
@@ -64,4 +69,6 @@ public class Event {
         String str2 = this.age.substring(1);
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
+
+
 }
