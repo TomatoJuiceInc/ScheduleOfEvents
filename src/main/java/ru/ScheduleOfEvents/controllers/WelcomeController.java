@@ -13,7 +13,7 @@ public class WelcomeController {
     public String showPage(){
         return "welcome/welcome";
     }
-    @PostMapping("welcome")
+    @PostMapping("/welcome")
     public String redirectForEventPage(){
         return "redirect:/events";
     }

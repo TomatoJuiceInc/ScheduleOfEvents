@@ -37,4 +37,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public User findByUsername(String username){
         return userRepository.findByUsername(username).orElse(null);
     }
+
+    @Transactional
+    public void update(long id, User updatedUser) {
+        User userToBeUpdated = findOne(id);
+
+        userToBeUpdated.setUsername(updatedUser.getUsername());
+        userToBeUpdated.setEmail(updatedUser.getEmail());
+        userToBeUpdated.setPassword(updatedUser.getPassword());
+    }
+
+    @Transactional
+    public void delete(long id) {
+        userRepository.deleteById(id);
+    }
 }

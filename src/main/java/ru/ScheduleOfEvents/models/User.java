@@ -24,6 +24,15 @@ public class User {
     @Column(name = "username", unique = true)
     private String username;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "familyName")
+    private String familyName;
+
+    @Column(name = "surname")
+    private String surname;
+
     @Column(name = "password")
     private String password;
 
