@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.sevices.*;
+import ru.ScheduleOfEvents.services.ApplicationService;
+import ru.ScheduleOfEvents.services.EventsService;
 
 
 @Controller
@@ -31,7 +31,7 @@ public class AdminController {
     public String approve(@RequestParam int id, Model model) {
         applicationService.approveApplication(id);
         model.addAttribute("message", "Application with ID " + id + " approved successfully!");
-        return "redirect:/admin/application";  // Пторно отображаем страницу с сообщением
+        return "redirect:/admin/application";  // Порно отображаем страницу с сообщением
     }
 
     @PostMapping("/reject")

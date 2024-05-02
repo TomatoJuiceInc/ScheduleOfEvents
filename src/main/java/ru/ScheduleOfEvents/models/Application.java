@@ -17,7 +17,7 @@ public class Application {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person applicantName;  // Имя заявителя
+    private User applicantName;  // Имя заявителя
 
     private Boolean isApproved;    // Статус заявки
 
@@ -29,7 +29,7 @@ public class Application {
     public Application() {
     }
 
-    public Application(Person applicantName, Event event) {
+    public Application(User applicantName, Event event) {
         this.applicantName = applicantName;
         this.event = event;
         this.isApproved = null;  // Инициализируем как не рассмотренное

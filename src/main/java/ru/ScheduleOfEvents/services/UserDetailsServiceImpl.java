@@ -10,6 +10,7 @@ import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.repositories.UserRepository;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public User findOne(long id){
         return userRepository.findById(id).orElse(null);
+    }
+    public List<User> findAll(){
+        return userRepository.findAll();
     }
 
     @Transactional
