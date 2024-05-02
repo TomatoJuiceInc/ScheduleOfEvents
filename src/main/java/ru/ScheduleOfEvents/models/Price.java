@@ -63,8 +63,4 @@ public class Price {
         this.ownerEvent = ownerEvent;
     }
 
-
-
-
-
 }

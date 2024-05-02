@@ -17,6 +17,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "status")
+    private boolean status;
 
     @Column(name = "name")
     private String name;
@@ -56,7 +58,5 @@ public class Event {
     public Event() {
 
     }
-
-
 
 }

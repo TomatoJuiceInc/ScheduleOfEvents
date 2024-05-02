@@ -17,8 +17,9 @@ public class Application {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person applicantName;  // Имя заявителя
+    private Person applicantName;  // заявитель
 
+    @Column(name = "is_Approved")
     private Boolean isApproved;    // Статус заявки
 
     @OneToOne(cascade = CascadeType.ALL)

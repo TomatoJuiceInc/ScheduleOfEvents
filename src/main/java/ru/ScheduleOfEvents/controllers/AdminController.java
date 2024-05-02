@@ -20,27 +20,25 @@ public class AdminController {
     @Autowired
     private EventsService eventService;
 
-
-
     @GetMapping("/application")
-    public String successPage()  {
+    public String successPage(Model model)  {
+        model.addAttribute("applications", applicationService.findAll());
         return "admin/application";
     }
 
-    @PostMapping("/approve")
-    public String approve(@RequestParam int id, Model model) {
+    @PostMapping("/approve/{id}")
+    public String approve(@PathVariable("id") int id, Model model) {
         applicationService.approveApplication(id);
         model.addAttribute("message", "Application with ID " + id + " approved successfully!");
-        return "redirect:/admin/application";  // Пторно отображаем страницу с сообщением
+        return "redirect:/admin/application";  // Повторно отображаем страницу с сообщением
     }
 
-    @PostMapping("/reject")
-    public String reject(@RequestParam int id, Model model) {
+    @PostMapping("/reject/{id}")
+    public String reject(@PathVariable("id") int id, Model model) {
         applicationService.rejectApplication(id);
         model.addAttribute("message", "Application with ID " + id + " rejected successfully!");
         return "redirect:/admin/application";  // Повторно отображаем страницу с сообщением
     }
-
 
 
     @GetMapping("/events")
