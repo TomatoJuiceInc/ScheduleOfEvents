@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.sevices.EventsService;
+import ru.ScheduleOfEvents.sevices.HallsService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,9 +20,12 @@ public class AdminController {
 
     private final EventsService eventsService;
 
+    private final HallsService hallsService;
+
     @Autowired
-    public AdminController(EventsService eventsService) {
+    public AdminController(EventsService eventsService, HallsService hallsService) {
         this.eventsService = eventsService;
+        this.hallsService = hallsService;
     }
 
     @GetMapping("/past")
@@ -43,6 +47,7 @@ public class AdminController {
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("event", eventsService.findEventById(id));
+        model.addAttribute("halls", hallsService.findAll());
         return "admin/events/edit";
     }
 

@@ -3,6 +3,7 @@ package ru.ScheduleOfEvents.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.thymeleaf.expression.Temporals;
 
 import java.util.Date;
 import java.util.List;
