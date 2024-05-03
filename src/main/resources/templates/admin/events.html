@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Application Page</title>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
 </head>
 <body>
 <form th:action="@{/admin/create-event}" th:method="POST" th:object = "${event}" >
@@ -11,5 +14,27 @@
     <textarea name="description" placeholder="Event Description" th:field = "*{description}" ></textarea>
     <button type="submit">Create Event</button>
 </form>
+<h1>Event Details</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event:${events}">
+        <td th:text="${event.getName()}"></td>
+        <td th:text="${event.getDate()}"></td>
+        <td th:text="${event.getDescription()}"></td>
+        <td>
+            <a th:href="@{/admin/events/{id}/edit (id=${event.getId()})}">edit event</a>
+        </td>
+    </tr>
+    </tbody>
+
+    <a th:href="@{/admin/events/past}">past events page</a>
+</table>
 </body>
 </html>

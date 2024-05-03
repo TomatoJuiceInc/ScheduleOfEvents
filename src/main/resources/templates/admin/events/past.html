@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TomatoJuice</title>
+</head>
+<body>
+
+<h1>Past Events Details</h1>
+
+<a th:href="@{/admin/events}">link to the registered events page</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event:${pastEvents}">
+        <td th:text="${event.getName()}"></td>
+        <td th:text="${event.getDate()}"></td>
+        <td th:text="${event.getDescription()}"></td>
+        <td>
+            <a th:href="@{/admin/events/{id}/edit (id=${event.getId()})}">edit event</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Getter;
+import lombok.Setter;
+import org.thymeleaf.expression.Temporals;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Getter
+@Setter
 @Table(name = "Event")
 @Data
 @NoArgsConstructor
@@ -21,11 +26,16 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+
     @Column(name = "name")
     private String name;
 
     @Column(name = "date")
     private Date date;
+
+    @Column(name = "duration")
+    private long duration;
 
     @Column(name = "description")
     private String description;
@@ -49,14 +59,18 @@ public class Event {
 
 
     public Event(String name, Date date, String description) {
+    public Event(String name, Date date, long duration, String description) {
         this.name = name;
         this.date = date;
+        this.duration = duration;
         this.description = description;
     }
 
     public Event(String name, Date date, String description, User owner, Hall hall, String age) {
+    public Event(String name, Date date, long duration, String description, Person owner, Hall hall) {
         this.name = name;
         this.date = date;
+        this.duration = duration;
         this.description = description;
         this.owner = owner;
         this.hall = hall;
@@ -71,4 +85,8 @@ public class Event {
     }
 
 
+}
+    }
+
+    public Event() {}
 }
