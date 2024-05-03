@@ -7,18 +7,30 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.Hall;
 import ru.ScheduleOfEvents.sevices.*;
+
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private ApplicationService applicationService;
+
+    private final ApplicationService applicationService;
+
+    private final EventsService eventsService;
+
+    private final HallsService hallsService;
 
     @Autowired
-    private EventsService eventService;
+    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService) {
+        this.applicationService = applicationService;
+        this.eventsService = eventsService;
+        this.hallsService = hallsService;
+    }
 
     @GetMapping("/application")
     public String successPage(Model model)  {
@@ -41,26 +53,25 @@ public class AdminController {
     }
 
 
-    @GetMapping("/events")
-    public String submitApplication(Model model) {
+    @GetMapping("/submit")
+    public String submitForm(Model model) {
         model.addAttribute("event", new Event());
-        return "admin/events";
+        model.addAttribute("halls", hallsService.findAll());
+        return "admin/submit";
     }
 
-    @GetMapping("/successfully")
-    public String creatingEvent(Model model) {
-        model.addAttribute("event", new Event());
-        return "admin/create-event";
+    @PostMapping("/submission")
+    public String handleEventSubmission(Event event) {
+        eventsService.save(event);
+        return "redirect:/admin/successful-submission";
+    }
+
+    @GetMapping("/successful-submission")
+    public String successfulSubmission() {
+        return "admin/successful-submission";
     }
 
 
-    @PostMapping("/create-event")
-    public String createEvent(Event event) {
-        System.out.println(1);
-//        eventService.createEvent(event.getName(), event.getDate(), event.getDescription());
-        System.out.println(2);
-        return "redirect:/admin/successfully";
-    }
 }
 
 

@@ -2,9 +2,13 @@ package ru.ScheduleOfEvents.models;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Hall")
 public class Hall {
@@ -27,39 +31,8 @@ public class Hall {
         this.count_seats = count_seats;
     }
 
-    public Hall() {}
 
-    public int getId() {
-        return id;
+    public Hall() {
+
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getCount_seats() {
-        return count_seats;
-    }
-
-    public void setCount_seats(int count_seats) {
-        this.count_seats = count_seats;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-
-
 }

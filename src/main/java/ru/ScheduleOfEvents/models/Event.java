@@ -32,6 +32,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
+    
     @OneToMany(mappedBy = "event",  cascade = CascadeType.ALL)
     private List<Ticket> ticket;
 
@@ -40,6 +41,9 @@ public class Event {
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
 
+    private String duration;
+
+//    private List<Integer> prices;
 
     public Event(String name, Date date, String description) {
         this.name = name;
@@ -58,5 +62,6 @@ public class Event {
     public Event() {
 
     }
+
 
 }
