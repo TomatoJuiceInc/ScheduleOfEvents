@@ -3,12 +3,16 @@ package ru.ScheduleOfEvents.controllers;
 
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.BankCard;
 import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.models.MailStructure;
+import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.*;
 
 import java.time.LocalDateTime;
@@ -37,13 +41,11 @@ public class PaymentController {
     @GetMapping()
     public String showPage(Model model,
                            @RequestParam("a") int amount,
-                           @RequestParam("u") int userId,
                            @RequestParam("e") int eventId,
                            @RequestParam(value = "error", required = false) String  isError)
     {
         model.addAttribute("bankCard", new BankCard());
         model.addAttribute("amount", amount);
-        model.addAttribute("user_id", userId);
         model.addAttribute("event_id", eventId);
         if (isError != null){
             model.addAttribute("error", true);
@@ -60,10 +62,15 @@ public class PaymentController {
     }
 
 
-    @PostMapping("/buy/{price}/{id}/{event}")
+    @PostMapping("/buy/{price}/{event}")
     public String buy(BankCard bankCard,
-                            @PathVariable("price") int price,
-                            @PathVariable("id") int id,  @PathVariable("event") int eventId) {
+                            @PathVariable("price") int price, @PathVariable("event") int eventId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String name = userDetails.getUsername();
+        User user = userDetailsService.findByUsername(name);
+        Long id = user.getId();
+
 
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
         System.out.println(bCard.getCardNumber());
@@ -85,7 +92,7 @@ public class PaymentController {
                         + " " + event.getName());
                 mailStructure.setTimeOfPurchase(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.of("Europe/Moscow")).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
                 mailStructure.setSubject("SheduleOfEvents");
-                mailStructure.setTickets(ticketService.findAllById(id, eventId));
+                mailStructure.setTickets(ticketService.findAllById(Math.toIntExact(id), eventId));
                 ticketService.saveTickets(id, eventId);
                 bankService.pay(bankCard.getCardNumber(), price);
                 try {

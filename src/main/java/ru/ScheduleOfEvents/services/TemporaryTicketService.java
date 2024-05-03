@@ -47,8 +47,8 @@ public class TemporaryTicketService {
     }
 
     @Transactional
-    public void saveTickets(int id, int eventId) {
-        List<TemporaryTicket> tickets = findAllById(id, eventId);
+    public void saveTickets(long id, int eventId) {
+        List<TemporaryTicket> tickets = findAllById((int) id, eventId);
         User user = userDetailsService.findOne(id);
         Event event = eventsService.findOne(eventId);
         for (TemporaryTicket ticket: tickets){

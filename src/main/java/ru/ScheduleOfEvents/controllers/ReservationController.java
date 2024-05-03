@@ -4,6 +4,10 @@ package ru.ScheduleOfEvents.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.event.AuthenticationFailureProxyUntrustedEvent;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,8 +46,7 @@ public class ReservationController {
 
     @GetMapping()
     public String showPage(Model model, @RequestParam("type") int type,
-                                        @RequestParam("e") int eventId,
-                                        @RequestParam("u") int userId)  {
+                                        @RequestParam("e") int eventId)  {
         ObjectMapper mapper = new ObjectMapper();
         String jsonReservedSeats = "";
         String jsonPriceSeats = "";
@@ -82,7 +85,6 @@ public class ReservationController {
 
         model.addAttribute("seatData", new SeatData());
         model.addAttribute("event", event);
-        model.addAttribute("userId", userId);
         model.addAttribute("reservedSeats", jsonReservedSeats);
         model.addAttribute("priceSeats", jsonPriceSeats);
         model.addAttribute("priceId", jsonPriceId);
@@ -95,10 +97,14 @@ public class ReservationController {
         return "order/show";
     }
 
-    @PostMapping("/more/{id}/{event}")
+    @PostMapping("/more/{event}")
     public String bookSeats(@ModelAttribute("seatData") SeatData seatData,
-                            @PathVariable("id") int id,
                             @PathVariable("event") int event ) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+
+
         if (seatData == null){
             return "error/error.html";
         }
@@ -109,9 +115,15 @@ public class ReservationController {
             }
         }
 
+
         Date currentDate = new Date();
-        User user = userDetailsService.findOne(id);
-        Event eventDB = eventsService.findOne(id);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String name = userDetails.getUsername();
+        User user = userDetailsService.findByUsername(name);
+        Long id = user.getId();
+        System.out.println(id);
+
+        Event eventDB = eventsService.findOne(event);
         int price = 0;
         for(String seat: seatData.getSeat().split(",")){
             String[] currentSeat = seat.split(":");
@@ -133,7 +145,7 @@ public class ReservationController {
         }
         userDetailsService.save(user);
         eventsService.save(eventDB);
-        return String.format("redirect:/payment?a=%d&u=%d&e=%d", price, id, event);
+        return String.format("redirect:/payment?a=%d&e=%d", price, event);
 
     }
 
