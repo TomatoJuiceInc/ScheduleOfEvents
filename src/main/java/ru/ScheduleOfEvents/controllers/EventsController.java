@@ -24,6 +24,7 @@ public class EventsController {
 
     @GetMapping("/events")
     public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam, Model model) {
+        System.out.println(234324);
         List<Event> events = eventsService.findAll();
         if (events.isEmpty()){
             model.addAttribute("event", new ArrayList<>());

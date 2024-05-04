@@ -1,19 +1,10 @@
 <!DOCTYPE html>
-<html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Application Page</title>
     <meta charset="UTF-8">
     <title>Event Details</title>
 </head>
 <body>
-<form th:action="@{/admin/create-event}" th:method="POST" th:object = "${event}" >
-    <!-- Поля для мероприятия -->
-    <input type="text" name="name" placeholder="Event Name" th:field = "*{name}"/>
-    <input type="date" name="date" placeholder="Event Date" th:field = "*{date}"/>
-    <textarea name="description" placeholder="Event Description" th:field = "*{description}" ></textarea>
-    <button type="submit">Create Event</button>
-</form>
 <h1>Event Details</h1>
 <table>
     <thead>
@@ -24,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="event:${events}">
+    <tr th:each="event:${eve}">
         <td th:text="${event.getName()}"></td>
         <td th:text="${event.getDate()}"></td>
         <td th:text="${event.getDescription()}"></td>

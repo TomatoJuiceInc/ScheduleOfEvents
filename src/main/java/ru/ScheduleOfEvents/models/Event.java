@@ -3,20 +3,12 @@ package ru.ScheduleOfEvents.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Getter;
-import lombok.Setter;
-import org.thymeleaf.expression.Temporals;
 
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
-@Getter
-@Setter
 @Table(name = "Event")
 @Data
 @NoArgsConstructor
@@ -58,7 +50,6 @@ public class Event {
     private Hall hall;
 
 
-    public Event(String name, Date date, String description) {
     public Event(String name, Date date, long duration, String description) {
         this.name = name;
         this.date = date;
@@ -66,15 +57,7 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String name, Date date, String description, User owner, Hall hall, String age) {
-    public Event(String name, Date date, long duration, String description, Person owner, Hall hall) {
-        this.name = name;
-        this.date = date;
-        this.duration = duration;
-        this.description = description;
-        this.owner = owner;
-        this.hall = hall;
-        this.age = age;
+    public Event(String name, Date date, String description) {
     }
 
 
@@ -85,8 +68,5 @@ public class Event {
     }
 
 
-}
-    }
 
-    public Event() {}
 }

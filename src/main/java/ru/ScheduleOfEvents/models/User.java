@@ -64,4 +64,13 @@ public class User {
 
     @OneToMany(mappedBy = "ownerUserForTT")
     private List<TemporaryTicket> temporaryTickets;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

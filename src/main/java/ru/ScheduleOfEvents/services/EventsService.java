@@ -2,6 +2,7 @@ package ru.ScheduleOfEvents.services;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ScheduleOfEvents.models.Event;
@@ -13,7 +14,6 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-@RequiredArgsConstructor
 public class EventsService {
 
     private final EventRepository eventRepository;
@@ -27,9 +27,6 @@ public class EventsService {
         eventRepository.save(event);
     }
 
-    public List<Event> findAll(){
-        return eventRepository.findAll();
-    }
 
     @Transactional
     public Event createEvent(String name, Date date, String description) {
@@ -44,5 +41,39 @@ public class EventsService {
 
 //        Application application = applicationService.createApplication(client, event);
 //        applicationService.save(application);
+    }
+
+    @Autowired
+    public EventsService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
+
+    public List<Event> findAll() {
+        return eventRepository.findAll();
+    }
+
+
+    public List<Event> findEventByDateBefore() {
+        return eventRepository.findEventsByDateBefore(new Date());
+    }
+
+    public List<Event> findEventByDateAfter() {
+        return eventRepository.findEventsByDateAfter(new Date());
+    }
+
+    public Event findEventById(Integer id) {
+        return eventRepository.findEventById(id);
+    }
+
+
+    @Transactional
+    public void updateEvent(Integer id, Event updatedEvent) {
+        updatedEvent.setId(id);
+        eventRepository.save(updatedEvent);
+    }
+
+    @Transactional
+    public void delete(Event event) {
+        eventRepository.delete(event);
     }
 }

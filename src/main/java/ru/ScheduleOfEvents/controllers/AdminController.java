@@ -1,16 +1,14 @@
 package ru.ScheduleOfEvents.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.sevices.EventsService;
-import ru.ScheduleOfEvents.sevices.HallsService;
-import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.EventsService;
+import ru.ScheduleOfEvents.services.HallsService;
+import ru.ScheduleOfEvents.services.ApplicationService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +16,6 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/admin")
 @RequestMapping("/admin/events")
 public class AdminController {
 
@@ -26,27 +23,27 @@ public class AdminController {
 
     private final HallsService hallsService;
 
-    @Autowired
-    private ApplicationService applicationService;
+    private final  ApplicationService applicationService;
 
-    @Autowired
-    private EventsService eventService;
 
 
 
     @GetMapping("/application")
     public String successPage()  {
-        return "admin/application";
-    public AdminController(EventsService eventsService, HallsService hallsService) {
+        return "admin/application";}
+
+    public AdminController(EventsService eventsService, HallsService hallsService, ApplicationService applicationService) {
         this.eventsService = eventsService;
         this.hallsService = hallsService;
+        this.applicationService = applicationService;
     }
 
     @PostMapping("/approve")
     public String approve(@RequestParam int id, Model model) {
         applicationService.approveApplication(id);
         model.addAttribute("message", "Application with ID " + id + " approved successfully!");
-        return "redirect:/admin/application";  // Порно отображаем страницу с сообщением
+        return "redirect:/admin/application";
+    }
     @GetMapping("/past")
     public String past(Model model) {
         model.addAttribute("pastEvents", eventsService.findEventByDateBefore());
@@ -64,23 +61,22 @@ public class AdminController {
 
 
 
-    @GetMapping("/events")
-    public String submitApplication(Model model) {
-        model.addAttribute("event", new Event());
     @GetMapping()
     public String events(Model model) {
         model.addAttribute("events", eventsService.findEventByDateAfter());
-        return "admin/events";
+        return "admin/events/events";
     }
 
     @GetMapping("/successfully")
     public String creatingEvent(Model model) {
         model.addAttribute("event", new Event());
-        return "admin/create-event";
+        return "admin/create-event";}
+
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("event", eventsService.findEventById(id));
         model.addAttribute("halls", hallsService.findAll());
+
         return "admin/events/edit";
     }
 
@@ -92,7 +88,6 @@ public class AdminController {
         System.out.println(2);
         return "redirect:/admin/successfully";
     }
-}
 
 
 
