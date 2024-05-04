@@ -38,7 +38,9 @@ public class PeopleService {
 
         personToBeUpdated.setUsername(updatedPerson.getUsername());
         personToBeUpdated.setEmail(updatedPerson.getEmail());
-        personToBeUpdated.setPassword(updatedPerson.getPassword());
+
+        if (!updatedPerson.getPassword().isEmpty() && !(updatedPerson.getPassword() == null))
+            personToBeUpdated.setPassword(updatedPerson.getPassword());
     }
 
     @Transactional
