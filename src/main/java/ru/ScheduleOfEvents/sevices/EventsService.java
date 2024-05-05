@@ -19,4 +19,7 @@ public class EventsService {
     public List<Event> findAll(){
         return eventRepository.findAll();
     }
+    public List<Event> findAllByName(String name){
+        return eventRepository.findAllByNameStartingWith(name);
+    }
 }
