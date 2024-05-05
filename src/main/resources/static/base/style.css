@@ -41,8 +41,13 @@ body{
     background-color: black;
     color: #fff;
 }
-.bi-ticket-perforated{
+.bi-ticket-perforated {
     color: orange;
     font-size: x-large;
     margin-right: 4px;
+}
+
+.img-responsive {
+    width: 200px;
+    height: 400px;
 }
