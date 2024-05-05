@@ -20,8 +20,8 @@ body{
     height: 100vh;
     background-color:  black;
 }
-.navbar-nav{
-    margin-left: 90px;
+.navbar-nav {
+    margin-left: 20px;
     display: flex;
     align-items: center;
 }
@@ -48,6 +48,6 @@ body{
 }
 
 .img-responsive {
-    width: 200px;
-    height: 400px;
+    width: 150px;
+    height: 350px;
 }
