@@ -19,6 +19,7 @@ public class Application {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private User applicantName;  // Имя заявителя
 
+    @Column(name = "is_Approved")
     private Boolean isApproved;    // Статус заявки
 
     @OneToOne(cascade = CascadeType.ALL)

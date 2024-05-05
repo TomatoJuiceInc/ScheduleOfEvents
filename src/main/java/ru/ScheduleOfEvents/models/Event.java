@@ -18,6 +18,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "status")
+    private boolean status;
 
 
     @Column(name = "name")
@@ -49,6 +51,8 @@ public class Event {
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
 
+
+//    private List<Integer> prices;
 
     public Event(String name, Date date, long duration, String description) {
         this.name = name;
