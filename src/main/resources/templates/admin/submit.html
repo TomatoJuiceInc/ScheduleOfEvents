@@ -24,43 +24,45 @@
     </style>
 <div class="container mt-5">
     <h2>Подача заявки на мероприятие</h2>
-    <form th:action="@{/admin/submission}" th:method="post" th:object="${event}">
+
+    <form th:method="PATCH" th:action="@{/admin/events/submission}" th:object="${event}">
+
         <div class="mb-3">
             <label for="eventName" class="form-label">Название мероприятия</label>
             <input th:field= "*{name}" type="text" class="form-control" id="eventName" name="name" required>
         </div>
         <div class="mb-3">
-            <label for="eventDate" class="form-label">Дата</label>
-            <input th:field= "*{date}" type="date" class="form-control" id="eventDate" name="date" required>
-        </div>
-        <div class="mb-3">
-            <label for="hall" class="form-label">Зал</label>
-<!--            <select th:field= "*{hall}" class="form-select" id="hall" name="hall">-->
-<!--                <option value="big">Большой</option>-->
-<!--                <option value="small">Малый</option>-->
-<!--            </select>-->
-            <select  id = "hall" class="form-select" name="hallId" th:field="*{hall}">
-                <option th:each="hall : ${halls}"
-                        th:value="${hall.id}"
-                        th:text="${hall.name}">Hall Name:
-                </option>
-            </select>
-
-        </div>
-        <div class="mb-3">
             <label for="duration" class="form-label">Продолжительность</label>
             <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
         </div>
-<!--        <div class="mb-3">-->
-<!--            <label for="prices" class="form-label">Цены на билеты (5 категорий)</label>-->
-<!--            <input th:field= "*{name}" type="text" class="form-control" id="prices" name="prices" placeholder="100, 200, 300, 400, 500" required>-->
-<!--        </div>-->
         <div class="mb-3">
             <label for="description" class="form-label">Описание</label>
             <textarea th:field = "*{description}" class="form-control" id="description" name="description" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        <div class="mb-3">
+            <label for="eventDate" class="form-label">Дата</label>-->
+            <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+
+        </div>
+        <div class="form-group row">
+            <label for="eventTime" class="form-label">Время</label>-->
+            <input type="time" class="form-control" id="eventTime" name="eventTime"  required>
+        </div>
+
+
+        <!--        <div class="mb-3">-->
+<!--            <label for="eventDate" class="form-label">Дата</label>-->
+<!--            <input th:field= "*{date}" type="date" class="form-control" id="eventDate" name="date" required>-->
+<!--        </div>-->
+
+        <input type="submit" value="Update!"/>
+
     </form>
 </div>
 </body>
 </html>
+
+
+
+
+

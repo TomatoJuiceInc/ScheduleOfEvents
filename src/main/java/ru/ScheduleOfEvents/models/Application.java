@@ -15,14 +15,14 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private User applicantName;  // Имя заявителя
 
     @Column(name = "is_Approved")
     private Boolean isApproved;    // Статус заявки
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;           // Связанное событие
 

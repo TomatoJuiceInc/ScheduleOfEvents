@@ -52,7 +52,6 @@ public class Event {
     private Hall hall;
 
 
-//    private List<Integer> prices;
 
     public Event(String name, Date date, long duration, String description) {
         this.name = name;

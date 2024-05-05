@@ -1,5 +1,6 @@
 package ru.ScheduleOfEvents.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,15 +10,10 @@ import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
 import ru.ScheduleOfEvents.services.ApplicationService;
-import ru.ScheduleOfEvents.models.Hall;
-import ru.ScheduleOfEvents.sevices.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Date;
-import java.util.List;
 
 
 @Controller
@@ -30,9 +26,7 @@ public class AdminController {
     private final EventsService eventsService;
 
     private final HallsService hallsService;
-    private final EventsService eventsService;
 
-    private final HallsService hallsService;
 
     @Autowired
     public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService) {
@@ -40,17 +34,17 @@ public class AdminController {
         this.eventsService = eventsService;
         this.hallsService = hallsService;
     }
-    private final  ApplicationService applicationService;
 
 
 
 
+
+    // checked
     @GetMapping("/application")
     public String successPage(Model model)  {
         model.addAttribute("applications", applicationService.findAll());
         return "admin/application";
-    public String successPage()  {
-        return "admin/application";}
+    }
 
     public AdminController(EventsService eventsService, HallsService hallsService, ApplicationService applicationService) {
         this.eventsService = eventsService;
@@ -58,25 +52,29 @@ public class AdminController {
         this.applicationService = applicationService;
     }
 
+    // checked
     @PostMapping("/approve/{id}")
     public String approve(@PathVariable("id") int id, Model model) {
         applicationService.approveApplication(id);
         model.addAttribute("message", "Application with ID " + id + " approved successfully!");
-        return "redirect:/admin/application";  // Повторно отображаем страницу с сообщением
-        return "redirect:/admin/application";
+        return "redirect:/admin/events/application";  // Повторно отображаем страницу с сообщением
     }
+    // checked
     @GetMapping("/past")
     public String past(Model model) {
         model.addAttribute("pastEvents", eventsService.findEventByDateBefore());
         return "admin/events/past";
     }
 
+    // checked
+
     @PostMapping("/reject/{id}")
     public String reject(@PathVariable("id") int id, Model model) {
         applicationService.rejectApplication(id);
         model.addAttribute("message", "Application with ID " + id + " rejected successfully!");
-        return "redirect:/admin/application";  // Повторно отображаем страницу с сообщением
+        return "redirect:/admin/events/application";  // Повторно отображаем страницу с сообщением
     }
+
     @GetMapping("/requests")
     public String requests() { return "admin/events/requests"; }
 
@@ -88,10 +86,17 @@ public class AdminController {
         return "admin/submit";
     }
 
-    @PostMapping("/submission")
-    public String handleEventSubmission(Event event) {
+    @PatchMapping("/submission")
+    public String handleEventSubmission( Event event,@RequestParam("eventDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eventDate,
+                                         @RequestParam("eventTime") @DateTimeFormat(pattern = "HH:mm") LocalTime eventTime) {
+        event.setDate(
+                Date.from(eventDate.atTime(eventTime)
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant())
+        );
         eventsService.save(event);
-        return "redirect:/admin/successful-submission";
+        return "redirect:/admin/events/successful-submission";
+    }
 
     @GetMapping()
     public String events(Model model) {
@@ -102,6 +107,7 @@ public class AdminController {
     @GetMapping("/successful-submission")
     public String successfulSubmission() {
         return "admin/successful-submission";
+    }
     @GetMapping("/successfully")
     public String creatingEvent(Model model) {
         model.addAttribute("event", new Event());
@@ -116,13 +122,12 @@ public class AdminController {
     }
 
 
-}
+
     @PostMapping("/create-event")
     public String createEvent(Event event) {
         System.out.println(1);
-//        eventService.createEvent(event.getName(), event.getDate(), event.getDescription());
         System.out.println(2);
-        return "redirect:/admin/successfully";
+        return "redirect:/admin/events/successfully";
     }
 
 

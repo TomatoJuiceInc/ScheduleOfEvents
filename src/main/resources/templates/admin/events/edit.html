@@ -11,7 +11,8 @@
 
     <div class="form-group">
         <label for="hallSelect">Select Hall:</label>
-        <select class="form-control" id="hallSelect" name="hallId" th:field="*{hall}">
+<!--        <select class="form-control" id="hallSelect" name="hallId" th:field="*{hall}">-->
+        <select class="form-control" id="hallSelect" name="hallId">
             <option th:each="hall : ${halls}"
                     th:value="${hall.id}"
                     th:text="${hall.name}">Hall Name:

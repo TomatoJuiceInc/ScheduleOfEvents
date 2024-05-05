@@ -21,14 +21,8 @@ public class ApplicationService {
     public void approveApplication(int applicationId) {
         Application application = applicationRepository.findById(applicationId).orElseThrow(() -> new RuntimeException("Application not found!"));
         Event event = application.getEvent();
-//        event.setId(application.getEvent().getId());
         event.setStatus(true);
-
         System.out.println(application.getEvent().getId());
-        // Удаление связанного события
-        //TODO изменение статуса ивента
-//        eventRepository.deleteById(application.getEvent().getId());
-
         eventRepository.save(event);
 
         applicationRepository.deleteById(applicationId);

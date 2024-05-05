@@ -53,19 +53,19 @@
         <tr th:each="app : ${applications}">
             <td th:text="${app.getId()}"></td>
             <td th:text="${app.getApplicantName().getUsername()}"></td>
-            <td th:text="${app.getApplicantName().getPhone_number()}"></td>
             <td th:text="${app.getApplicantName().getEmail()}"></td>
+            <td th:text="${app.getApplicantName().getPhone_number()}"></td>
             <td th:text="${app.getEvent().getName()}"></td>
             <td th:text="${app.getEvent().getHall().getName()}"></td>
             <td th:text="${app.getEvent().getDate()}"></td>
 
 
             <td>
-                <form th:action="@{/admin/approve/{id} (id = ${app.getId()})}" method="post">
+                <form th:action="@{/admin/events/approve/{id} (id = ${app.getId()})}" method="post">
 <!--                    <input type="hidden" name="appId" th:value="${app.getId()}" />-->
                     <button type="submit" class="btn btn-success">✔</button>
                 </form>
-                <form th:action="@{/admin/reject/{id} (id = ${app.getId()})}" method="post">
+                <form th:action="@{/admin/events/reject/{id} (id = ${app.getId()})}" method="post">
 <!--                    <input type="hidden" name="appId" th:value="${app.getId()}" />-->
                     <button type="submit" class="btn btn-danger">✖</button>
                 </form>
