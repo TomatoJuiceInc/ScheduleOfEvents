@@ -35,7 +35,9 @@
 }
 
 #listContainer {
-    background-color: white;
+    background-color: #202529;
+    border-radius: 10px; /* Радиус закругления 10px (можете изменить на нужное значение) */
+    overflow: hidden; /* Убираем лишнее содержимое за пределы округлой формы */
     position: absolute;
     top: 50%; /* Position vertically in the middle */
     left: calc(100% + 10px); /* Position to the right of the button with a 10px gap */
@@ -46,3 +48,22 @@
 #listContainer a{
     text-decoration: none;
 }
+
+.custom-form {
+    /* Add styles for the form */
+    margin-bottom: 10px;
+}
+
+
+.transparent-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: white;
+    transition: color 0.3s; /* Плавное изменение цвета текста */
+}
+
+.transparent-button:hover {
+    color: orange; /* Цвет текста при наведении */
+}
+
+
