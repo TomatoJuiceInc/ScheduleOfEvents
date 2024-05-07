@@ -121,8 +121,6 @@ public class ReservationController {
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
         Long id = user.getId();
-        System.out.println(id);
-
         Event eventDB = eventsService.findOne(event);
         int price = 0;
         for(String seat: seatData.getSeat().split(",")){

@@ -70,13 +70,17 @@ public class PaymentController {
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
         Long id = user.getId();
+        if (bankCard == null){
+            return String.format("redirect:/payment?a=%d&e=%d&error=%b", price, eventId, true);
+        }
 
 
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
-        System.out.println(bCard.getCardNumber());
         if (bCard == null){
-            return String.format("redirect:/payment?a=%d&u=%d&e=%d&error=%b", price, id, eventId, true);
+            return String.format("redirect:/payment?a=%d&e=%d&error=%b", price, eventId, true);
         }
+        System.out.println(bCard.getCardNumber());
+
         if (bCard.getCvc().equals(bankCard.getCvc())
                 && bCard.getDuration().equals(bankCard.getDuration())
                 && bCard.getOwner().equals(bankCard.getOwner())){
@@ -96,6 +100,7 @@ public class PaymentController {
                 ticketService.saveTickets(id, eventId);
                 bankService.pay(bankCard.getCardNumber(), price);
                 try {
+                    // todo
                     mailService.sendMail( "khairullov.ruslan2405@yandex.ru", mailStructure);
                 }
                 catch (MessagingException e){

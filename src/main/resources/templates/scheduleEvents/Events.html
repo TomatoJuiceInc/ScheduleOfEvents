@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="base :: basehead">
-    <meta charset="UTF-8">
+<head th:fragment="basehead">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events</title>
-</head>
-<body style="height: 5000px;">
-<script src="sheduleEvents/script.js"></script>
+    <script src="scheduleEvents/script.js"></script>
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
 
-<header th:insert="base :: baseheader">
+
+</head>
+
+<body style="height: 5000px;">
+
+
+<header th:insert="base/base :: baseheader">
+
 </header>
 
 <main style="margin-top: 80px;">
-    <link rel="stylesheet" type="text/css" href="sheduleEvents/events.css"/>
+    <link rel="stylesheet" type="text/css" href="scheduleEvents/events.css"/>
+
 
     <div class="d-flex justify-content-center position-relative mb-3">
         <div class="d-flex ms-0" role="search">
@@ -61,8 +68,8 @@
             <div class="card text-white bg-dark mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="logo.jpeg" class="img-fluid rounded-start" alt="...">
-                        <div th:text="${data.getAge()}" class="age-rating">18+</div>
+                        <img src="branding/favicon.ico" class="img-fluid rounded-start" alt="...">
+                        <div th:text="${data.getAge()} + '+'" class="age-rating">18+</div>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -75,7 +82,8 @@
                                 <i class="bi bi-clock"></i>
                                 <span th:text="${#dates.format(data.getDate(), 'HH:mm')}"></span>
                             </p>
-                            <a class="text-decoration-none" href="#">КУПИТЬ БИЛЕТЫ</a>
+
+                            <a th:if="${data != null }" class="text-decoration-none" th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()})}">КУПИТЬ БИЛЕТЫ</a>
                         </div>
                     </div>
                 </div>
@@ -83,6 +91,6 @@
         </div>
     </div>
 </main>
-<footer th:insert="base::basefooter"></footer>
+<footer th:insert="base/base::basefooter"></footer>
 </body>
 </html>

@@ -65,8 +65,9 @@ public class EventsController {
                 }
             }).toList();
         }
+
         model.addAttribute("event",eventList);
-        return "sheduleEvents/Events";
+        return "scheduleEvents/Events";
     }
 
     @PostMapping("/events/{firstParam}/{secondParam}/{thirdParam}")
