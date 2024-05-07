@@ -81,4 +81,10 @@ public class EventsService {
     public void delete(Event event) {
         eventRepository.delete(event);
     }
+
+
+    public List<Event> findAllByName(String name){
+        return eventRepository.findAllByNameStartingWith(name);
+    }
 }
+

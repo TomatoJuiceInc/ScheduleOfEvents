@@ -5,12 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.sevices.EventsService;
+import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.util.InputTextExtractor;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping()
@@ -20,10 +20,7 @@ public class EventsController {
     public EventsController(EventsService eventsService) {
         this.eventsService = eventsService;
     }
-    @GetMapping
-    public String showWelcomePage(){
-        return "base";
-    }
+
     @GetMapping("/events")
     public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam,
                              @RequestParam(value = "secondParam",required = false,defaultValue = "defaultSecond") String secondParam,
@@ -69,7 +66,7 @@ public class EventsController {
             }).toList();
         }
         model.addAttribute("event",eventList);
-        return "Events";
+        return "sheduleEvents/Events";
     }
 
     @PostMapping("/events/{firstParam}/{secondParam}/{thirdParam}")
@@ -80,6 +77,7 @@ public class EventsController {
     public String rebootEvent(){
         return "redirect:/events";
     }
+
     @PostMapping("/events/search")
     public String performSearch(InputTextExtractor inputTextExtractor) {
         return "redirect:/events?thirdParam=" + inputTextExtractor.getName();

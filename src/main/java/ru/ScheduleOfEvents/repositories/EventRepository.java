@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
-    public List<Event> findAllByNameStartingWith(String name);
+     List<Event> findAllByNameStartingWith(String name);
 
     List<Event> findEventsByDateBefore(Date date);
 
