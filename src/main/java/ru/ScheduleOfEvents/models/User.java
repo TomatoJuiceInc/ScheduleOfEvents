@@ -62,8 +62,7 @@ public class User {
     @OneToMany(mappedBy = "ownerTicket",  cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
-    @OneToMany(mappedBy = "ownerUserForTT")
-    private List<TemporaryTicket> temporaryTickets;
+
 
     @Override
     public String toString() {

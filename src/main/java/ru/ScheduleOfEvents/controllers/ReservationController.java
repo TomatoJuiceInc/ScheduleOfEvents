@@ -4,20 +4,13 @@ package ru.ScheduleOfEvents.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.event.AuthenticationFailureProxyUntrustedEvent;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.models.Price;
-import ru.ScheduleOfEvents.models.TemporaryTicket;
-import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.PriceService;
-import ru.ScheduleOfEvents.services.TemporaryTicketService;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 import ru.ScheduleOfEvents.util.SeatData;
 
@@ -34,7 +27,7 @@ public class ReservationController {
     private final EventsService eventsService;
 
     @Autowired
-    public ReservationController(EventsService eventsService, UserDetailsServiceImpl userDetailsService, TemporaryTicketService temporaryTicketService, PriceService priceService) {
+    public ReservationController(EventsService eventsService, UserDetailsServiceImpl userDetailsService, PriceService priceService) {
         this.eventsService = eventsService;
     }
 
@@ -52,15 +45,11 @@ public class ReservationController {
 
         LocalDateTime dateTime = LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow"));
         String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
-        Set<String> reserved =new HashSet<>(event.getTemporaryTickets()
+        Set<String> reserved =new HashSet<>(event.getTickets()
                 .stream()
                 .map(t -> (t.getCol() + " " + t.getRow()))
                 .toList());
-        Set<String> purchased = new HashSet<>(event.getTickets()
-                .stream()
-                .map(t -> (t.getCol() + " " + t.getRow()))
-                .toList());
-        reserved.addAll(purchased);
+
         try {
             jsonReservedSeats = mapper.writeValueAsString(reserved);
 

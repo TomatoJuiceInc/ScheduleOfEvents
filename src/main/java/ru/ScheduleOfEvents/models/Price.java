@@ -26,8 +26,6 @@ public class Price {
     @OneToMany(mappedBy = "price")
     private List<Ticket> tickets;
 
-    @OneToMany(mappedBy = "ownerPriceForTT")
-    private List<TemporaryTicket> temporaryTickets;
 
     public Price(int price, Event ownerEvent) {
         this.price = price;
