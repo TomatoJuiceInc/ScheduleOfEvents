@@ -17,7 +17,7 @@
             <div class="creditCardForm" style="background-color: black">
 
                 <div class="payment" style="color:#008B8B;">
-                    <form th:method="POST" th:action="@{/payment/buy/{price}/{event}(price=${amount}, event=${event_id})}" th:object="${bankCard}">
+                    <form th:method="POST" th:action="@{/payment/buy/{price}/{event}/{seats}(price=${amount}, event=${event_id}, seats=${seats})}" th:object="${bankCard}">
                         <div class="form-group-second" style="width: 60%; margin-left: 70px; color: darkorange"  >
                             <h3>Tomato Juice</h3>
                             <img src="branding/favicon.ico" alt="" width="50" height="50" class="form-group-second">
@@ -68,8 +68,8 @@
                                     <i style="width: 45%;"></i>
                                 </div>
                             </div>
-                            <div th:if="${error}" style="font-size: 11px; color: darkred">
-                                Введены неправильные данные, попробуйте еще раз!
+                            <div th:if="${error}" th:text="${message}" style="font-size: 11px; color: darkred">
+
                             </div>
 
 

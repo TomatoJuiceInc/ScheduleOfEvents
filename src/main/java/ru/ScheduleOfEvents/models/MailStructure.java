@@ -12,7 +12,7 @@ public class MailStructure {
     private String timeOfPurchase;
     private String place;
     private String eventTimeAndName;
-    private List<TemporaryTicket> tickets;
+    private List<Ticket> tickets;
 
 
 }

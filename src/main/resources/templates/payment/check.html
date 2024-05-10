@@ -72,7 +72,7 @@
 
         <tr th:each="ticket : ${tickets}">
             <td th:text="${ticket.row + ' место ' + ticket.col + ' ряд '}">Место 5 ряд 5</td>
-            <td th:text="${ticket.getOwnerPriceForTT().getPrice()}"></td>
+            <td th:text="${ticket.getPrice().getPrice()}"></td>
         </tr>
 
     </table>

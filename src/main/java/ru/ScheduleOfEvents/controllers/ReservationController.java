@@ -32,16 +32,10 @@ import java.util.*;
 
 public class ReservationController {
     private final EventsService eventsService;
-    private final UserDetailsServiceImpl userDetailsService;
-    private final TemporaryTicketService temporaryTicketService;
-    private final PriceService priceService;
 
     @Autowired
     public ReservationController(EventsService eventsService, UserDetailsServiceImpl userDetailsService, TemporaryTicketService temporaryTicketService, PriceService priceService) {
         this.eventsService = eventsService;
-        this.userDetailsService = userDetailsService;
-        this.temporaryTicketService = temporaryTicketService;
-        this.priceService = priceService;
     }
 
     @GetMapping()
@@ -101,56 +95,19 @@ public class ReservationController {
     public String bookSeats(@ModelAttribute("seatData") SeatData seatData,
                             @PathVariable("event") int event ) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 
 
         if (seatData == null){
             return "error/error.html";
         }
-        List<TemporaryTicket> temporaryTickets = temporaryTicketService.findAll();
-        for (TemporaryTicket temporaryTicket: temporaryTickets){
-            if (checkTempTicket(temporaryTicket)){
-                temporaryTicketService.deleteById(temporaryTicket.getId());
-            }
-        }
 
 
-        Date currentDate = new Date();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String name = userDetails.getUsername();
-        User user = userDetailsService.findByUsername(name);
-        Long id = user.getId();
-        Event eventDB = eventsService.findOne(event);
-        int price = 0;
-        for(String seat: seatData.getSeat().split(",")){
-            String[] currentSeat = seat.split(":");
-            Price price1 = priceService.findOne(Integer.parseInt(currentSeat[1]));
-            price += price1.getPrice();
-            TemporaryTicket temporaryTicket =  new TemporaryTicket(
-                    currentSeat[0].split(" ")[0],
-                    currentSeat[0].split(" ")[1],
-                    currentDate ,
-                    eventsService.findOne(event),
-                    userDetailsService.findOne(id),
-                    price1);
-
-            temporaryTicket.setOwnerEventForTT(eventDB);
-            temporaryTicket.setOwnerUserForTT(user);
-            user.getTemporaryTickets().add(temporaryTicket);
-            eventDB.getTemporaryTickets().add(temporaryTicket);
-            temporaryTicketService.save(temporaryTicket);
-        }
-        userDetailsService.save(user);
-        eventsService.save(eventDB);
-        return String.format("redirect:/payment?a=%d&e=%d", price, event);
+        return String.format("redirect:/payment?e=%d&seats=%s", event, seatData.getSeat());
 
     }
 
-    public boolean checkTempTicket(TemporaryTicket temporaryTicket){
-        Date now = new Date();
-        return  (now.getTime() - temporaryTicket.getTime().getTime()) / 60000 >= 10;
-    }
+
 
 
 }
