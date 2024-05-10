@@ -16,8 +16,8 @@
 <body>
     <style>
         body {
-            background-color: #FFF7DF;
-            color: #333;
+            background-color: whitesmoke;
+            color: #9de0ae;
         }
         .container {
             padding-top: 50px;
@@ -32,9 +32,6 @@
     </style>
 <div class="container mt-5">
     <h2>Подача заявки на мероприятие</h2>
-    <br>
-    <br>
-    <br>
 
     <form th:method="PATCH" th:action="@{/admin/events/submission}" th:object="${event}">
 
@@ -42,26 +39,31 @@
             <label for="eventName" class="form-label">Название мероприятия</label>
             <input th:field= "*{name}" type="text" class="form-control" id="eventName" name="name" required>
         </div>
+<!--        todo добавить проверку что пользователь вводит число-->
         <div class="mb-3">
             <label for="duration" class="form-label">Продолжительность</label>
             <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Возрастное ограничение</label>
+            <input th:field= "*{age}" type="text" class="form-control" id="age" name="duration" required>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Описание</label>
             <textarea th:field = "*{description}" class="form-control" id="description" name="description" rows="3" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="eventDate" class="form-label">Дата</label>-->
+            <label for="eventDate" class="form-label">Дата</label>
             <input type="date" class="form-control" id="eventDate" name="eventDate" required>
 
         </div>
-        <div class="form-group row">
-            <label for="eventTime" class="form-label">Время</label>-->
+        <div class="mb-3">
+            <label for="eventTime" class="form-label">Время</label>
             <input type="time" class="form-control" id="eventTime" name="eventTime"  required>
         </div>
 
 
-        <input type="submit" value="Update!"/>
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
 
     </form>
 </div>

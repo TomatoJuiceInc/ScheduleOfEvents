@@ -15,10 +15,8 @@
 <header th:insert="base/base :: baseheader">
 
 </header>
-
 <main style="margin-top: 80px;">
     <link rel="stylesheet" type="text/css" href="scheduleEvents/events.css"/>
-
 
     <div class="d-flex justify-content-center position-relative mb-3">
         <div class="d-flex ms-0" role="search">
@@ -69,7 +67,7 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="branding/favicon.ico" class="img-fluid rounded-start" alt="...">
-                        <div th:text="${data.getAge()} + '+'" class="age-rating">18+</div>
+                        <div th:text="${data.getAge()}" class="age-rating">18+</div>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

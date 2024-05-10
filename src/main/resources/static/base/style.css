@@ -16,6 +16,9 @@ html {
 .navbar-custom {
     background-color: black;
 }
+.custom-footer{
+    background-color: black;
+}
 body{
     height: 100vh;
     background-color:  black;

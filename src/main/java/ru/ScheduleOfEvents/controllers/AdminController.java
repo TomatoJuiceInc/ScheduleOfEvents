@@ -2,14 +2,21 @@ package ru.ScheduleOfEvents.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import ru.ScheduleOfEvents.models.Application;
 import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
 import ru.ScheduleOfEvents.services.ApplicationService;
+import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -26,13 +33,15 @@ public class AdminController {
     private final EventsService eventsService;
 
     private final HallsService hallsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
 
     @Autowired
-    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService) {
+    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
         this.applicationService = applicationService;
         this.eventsService = eventsService;
         this.hallsService = hallsService;
+        this.userDetailsService = userDetailsService;
     }
 
 
@@ -46,11 +55,7 @@ public class AdminController {
         return "admin/application";
     }
 
-    public AdminController(EventsService eventsService, HallsService hallsService, ApplicationService applicationService) {
-        this.eventsService = eventsService;
-        this.hallsService = hallsService;
-        this.applicationService = applicationService;
-    }
+
 
     // checked
     @PostMapping("/approve/{id}")
@@ -87,14 +92,23 @@ public class AdminController {
     }
 
     @PatchMapping("/submission")
-    public String handleEventSubmission( Event event,@RequestParam("eventDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eventDate,
+    public String handleEventSubmission( Event event, @RequestParam("eventDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eventDate,
                                          @RequestParam("eventTime") @DateTimeFormat(pattern = "HH:mm") LocalTime eventTime) {
         event.setDate(
                 Date.from(eventDate.atTime(eventTime)
                         .atZone(ZoneId.systemDefault())
                         .toInstant())
         );
+        event.setStatus(false);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String name = userDetails.getUsername();
+        User user = userDetailsService.findByUsername(name);
+        Application application = new Application(user, event);
+        application.setIsApproved(false);
+        event.setOwner(user);
         eventsService.save(event);
+        applicationService.save(application);
         return "redirect:/admin/events/successful-submission";
     }
 
@@ -125,8 +139,6 @@ public class AdminController {
 
     @PostMapping("/create-event")
     public String createEvent(Event event) {
-        System.out.println(1);
-        System.out.println(2);
         return "redirect:/admin/events/successfully";
     }
 

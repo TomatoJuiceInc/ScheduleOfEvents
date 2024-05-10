@@ -48,4 +48,9 @@ public class ApplicationService {
     public List<Application> findAll() {
         return applicationRepository.findAll();
     }
+    @Transactional
+    public void save(Application application){
+        applicationRepository.save(application);
+    }
+
 }
