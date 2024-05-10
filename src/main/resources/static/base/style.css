@@ -16,12 +16,15 @@ html {
 .navbar-custom {
     background-color: black;
 }
+.custom-footer{
+    background-color: black;
+}
 body{
     height: 100vh;
     background-color:  black;
 }
-.navbar-nav{
-    margin-left: 90px;
+.navbar-nav {
+    margin-left: 20px;
     display: flex;
     align-items: center;
 }
@@ -41,8 +44,13 @@ body{
     background-color: black;
     color: #fff;
 }
-.bi-ticket-perforated{
+.bi-ticket-perforated {
     color: orange;
     font-size: x-large;
     margin-right: 4px;
+}
+
+.img-responsive {
+    width: 150px;
+    height: 350px;
 }

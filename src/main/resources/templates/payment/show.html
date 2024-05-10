@@ -5,6 +5,7 @@
     <title>Оплата</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"  href="payment/paymentStyle.css">
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
 
 </head>
 <header th:insert="base/base :: baseheader">
@@ -19,7 +20,7 @@
                     <form th:method="POST" th:action="@{/payment/buy/{price}/{event}(price=${amount}, event=${event_id})}" th:object="${bankCard}">
                         <div class="form-group-second" style="width: 60%; margin-left: 70px; color: darkorange"  >
                             <h3>Tomato Juice</h3>
-                            <img src="logo.png" alt="Описание изображения" width="50" height="50">
+                            <img src="branding/favicon.ico" alt="" width="50" height="50" class="form-group-second">
 
                         </div>
 

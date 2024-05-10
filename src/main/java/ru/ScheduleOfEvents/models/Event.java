@@ -18,6 +18,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "status")
+    private boolean status;
 
 
     @Column(name = "name")
@@ -31,6 +33,10 @@ public class Event {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "age")
     private String age;
     @ManyToOne
@@ -48,6 +54,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "hall_id", referencedColumnName = "id")
     private Hall hall;
+
 
 
     public Event(String name, Date date, long duration, String description) {

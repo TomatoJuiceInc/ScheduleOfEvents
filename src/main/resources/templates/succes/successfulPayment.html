@@ -2,32 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="basehead">
-    <title>Оплата</title>
-    <link rel="stylesheet" type="text/css"  href="../succes/succes.css">
+    <title>Успешно!</title>
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
+    <style>
+        .payment-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .payment-container h2{
+            font-family: Arial, sans-serif;
+            color: lightyellow;
+        }
+        .payment-container h4 {
+            font-family: Arial, sans-serif;
+            margin-left: 30px;
+            color: grey;
+        }
+        .success{
+            margin-left: 50px;
+        }
+    </style>
 </head>
+
 <header th:insert="base/base :: baseheader">
 </header>
-<body>
-<style>
-    .payment-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .payment-container h2{
-        font-family: Arial, sans-serif;
-    }
-    .payment-container h4 {
-        font-family: Arial, sans-serif;
-        margin-left: 30px;
-        color: grey;
-    }
-    .success{
-        margin-left: 50px;
-    }
-</style>
+
+<body style="height: 1200px;">
+
 <div class="payment-container">
     <svg  class="success" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
         <polyline fill="none" stroke="#42a047" stroke-miterlimit="10" stroke-width="4" points="6,27.5 17,38.5 42,13.5"></polyline>
@@ -37,7 +41,12 @@
     <h4>Ждем Вас на представлении!</h4>
 </div>
 
+<footer th:insert="base/base::basefooter"></footer>
 
 </body>
-<footer th:insert="base/base::basefooter"></footer>
 </html>
+
+
+
+
+

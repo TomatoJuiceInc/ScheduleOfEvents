@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="basehead">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+    <script src="scheduleEvents/script.js"></script>
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+<body style="height: 5000px;">
+
+
+<header th:insert="base/base :: baseheader">
+
+</header>
+<main style="margin-top: 80px;">
+    <link rel="stylesheet" type="text/css" href="scheduleEvents/events.css"/>
+
+    <div class="d-flex justify-content-center position-relative mb-3">
+        <div class="d-flex ms-0" role="search">
+            <form th:object="${search}" th:action="@{/events/search}" th:method="post" style="display: flex; align-items: center;">
+                <button type="submit" class="btn btn-success me-2">
+                    <i class="bi bi-search"></i>
+                </button>
+                <input th:field="*{name}" id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="margin-right: 2px;">
+            </form>
+            <button class="btn btn-outline-secondary me-2" onclick="toggleList()" id="filter">
+                <i class="bi bi-filter-right"></i>
+            </button>
+            <form th:action="@{/events/{reboot}}" th:method="post">
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </form>
+
+            <div id="listContainer">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'age'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">По возрасту</button>
+                </form>
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'ageReverse'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">По возрасту убывание</button>
+                </form>
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'date'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">По дате мероприятия</button>
+                </form>
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'concert'},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">концерты</button>
+                </form>
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'play'},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">детский спектакль</button>
+                </form>
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'show'},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">шоу</button>
+                </form>
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'performance'},thirdParam=${thirdParam})}" th:method="post">
+                    <button type="submit" class="transparent-button">представление для взрослых</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Сетка карточек-->
+    <div class="row row-cols-1 row-cols-md-2 g-4 pl-20" style="margin-left: auto; margin-right: auto; max-width: 90%">
+        <div class="col" th:each="data : ${event}">
+            <div class="card text-white bg-dark mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="branding/favicon.ico" class="img-fluid rounded-start" alt="...">
+                        <div th:text="${data.getAge()}" class="age-rating">18+</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 th:text="${data.getName()}" class="card-title">Заголовок меропрития</h5>
+                            <h6 th:text="${data.getDescription()}" class="card-subtitle mb-2">вид мероприятия</h6>
+                            <p class="card-text">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>
+                            <p class="icon-with-date">
+                                <i class="bi bi-calendar4-week"></i>
+                                <span th:text="${#dates.format(data.getDate(), 'dd-MM-yyyy')}"></span>
+                                <i class="bi bi-clock"></i>
+                                <span th:text="${#dates.format(data.getDate(), 'HH:mm')}"></span>
+                            </p>
+
+                            <a th:if="${data != null }" class="text-decoration-none" th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()})}">КУПИТЬ БИЛЕТЫ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:insert="base/base::basefooter"></footer>
+</body>
+</html>

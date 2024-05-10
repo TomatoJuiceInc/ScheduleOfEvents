@@ -1,36 +1,83 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="base/base :: basehead">
     <meta charset="UTF-8">
-    <title>Update user</title>
+    <title>Info</title>
+
 </head>
-<body>
+<body style="height: 700px;">
+<header th:insert="base/base :: baseheader">
+</header>
+<main style="margin-top: 70px; background-color: #000000">
+    <link rel="stylesheet" type="text/css" href="/profileViewStatic/css/edit.css"/>
+    <script src="/profileViewStatic/js/editPage.js"></script>
+    <div class="edit-page">
 
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+        <button class="return-on-profile-button" onclick="window.history.back()" type="button">
+            <i class="bi bi-arrow-return-right"></i>
+            <span class="return-text">
+	            Вернуться в личный кабинет
+	        </span>
+        </button>
 
-    <label for="username">Enter UserName: </label>
-    <input type="text" th:field="*{username}" id="username"/>
-    <br/><br/>
-    <label for="familyName" style="display: none">Enter FamilyName: </label>
-    <input type="text" th:field="*{familyName}" id="familyName" style="display: none"/>
+        <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}" onsubmit="updateHiddenField()">
 
-    <label for="name" style="display: none">Enter Name: </label>
-    <input type="text" th:field="*{name}" id="name" style="display: none"/>
+            <div class="fields-for-editing">
+                <div class="text-editing">
 
-    <label for="surname" style="display: none">Enter Surname: </label>
-    <input type="text" th:field="*{surname}" id="surname" style="display: none"/>
+                    <label for="familyName" style="display: none"></label>
+                    <input type="text" th:field="*{familyName}" id="familyName" style="display: none"/>
 
-    <label for="phone_number" style="display: none">Enter PhoneNumber: </label>
-    <input type="text" th:field="*{phone_number}" id="phone_number" style="display: none"/>
+                    <label for="name" style="display: none"></label>
+                    <input type="text" th:field="*{name}" id="name" style="display: none"/>
 
-    <label for="email">Enter Email: </label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <br/><br/>
-    <label for="password">Enter Password:</label>
-    <input type="text" th:field="*{password}" id="password"/>
-    <br/><br/>
-    <input type="submit" value="Update!"/>
-</form>
+                    <label for="surname" style="display: none"></label>
+                    <input type="text" th:field="*{surname}" id="surname" style="display: none"/>
 
+                    <label for="phone_number" style="display: none"></label>
+                    <input type="text" th:field="*{phone_number}" id="phone_number" style="display: none"/>
+
+                    <p class="username-text">@Username</p>
+                    <label for="username" style="display: none"></label>
+                    <input type="text" class="input-username" th:field="*{username}" id="username"/>
+
+                    <p class="email-text">Почта</p>
+                    <label for="email" style="display: none"></label>
+                    <input type="text" class="input-email" th:field="*{email}" id="email"/>
+
+                    <p class="password-text">Пароль</p>
+
+                    <label for="current-password" style="display: none"></label>
+                    <input type="text" id="current-password" class="input-current-password" placeholder="Текущий пароль"/><br>
+
+                    <label for="password" style="display: none"></label>
+                    <input type="hidden" th:field="*{password}" id="password" />
+                    <label for="input-password" style="display: none"></label>
+                    <input type="text" id="input-password" class="input-new-password" placeholder="Новый пароль"/><br>
+
+                    <label for="repeat-password" style="display: none"></label>
+                    <input type="text" id="repeat-password" class="input-repeat-new-password" placeholder="Повторите новый пароль"/><br>
+                </div>
+                <div class="image-editing">
+                    <img src="/profileViewStatic/images/user_pic.jpg" alt="Картинка" class="image">
+                    <br>
+                    <button class="image-edit-button" type="button">
+                        <i class="bi bi-camera"></i>
+                        <span class="image-editing-text">
+                            Изменить фото
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <button class="save-changes-button" type="submit">
+                <span class="save-text">
+	                Сохранить изменения
+	            </span>
+            </button>
+
+        </form>
+    </div>
+</main>
+<footer th:insert="base/base :: basefooter"></footer>
 </body>
 </html>

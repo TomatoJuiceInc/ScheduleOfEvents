@@ -3,15 +3,14 @@ package ru.ScheduleOfEvents.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.services.EventsService;
+import ru.ScheduleOfEvents.util.InputTextExtractor;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 
 @Controller
 @RequestMapping()
@@ -23,15 +22,19 @@ public class EventsController {
     }
 
     @GetMapping("/events")
-    public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam, Model model) {
-        System.out.println(234324);
-        List<Event> events = eventsService.findAll();
-        if (events.isEmpty()){
-            model.addAttribute("event", new ArrayList<>());
-
+    public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam,
+                             @RequestParam(value = "secondParam",required = false,defaultValue = "defaultSecond") String secondParam,
+                             @RequestParam(value = "thirdParam",required = false,defaultValue = "defaultThird") String thirdParam,Model model) {
+        model.addAttribute("firstParam", firstParam);
+        model.addAttribute("secondParam", secondParam);
+        model.addAttribute("thirdParam", thirdParam);
+        model.addAttribute("search",new InputTextExtractor());
+        List<Event> eventList = eventsService.findAll();
+        if (!thirdParam.equals("defaultThird")){
+            eventList = eventsService.findAllByName(thirdParam);
         }
-        else {
-            model.addAttribute("event",events.stream().sorted(new Comparator<Event>() {
+        if (!firstParam.equals("defaultFirst")){
+            eventList = eventList.stream().sorted(new Comparator<Event>() {
                 @Override
                 public int compare(Event o1, Event o2) {
                     int i = switch (firstParam) {
@@ -42,9 +45,42 @@ public class EventsController {
                     };
                     return i;
                 }
-            }).toList());
+            }).toList();
+        }
+        if (!secondParam.equals("defaultSecond")){
+            eventList = eventList.stream().sorted(new Comparator<Event>() {
+                @Override
+                public int compare(Event o1, Event o2) {
+                    if (o1.getDescription().equals(o2.getDescription())) {
+                        return o1.getDate().compareTo(o2.getDate());
+                    } else {
+                        return switch (secondParam) {
+                            case "concert" -> o1.getDescription().equals("концерт") ? -1 : 1;
+                            case "play" -> o1.getDescription().equals("детский спектакль") ? -1 : 1;
+                            case "show" -> o1.getDescription().equals("новогоднее шоу") ? -1 : 1;
+                            case "performance" -> o1.getDescription().equals("представление для взрослых") ? -1 : 1;
+                            default -> o2.getDate().compareTo(o1.getDate());
+                        };
+                    }
+                }
+            }).toList();
         }
 
-        return "sheduleEvents/Events";
+        model.addAttribute("event",eventList);
+        return "scheduleEvents/Events";
+    }
+
+    @PostMapping("/events/{firstParam}/{secondParam}/{thirdParam}")
+    public String filterEvent(@PathVariable("firstParam") String firstParam, @PathVariable("secondParam") String secondParam,@PathVariable("thirdParam") String thirdParam){
+        return "redirect:/events?firstParam=" + firstParam + "&secondParam=" + secondParam + "&thirdParam=" + thirdParam;
+    }
+    @PostMapping("/events/{reboot}")
+    public String rebootEvent(){
+        return "redirect:/events";
+    }
+
+    @PostMapping("/events/search")
+    public String performSearch(InputTextExtractor inputTextExtractor) {
+        return "redirect:/events?thirdParam=" + inputTextExtractor.getName();
     }
 }

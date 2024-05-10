@@ -2,21 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Запросы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFF3E0;
+        }
+        .container {
+            background-color: #FFE0B2;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        table {
+            background-color: white;
+            border-radius: 8px;
+        }
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .header-back {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+        }
+    </style>
 </head>
-<body>
-<h1>Admin Dashboard</h1>
-<form action="/admin/approve" method="post">
-    <label for="approveId">Enter Application ID to Approve:</label>
-    <input type="text" id="approveId" name="id">
-    <button type="submit">Approve</button>
-</form>
+<div class="container">
+    <div class="header-back">Запросы</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Client Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Event</th>
+            <th>Event Hall</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="app : ${applications}">
+            <td th:text="${app.getId()}"></td>
+            <td th:text="${app.getApplicantName().getUsername()}"></td>
+            <td th:text="${app.getApplicantName().getEmail()}"></td>
+            <td th:text="${app.getApplicantName().getPhone_number()}"></td>
+            <td th:text="${app.getEvent().getName()}"></td>
+            <td th:text="${app.getEvent().getHall().getName()}"></td>
+            <td th:text="${app.getEvent().getDate()}"></td>
 
-<form action="/admin/reject" method="post">
-    <label for="rejectId">Enter Application ID to Reject:</label>
-    <input type="text" id="rejectId" name="id">
-    <button type="submit">Reject</button>
-</form>
-</body>
+
+            <td>
+                <form th:action="@{/admin/events/approve/{id} (id = ${app.getId()})}" method="post">
+<!--                    <input type="hidden" name="appId" th:value="${app.getId()}" />-->
+                    <button type="submit" class="btn btn-success">✔</button>
+                </form>
+                <form th:action="@{/admin/events/reject/{id} (id = ${app.getId()})}" method="post">
+<!--                    <input type="hidden" name="appId" th:value="${app.getId()}" />-->
+                    <button type="submit" class="btn btn-danger">✖</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </html>

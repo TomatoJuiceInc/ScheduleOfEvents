@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.Hall;
 import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.repositories.EventRepository;
 
@@ -29,10 +30,14 @@ public class EventsService {
 
 
     @Transactional
-    public Event createEvent(String name, Date date, String description) {
-        Event event = new Event(name, date, description);
+    public void createEvent(String name, Date date, Hall hall, Long duration, String description) {
+        Event event = new Event();
+        event.setName(name);
+        event.setDate(date);
+        event.setHall(hall);
+        event.setDuration(duration);
+        event.setDescription(description);
         eventRepository.save(event);
-        return event;
     }
 
     @Transactional
@@ -76,4 +81,10 @@ public class EventsService {
     public void delete(Event event) {
         eventRepository.delete(event);
     }
+
+
+    public List<Event> findAllByName(String name){
+        return eventRepository.findAllByNameStartingWith(name);
+    }
 }
+
