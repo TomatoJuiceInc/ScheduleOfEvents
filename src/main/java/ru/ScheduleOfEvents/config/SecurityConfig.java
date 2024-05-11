@@ -24,8 +24,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/auth/**", "/welcome").permitAll()
+                        .anyRequest().permitAll())
                 .formLogin(login -> login
                         .loginPage("/auth/login")
                         .permitAll())
