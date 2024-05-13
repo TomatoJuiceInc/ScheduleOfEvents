@@ -33,7 +33,7 @@
 <div class="container mt-5">
     <h2>Подача заявки на мероприятие</h2>
 
-    <form th:method="PATCH" th:action="@{/admin/events/submission}" th:object="${event}">
+    <form th:method="PATCH" th:action="@{/submission}" th:object="${event}">
 
         <div class="mb-3">
             <label for="eventName" class="form-label">Название мероприятия</label>
@@ -62,9 +62,25 @@
             <input type="time" class="form-control" id="eventTime" name="eventTime"  required>
         </div>
 
+        <div class="mb-3">
+            <label for="hall" class="form-label">Зал:</label>
+            <select id="hall" class="form-select" name="hallId" required>
+                <option value="1">Малый</option>
+                <option value="2">Большой</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="prices" class="form-label">Цена за билеты (от самого дешевого до самого дорогого):</label>
+            <div id="prices" class="input-group">
+                <input type="number" name="price1" class="form-control" required placeholder="Дешевый">
+                <input type="number" name="price2" class="form-control" required placeholder="Дороже">
+                <input type="number" name="price3" class="form-control" required placeholder="Средний">
+                <input type="number" name="price4" class="form-control" required placeholder="Дорогой">
+                <input type="number" name="price5" class="form-control" required placeholder="Очень дорогой">
+            </div>
+        </div>
 
         <button type="submit" class="btn btn-primary">Отправить заявку</button>
-
     </form>
 </div>
 

@@ -84,48 +84,12 @@ public class AdminController {
     public String requests() { return "admin/events/requests"; }
 
 
-    @GetMapping("/submit")
-    public String submitForm(Model model) {
-        model.addAttribute("event", new Event());
-        model.addAttribute("halls", hallsService.findAll());
-        return "admin/submit";
-    }
-
-    @PatchMapping("/submission")
-    public String handleEventSubmission( Event event, @RequestParam("eventDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eventDate,
-                                         @RequestParam("eventTime") @DateTimeFormat(pattern = "HH:mm") LocalTime eventTime) {
-        event.setDate(
-                Date.from(eventDate.atTime(eventTime)
-                        .atZone(ZoneId.systemDefault())
-                        .toInstant())
-        );
-        event.setStatus(false);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String name = userDetails.getUsername();
-        User user = userDetailsService.findByUsername(name);
-        Application application = new Application(user, event);
-        application.setIsApproved(false);
-        event.setOwner(user);
-        eventsService.save(event);
-        applicationService.save(application);
-        return "redirect:/admin/events/successful-submission";
-    }
-
     @GetMapping()
     public String events(Model model) {
         model.addAttribute("events", eventsService.findEventByDateAfter());
         return "admin/events/events";
     }
 
-    @GetMapping("/successful-submission")
-    public String successfulSubmission() {
-        return "admin/successful-submission";
-    }
-    @GetMapping("/successfully")
-    public String creatingEvent(Model model) {
-        model.addAttribute("event", new Event());
-        return "admin/create-event";}
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
@@ -134,19 +98,6 @@ public class AdminController {
 
         return "admin/events/edit";
     }
-
-
-
-    @PostMapping("/create-event")
-    public String createEvent(Event event) {
-        return "redirect:/admin/events/successfully";
-    }
-
-
-
-
-
-
 
     @GetMapping("/{id}")
     public String show(@PathVariable int id, Model model) {
@@ -173,9 +124,11 @@ public class AdminController {
         return "redirect:/admin/events/{id}/edit";
     }
 
+
     @DeleteMapping("/{id}")
     public String delete(@PathVariable int id) {
         eventsService.delete(eventsService.findEventById(id));
         return "redirect:/admin/events";
     }
+
 }
