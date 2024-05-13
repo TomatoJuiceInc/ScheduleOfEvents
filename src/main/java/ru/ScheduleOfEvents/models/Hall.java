@@ -21,6 +21,12 @@ public class Hall {
 
     @Column(name = "name")
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
     @Column(name = "count_seats")
     private int count_seats;
 

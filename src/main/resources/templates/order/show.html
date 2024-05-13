@@ -18,6 +18,7 @@
         <h1 class="event-name" th:text="${event.getName()}"></h1>
         <h2 class="event-date" th:text="'КСК Уникс | ' + ${time}">Date and Time: </h2>
         <h2 class="event-date" th:text="${event.getDescription()}">desc </h2>
+        <h2 class="event-date" th:text="'Длительность: ' + ${event.getDuration()} + ' минут'" >desc  </h2>
     </div>
 
 
@@ -52,6 +53,9 @@
         <button id="reservation-button" type="submit" class="btn-sb">Купить</button>
     </form>
 </div>
+
+
+
 <script src="js/order/reservation.js"></script>
 
 

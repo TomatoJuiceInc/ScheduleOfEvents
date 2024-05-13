@@ -77,7 +77,7 @@ public class AdminController {
     public String reject(@PathVariable("id") int id, Model model) {
         applicationService.rejectApplication(id);
         model.addAttribute("message", "Application with ID " + id + " rejected successfully!");
-        return "redirect:/admin/events/application";  // Повторно отображаем страницу с сообщением
+        return "redirect:/admin/events/application";
     }
 
     @GetMapping("/requests")
@@ -93,6 +93,8 @@ public class AdminController {
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
+        Event event = eventsService.findEventById(id);
+        System.out.println(event.getHall().getName());
         model.addAttribute("event", eventsService.findEventById(id));
         model.addAttribute("halls", hallsService.findAll());
 

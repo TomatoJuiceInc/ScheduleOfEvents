@@ -64,9 +64,11 @@
 
         <div class="mb-3">
             <label for="hall" class="form-label">Зал:</label>
-            <select id="hall" class="form-select" name="hallId" required>
-                <option value="1">Малый</option>
-                <option value="2">Большой</option>
+            <select class="form-select"  id="hall"  name="hallId" th:field="*{hall}">
+                <option th:each="hall1 : ${halls}"
+                        th:value="${hall1.id}"
+                        th:text="${hall1.name}">Hall Name:
+                </option>
             </select>
         </div>
         <div class="mb-3">

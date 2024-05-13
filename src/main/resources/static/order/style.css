@@ -104,3 +104,49 @@ th, td {
     color: #666;
 }
 
+/*todo диалоговое окно*/
+/* Стили для модального окна */
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыть окно по умолчанию */
+    position: fixed; /* Оставаться в верхней части */
+    z-index: 1; /* Разместить над другими элементами */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Чер с непрозрачностью */
+}
+
+/* Стили для содержимого модального окна */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% от верхней части и центрировано по горизонтали */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Изменено на 30% для квадратной формы */
+    height: 30%; /* Добавлено для квадратной формы */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%; /* Отступ слева 40% */
+    margin-right: 40%; /* Отступ справа 40% */
+}
+
+/* Стили для кнопки закрытия */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
