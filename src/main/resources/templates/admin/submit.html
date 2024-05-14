@@ -27,7 +27,7 @@
             background-color: #FFF7DF; /* Темно-серый фон для контейнера */
             padding: 20px;
             border-radius: 8px; /* Скругленные углы */
-            margin-top: 50px; /* Отступ сверху */
+            margin-top: 1px; /* Отступ сверху */
             color: #0f0e00;
         }
 
@@ -73,10 +73,29 @@
             <input th:field= "*{name}" type="text" class="form-control" id="eventName" name="name" required>
         </div>
 <!--        todo добавить проверку что пользователь вводит число-->
-        <div class="mb-3">
-            <label for="duration" class="form-label">Продолжительность</label>
-            <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="eventDate" class="form-label">Дата</label>
+                <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+            </div>
+            <div class="col-md-3">
+                <label for="eventTime" class="form-label">Время</label>
+                <input type="time" class="form-control" id="eventTime" name="eventTime" required>
+            </div>
+            <div class="col-md-3">
+                <label for="duration" class="form-label">Продолжительность</label>
+                <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
+            </div>
+            <div class="col-md-3">
+                <label for="hall" class="form-label">Зал</label>
+                <select id="hall" class="form-select" name="hallId" required>
+                    <option value="1">Малый</option>
+                    <option value="2">Большой</option>
+                </select>
+            </div>
         </div>
+
         <div class="mb-3">
             <label for="age" class="form-label">Возрастное ограничение</label>
             <input th:field= "*{age}" type="text" class="form-control" id="age" name="duration" required>
@@ -85,23 +104,30 @@
             <label for="description" class="form-label">Описание</label>
             <textarea th:field = "*{description}" class="form-control" id="description" name="description" rows="3" required></textarea>
         </div>
-        <div class="mb-3">
-            <label for="eventDate" class="form-label">Дата</label>
-            <input type="date" class="form-control" id="eventDate" name="eventDate" required>
 
-        </div>
-        <div class="mb-3">
-            <label for="eventTime" class="form-label">Время</label>
-            <input type="time" class="form-control" id="eventTime" name="eventTime"  required>
-        </div>
+<!--        <div class="mb-3">-->
+<!--            <label for="eventDate" class="form-label">Дата</label>-->
+<!--            <input type="date" class="form-control" id="eventDate" name="eventDate" required>-->
 
-        <div class="mb-3">
-            <label for="hall" class="form-label">Зал:</label>
-            <select id="hall" class="form-select" name="hallId" required>
-                <option value="1">Малый</option>
-                <option value="2">Большой</option>
-            </select>
-        </div>
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="eventTime" class="form-label">Время</label>-->
+<!--            <input type="time" class="form-control" id="eventTime" name="eventTime"  required>-->
+<!--        </div>-->
+
+<!--        <div class="mb-3">-->
+<!--            <label for="duration" class="form-label">Продолжительность</label>-->
+<!--            <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>-->
+<!--        </div>-->
+
+<!--        <div class="mb-3">-->
+<!--            <label for="hall" class="form-label">Зал:</label>-->
+<!--            <select id="hall" class="form-select" name="hallId" required>-->
+<!--                <option value="1">Малый</option>-->
+<!--                <option value="2">Большой</option>-->
+<!--            </select>-->
+<!--        </div>-->
+
         <div class="mb-3">
             <label for="prices" class="form-label">Цена за билеты (от самого дешевого до самого дорогого):</label>
             <div id="prices" class="input-group">
