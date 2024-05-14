@@ -7,11 +7,12 @@
     <script src="/admin/script.js"></script></head>
 <body>
 
-<header th:insert="base/base::baseheader">
 
+<link rel="stylesheet" type="text/css" href="/admin/events.css">
+<header th:insert="base/base::baseheader">
 </header>
 
-<h1>Event Details</h1>
+
 <table>
     <thead>
     <tr>
@@ -31,9 +32,6 @@
         </td>
     </tr>
     </tbody>
-
-    <a th:href="@{/admin/events/past}">past events page</a>
-
 </table>
 
 <footer th:insert="base/base::basefooter"></footer>

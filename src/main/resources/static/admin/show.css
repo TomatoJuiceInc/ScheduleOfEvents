@@ -1,16 +1,19 @@
-/*
-.container {
+div.container.mt-5 {
     display: flex;
-    justify-content: center; !* Centers horizontally *!
-    align-items: center;    !* Centers vertically *!
-    min-height: 200vh;      !* Makes sure the container fills the screen height *!
-}*/
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    min-height: 100vh;      /* Makes sure the container fills the screen height */
 }
+
+html {
+    scrollbar-width: none;
+    height: 50vh;
+}
+
+body {
+    height: 50vh;
+}
+
 
 .card {
     width: 160vw; /* Set the width to 80% of the viewport width */
@@ -93,8 +96,4 @@
 
 .transparent-button:hover {
     color: orange; /* Цвет текста при наведении */
-}
-
-.footer {
-    max-height: 30px;
 }

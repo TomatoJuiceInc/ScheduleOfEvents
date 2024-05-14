@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="base/base::baseheader">
-    <meta charset="UTF-8">
-    <title>TomatoJuice</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="basehead">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
+    <title>Past</title>
+    <script src="/admin/script.js"></script></head>
 <body>
+
+<header th:insert="base/base::baseheader">
+
+</header>
 
 <h1>Past Events Details</h1>
 
