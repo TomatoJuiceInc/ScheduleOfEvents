@@ -5,11 +5,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
-import ru.ScheduleOfEvents.services.ApplicationService;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;

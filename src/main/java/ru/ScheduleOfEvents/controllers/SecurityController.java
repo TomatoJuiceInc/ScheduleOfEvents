@@ -22,13 +22,13 @@ public class SecurityController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "auth/login";
+        return "security/login";
     }
 
     @GetMapping("/registration")
     public String registrationPage(Model model) {
         model.addAttribute("user", new User());
-        return "auth/registration";
+        return "security/registration";
     }
 
     @PostMapping("/registration")
@@ -37,11 +37,11 @@ public class SecurityController {
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "auth/registration";
+            return "security/registration";
         }
 
         registrationService.register(user);
 
-        return "redirect:/auth/login?success";
+        return "redirect:/login";
     }
 }

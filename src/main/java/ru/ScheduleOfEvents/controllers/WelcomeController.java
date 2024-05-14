@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/welcome")
 public class WelcomeController {
     @GetMapping()
-    public String showPage(){
+    public String showPage() {
         return "welcome/welcome";
     }
     @PostMapping()
     public String redirectForEventPage(){
-        return "redirect:/events";
+        return "redirect:/welcome";
     }
 }

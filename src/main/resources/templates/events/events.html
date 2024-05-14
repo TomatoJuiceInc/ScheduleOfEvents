@@ -5,17 +5,15 @@
     <title>Events</title>
 </head>
 <body style="height: 5000px;">
-<script src="/events/script.js"></script>
-
 <header th:insert="base/base :: baseheader">
 </header>
-
+<script src="/eventsStatic/script.js"></script>
 <main style="margin-top: 80px;">
-    <link rel="stylesheet" type="text/css" href="/events/events.css"/>
-
+    <link rel="stylesheet" type="text/css" href="/eventsStatic/events.css"/>
+    <link rel="stylesheet" type="text/css" href="/eventsStatic/style.css"/>
     <div class="d-flex justify-content-center position-relative mb-3">
         <div class="d-flex ms-0" role="search">
-            <form th:object="${search}" th:action="@{/eventsAdmin/search}" th:method="post" style="display: flex; align-items: center;">
+            <form th:object="${search}" th:action="@{/events/search}" th:method="post" style="display: flex; align-items: center;">
                 <button type="submit" class="btn btn-success me-2">
                     <i class="bi bi-search"></i>
                 </button>
@@ -24,32 +22,32 @@
             <button class="btn btn-outline-secondary me-2" onclick="toggleList()" id="filter">
                 <i class="bi bi-filter-right"></i>
             </button>
-            <form th:action="@{/eventsAdmin/{reboot}}" th:method="post">
+            <form th:action="@{/events/{reboot}}" th:method="post">
                 <button type="submit" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-clockwise"></i>
                 </button>
             </form>
 
             <div id="listContainer">
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'age'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'age'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">По возрасту</button>
                 </form>
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'ageReverse'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'ageReverse'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">По возрасту убывание</button>
                 </form>
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'date'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'date'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">По дате мероприятия</button>
                 </form>
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'concert'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'concert'},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">концерты</button>
                 </form>
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'play'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'play'},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">детский спектакль</button>
                 </form>
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'show'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'show'},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">шоу</button>
                 </form>
-                <form th:action="@{/eventsAdmin/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'performance'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/eventsAdminStatic/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'performance'},thirdParam=${thirdParam})}" th:method="post">
                     <button type="submit" class="transparent-button">представление для взрослых</button>
                 </form>
             </div>
