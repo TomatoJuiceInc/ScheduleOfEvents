@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 
 @RequiredArgsConstructor
@@ -24,11 +25,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**", "/welcome").permitAll()
-                        .anyRequest().permitAll())
+                        .requestMatchers("/welcome/**", "/auth/**", "/events/**", "/base/**", "/branding/**").permitAll()
+                        .anyRequest().authenticated())
                 .formLogin(login -> login
-                        .loginPage("/auth/login")
-                        .permitAll())
+                        .loginPage("/login")
+                        .permitAll()
+                        .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
+                        )
                 .logout(LogoutConfigurer::permitAll);
 
         return http.build();

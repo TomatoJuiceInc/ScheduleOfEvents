@@ -15,7 +15,7 @@ import ru.ScheduleOfEvents.util.UserValidator;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping()
 public class SecurityController {
     private final UserValidator userValidator;
     private final RegistrationService registrationService;

@@ -53,7 +53,7 @@ public class ReservationController {
         String jsonPriceId = "";
         Event event = eventsService.findOne(eventId);
         if (event == null){
-            return "error/error.html";
+            return "error/error";
         }
 
         LocalDateTime dateTime = LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow"));
@@ -106,7 +106,7 @@ public class ReservationController {
 
 
         if (seatData == null){
-            return "error/error.html";
+            return "error/error";
         }
         List<TemporaryTicket> temporaryTickets = temporaryTicketService.findAll();
         for (TemporaryTicket temporaryTicket: temporaryTickets){

@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
-@Controller
-@RequiredArgsConstructor
-public class MainController {
-    private final UserDetailsServiceImpl userDetailsServiceImpl;
-
-    @GetMapping("/showUserInfo")
-    public String showUserInfo() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        return "test";
-    }
-}
+//@Controller
+//@RequiredArgsConstructor
+//public class MainController {
+//    private final UserDetailsServiceImpl userDetailsServiceImpl;
+//
+//    @GetMapping("/showUserInfo")
+//    public String showUserInfo() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//
+//        return "test";
+//    }
+//}

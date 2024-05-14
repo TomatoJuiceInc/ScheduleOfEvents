@@ -9,7 +9,7 @@
 
 <body>
 <div class="wrapper">
-    <form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
+    <form th:method="POST" th:action="@{/registration}" th:object="${user}">
         <h2>Присоединяйтесь к нам,<br>создайте свой аккаунт</h2>
         <h1>Регистрация</h1>
         <div class="input-box">
@@ -27,7 +27,7 @@
         <!--            </div>-->
         <button type="submit" class="btn">Зарегистрироваться</button>
         <div class="register-link">
-            <p>Уже зарегистрировались? <a class="login" href="/auth/login">Войти</a></p>
+            <p>Уже зарегистрировались? <a class="login" href="/login">Войти</a></p>
         </div>
     </form>
 </div>
