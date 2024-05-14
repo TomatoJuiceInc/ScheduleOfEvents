@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="base/base::baseheader">
     <meta charset="UTF-8">
     <title>TomatoJuice</title>
 </head>
@@ -19,16 +19,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="event:${pastEvents}">
+    <tr th:each="event : ${pastEvents}">
         <td th:text="${event.getName()}"></td>
         <td th:text="${event.getDate()}"></td>
         <td th:text="${event.getDescription()}"></td>
         <td>
             <a th:href="@{/admin/events/{id}/edit (id=${event.getId()})}">edit event</a>
+            <a th:href="@{/admin/events/{id} (id=${event.getId()})}">Show event</a>
         </td>
     </tr>
     </tbody>
 </table>
-
+<footer th:insert="base/base::basefooter"></footer>
 </body>
 </html>
