@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"  rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="welcome/welcome.css" />
+    <link rel="stylesheet" href="/welcome/welcome.css" />
 
 </head>
 <header th:insert="base/base :: baseheader">
@@ -23,9 +23,8 @@
             </h1>
             <h3 class="section__subheader">билеты на концерты, вечеринки, матчи
                 и многое другое!</h3>
-            <form th:method="POST" th:action="@{/welcome}" th:object="${bankCard}">
-
-                <button type="submit"  class="btn-event" id="confirm-purchase">перейти к мероприятиям</button>
+            <form action="/events">
+                <button type="submit" class="btn-event" id="confirm-purchase">перейти к мероприятиям</button>
             </form>
 
             <div class="scroll__btn" >
@@ -102,7 +101,7 @@
     </div>
 </section>
 <script src="https://unpkg.com/scrollreveal"></script>
-<script src="js/welcome/welcome.js"></script>
+<script src="/welcome/welcome.js"></script>
 
 
 </body>

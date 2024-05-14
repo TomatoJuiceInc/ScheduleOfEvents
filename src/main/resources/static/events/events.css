@@ -1,59 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Manrope Medium", sans-serif;
-}
-
-body {
+.icon-with-date {
     display: flex;
-    justify-content: center;
-    align-items: start;
-    min-height: 100vh;
-    background-color: #141414;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #f0f0f0;
 }
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
+.icon-with-date i {
+    margin-right: 6px;
 }
-
-ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+.bi-calendar4-week{
+    color: orange;
+    font-size: x-large;
 }
-
-li {
-    display: inline-block;
-    padding: 15px 10px;
-    background-color: #652e2e;
-    border: 1px solid #110b0b;
-    border-radius: 0px;
-    margin: 10px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+.bi-clock{
+    color: orange;
+    font-size: x-large;
+    padding-left: 30px;
 }
-
-li:hover {
-    background-color: #675e5e;
+.card-subtitle{
+    color: gray;
 }
-
-li a {
-    text-decoration: none;
+.age-rating {
+    position: absolute;
+    top: 7px; /* Положение возрастного ценза относительно верхнего края */
+    right: 10px; /* Положение возрастного ценза относительно правого края */ /* Цвет фона возрастного ценза */
+    color: orange; /* Цвет текста возрастного ценза */
+    padding: 5px; /* Отступ внутри возрастного ценза */
+    border-radius: 5px; /* Скругление углов возрастного ценза */
+    font-size: 19px; /* Размер шрифта возрастного ценза */
+}
+.text-decoration-none:hover {
+    color: orange /* Оранжевый цвет текста */
+}
+.text-decoration-none{
     color: white;
-    padding: 0.5em;
-    transition: background-color 0.3s ease; /* Add transition effect */
+    transition: color 0.3s;
 }
+
+#listContainer {
+    background-color: #202529;
+    border-radius: 10px; /* Радиус закругления 10px (можете изменить на нужное значение) */
+    overflow: hidden; /* Убираем лишнее содержимое за пределы округлой формы */
+    position: absolute;
+    top: 50%; /* Position vertically in the middle */
+    left: calc(100% + 10px); /* Position to the right of the button with a 10px gap */
+    transform: translate(-50%, -50%); /* Center vertically */
+    display: none;
+    z-index: 999; /* Ensure it appears above other content */
+}
+#listContainer a{
+    text-decoration: none;
+}
+
+.custom-form {
+    /* Add styles for the form */
+    margin-bottom: 10px;
+}
+
+
+.transparent-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: white;
+    transition: color 0.3s; /* Плавное изменение цвета текста */
+}
+
+.transparent-button:hover {
+    color: orange; /* Цвет текста при наведении */
+}
+
+

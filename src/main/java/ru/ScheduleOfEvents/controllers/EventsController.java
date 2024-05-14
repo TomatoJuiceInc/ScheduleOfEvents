@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping()
+@RequestMapping("/events")
 public class EventsController {
     private final EventsService eventsService;
     @Autowired
@@ -21,7 +21,7 @@ public class EventsController {
         this.eventsService = eventsService;
     }
 
-    @GetMapping("/events")
+    @GetMapping()
     public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam,
                              @RequestParam(value = "secondParam",required = false,defaultValue = "defaultSecond") String secondParam,
                              @RequestParam(value = "thirdParam",required = false,defaultValue = "defaultThird") String thirdParam,Model model) {
@@ -66,19 +66,19 @@ public class EventsController {
             }).toList();
         }
         model.addAttribute("event",eventList);
-        return "sheduleEvents/Events";
+        return "events/events";
     }
 
-    @PostMapping("/events/{firstParam}/{secondParam}/{thirdParam}")
+    @PostMapping("/{firstParam}/{secondParam}/{thirdParam}")
     public String filterEvent(@PathVariable("firstParam") String firstParam, @PathVariable("secondParam") String secondParam,@PathVariable("thirdParam") String thirdParam){
         return "redirect:/events?firstParam=" + firstParam + "&secondParam=" + secondParam + "&thirdParam=" + thirdParam;
     }
-    @PostMapping("/events/{reboot}")
+    @PostMapping("/{reboot}")
     public String rebootEvent(){
         return "redirect:/events";
     }
 
-    @PostMapping("/events/search")
+    @PostMapping("/search")
     public String performSearch(InputTextExtractor inputTextExtractor) {
         return "redirect:/events?thirdParam=" + inputTextExtractor.getName();
     }
