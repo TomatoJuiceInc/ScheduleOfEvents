@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events</title>
     <script src="scheduleEvents/script.js"></script>
-    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/scheduleEvents/logo.png" type="image/x-icon">
 
 
 </head>
@@ -36,25 +36,25 @@
             </form>
 
             <div id="listContainer">
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'age'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${'age'},secondParam=${secondParam},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">По возрасту</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'ageReverse'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${'ageReverse'},secondParam=${secondParam},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">По возрасту убывание</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${'date'},secondParam=${secondParam},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${'date'},secondParam=${secondParam},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">По дате мероприятия</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'concert'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${firstParam},secondParam=${'concert'},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">концерты</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'play'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${firstParam},secondParam=${'play'},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">детский спектакль</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'show'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${firstParam},secondParam=${'show'},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">шоу</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}(firstParam=${firstParam},secondParam=${'performance'},thirdParam=${thirdParam})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${firstParam},secondParam=${'performance'},thirdParam=${thirdParam},page=${page})}" th:method="post">
                     <button type="submit" class="transparent-button">представление для взрослых</button>
                 </form>
             </div>
@@ -62,32 +62,48 @@
     </div>
     <!--Сетка карточек-->
     <div class="row row-cols-1 row-cols-md-2 g-4 pl-20" style="margin-left: auto; margin-right: auto; max-width: 90%">
-        <div class="col" th:each="data : ${event}">
-            <div class="card text-white bg-dark mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="branding/favicon.ico" class="img-fluid rounded-start" alt="...">
+        <div class="col" th:each="data : ${event.content}">
+            <div class="card text-white bg-dark mb-3" style="max-width: 540px; height: 350px;">
+                <div class="row g-0" style="height: 100%;">
+                    <div class="col-md-4" style="height: 100%;">
+                        <img src="/scheduleEvents/logo.png" class="img-fluid rounded-start" alt="...">
                         <div th:text="${data.getAge()}" class="age-rating">18+</div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
+                    <div class="col-md-8" style="height: 100%;">
+                        <div class="card-body h-100 d-flex flex-column">
                             <h5 th:text="${data.getName()}" class="card-title">Заголовок меропрития</h5>
-                            <h6 th:text="${data.getDescription()}" class="card-subtitle mb-2">вид мероприятия</h6>
-                            <p class="card-text">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>
-                            <p class="icon-with-date">
-                                <i class="bi bi-calendar4-week"></i>
-                                <span th:text="${#dates.format(data.getDate(), 'dd-MM-yyyy')}"></span>
-                                <i class="bi bi-clock"></i>
-                                <span th:text="${#dates.format(data.getDate(), 'HH:mm')}"></span>
-                            </p>
-
-                            <a th:if="${data != null }" class="text-decoration-none" th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()})}">КУПИТЬ БИЛЕТЫ</a>
+                            <h6 th:text="${data.getCategory()}" class="card-subtitle mb-2">вид мероприятия</h6>
+                            <p class="card-text mb-3">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>
+                            <div class="icon-with-date-container mb-auto">
+                                <div class="icon-with-date">
+                                    <i class="bi bi-calendar4-week"></i>
+                                    <span th:text="${#dates.format(data.getDate(), 'dd-MM-yyyy')}"></span>
+                                    <i class="bi bi-clock"></i>
+                                    <span th:text="${#dates.format(data.getDate(), 'HH:mm')}"></span>
+                                </div>
+                                <div class="icon-with-date">
+                                    <i class="bi bi-hourglass-split"></i>
+                                    <span th:text="${data.getDuration()}"></span>
+                                </div>
+                            </div>
+                            <a th:if="${data != null }" class="text-decoration-none mt-auto" th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()})}">КУПИТЬ БИЛЕТЫ</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
+    <ul class="pagination pagination-sm justify-content-center" th:if="${event.totalPages > 0}">
+        <li class="page-item" aria-current="page" th:each="pageNumber : ${#numbers.sequence(0, event.totalPages - 1)}"
+            th:classappend="${pageNumber == event.number} ? 'active'">
+            <form class="page-link"
+                  th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${firstParam}, secondParam=${secondParam}, thirdParam=${thirdParam}, page=${pageNumber})}"
+                  th:method="post">
+                <button class="page-link btn-page" type="submit" th:text="${pageNumber + 1}"></button>
+            </form>
+        </li>
+    </ul>
 </main>
 <footer th:insert="base/base::basefooter"></footer>
 </body>
