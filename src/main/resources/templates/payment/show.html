@@ -16,7 +16,7 @@
             <div class="creditCardForm" style="background-color: black">
 
                 <div class="payment" style="color:#008B8B;">
-                    <form th:method="POST" th:action="@{/payment/buy/{price}/{event}(price=${amount}, event=${event_id})}" th:object="${bankCard}">
+                    <form th:method="POST" th:action="@{/paymentStatic/buy/{price}/{event}(price=${amount}, event=${event_id})}" th:object="${bankCard}">
                         <div class="form-group-second" style="width: 60%; margin-left: 70px; color: darkorange"  >
                             <h3>Tomato Juice</h3>
                             <img src="logo.png" alt="Описание изображения" width="50" height="50">
