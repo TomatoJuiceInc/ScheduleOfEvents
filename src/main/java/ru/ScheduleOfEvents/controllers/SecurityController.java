@@ -34,6 +34,7 @@ public class SecurityController {
     @PostMapping("/registration")
     public String performRegistrationPage(@ModelAttribute("user") @Valid User user,
                                     BindingResult bindingResult) {
+
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
