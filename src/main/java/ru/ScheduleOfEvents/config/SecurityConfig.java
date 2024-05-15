@@ -25,10 +25,11 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/welcome/**", "/welcomeStatic/**",
-                                "/security/**", "/securityStatic/**",
                                 "/events/**", "/eventsStatic/**",
                                 "/base/**", "/baseStatic/**",
-                                "/branding/**", "/registration").permitAll()
+                                "/profileView/**",
+                                "/branding/**").permitAll()
+                        .requestMatchers("/login", "/registration", "/security/**", "/securityStatic/**").anonymous()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login")
