@@ -10,26 +10,59 @@
     <title>Успешно!</title>
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
 </head>
-
+<body style="height: 1000px;">
 <header th:insert="base/base :: baseheader">
 </header>
 <body>
     <style>
+    /* Устанавливаем базовые стили страницы */
         body {
-            background-color: whitesmoke;
-            color: #9de0ae;
+            background-color: #1E1E1E; /* Темный фон */
+            color: #0f0e00; /* Белый цвет текста */
+            font-family: 'Arial', sans-serif; /* Шрифт Arial */
         }
-        .container {
-            padding-top: 50px;
-        }
-        .alert {
-            background-color: #333333;
 
+        /* Стилизуем контейнер */
+        .container {
+            background-color: #FFF7DF; /* Темно-серый фон для контейнера */
+            padding: 20px;
+            border-radius: 8px; /* Скругленные углы */
+            margin-top: 1px; /* Отступ сверху */
+            color: #0f0e00;
         }
-        .btn-home {
-            color: #333333;
+
+        /* Метки для полей формы */
+        .form-label {
+            color: #0f0e00; /* Светло-серый цвет меток */
+        }
+
+        /* Стилизация полей ввода */
+        .form-control {
+            background-color: #2D2D2D; /* Очень темный серый цвет фона */
+            border: 1px solid #444444; /* Граница чуть светлее, чем фон */
+            color: #FFFFFF; /* Белый цвет текста */
+        }
+
+        /* Кнопка отправки */
+        .btn-primary {
+            background-color: #2D2D2D; /* Зеленый цвет кнопки */
+            border: none; /* Убираем границу */
+            color: #FFFFFF; /* Белый текст */
+        }
+
+        /* Стиль для select */
+        .form-select {
+            background-color: #2D2D2D; /* Цвет фона */
+            border: 1px solid #444444; /* Цвет границы */
+            color: #FFF; /* Цвет текста */
+        }
+
+        /* Подсказка в полях ввода */
+        ::placeholder {
+            color: #666; /* Цвет подсказки */
         }
     </style>
+<br>
 <div class="container mt-5">
     <h2>Подача заявки на мероприятие</h2>
 
@@ -40,10 +73,29 @@
             <input th:field= "*{name}" type="text" class="form-control" id="eventName" name="name" required>
         </div>
 <!--        todo добавить проверку что пользователь вводит число-->
-        <div class="mb-3">
-            <label for="duration" class="form-label">Продолжительность</label>
-            <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="eventDate" class="form-label">Дата</label>
+                <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+            </div>
+            <div class="col-md-3">
+                <label for="eventTime" class="form-label">Время</label>
+                <input type="time" class="form-control" id="eventTime" name="eventTime" required>
+            </div>
+            <div class="col-md-3">
+                <label for="duration" class="form-label">Продолжительность</label>
+                <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
+            </div>
+            <div class="col-md-3">
+                <label for="hall" class="form-label">Зал</label>
+                <select id="hall" class="form-select" name="hallId" required>
+                    <option value="1">Малый</option>
+                    <option value="2">Большой</option>
+                </select>
+            </div>
         </div>
+
         <div class="mb-3">
             <label for="age" class="form-label">Возрастное ограничение</label>
             <input th:field= "*{age}" type="text" class="form-control" id="age" name="duration" required>
@@ -89,15 +141,4 @@
 </body>
 <footer th:insert="base/base::basefooter"></footer>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
