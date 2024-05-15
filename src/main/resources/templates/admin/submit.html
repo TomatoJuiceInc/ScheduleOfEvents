@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <title>Submit Event Application</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<head th:fragment="basehead">
-    <title>Успешно!</title>
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
 </head>
+
+<!--<head th:fragment="basehead">-->
+<!--    <title>Успешно!</title>-->
+<!--    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">-->
+<!--</head>-->
 <body style="height: 1000px;">
 <header th:insert="base/base :: baseheader">
 </header>
-<body>
     <style>
     /* Устанавливаем базовые стили страницы */
         body {
             background-color: #1E1E1E; /* Темный фон */
             color: #0f0e00; /* Белый цвет текста */
-            font-family: 'Arial', sans-serif; /* Шрифт Arial */
+            font-family: 'Arial', sans-serif; /* Шрифт Arial */ /* Padding on left and right */
         }
 
         /* Стилизуем контейнер */
-        .container {
+        .container-submit {
+            margin: 0 100px;
+            padding: 10px 20px ;
             background-color: #FFF7DF; /* Темно-серый фон для контейнера */
-            padding: 20px;
             border-radius: 8px; /* Скругленные углы */
             margin-top: 1px; /* Отступ сверху */
             color: #0f0e00;
@@ -63,7 +64,7 @@
         }
     </style>
 <br>
-<div class="container mt-5">
+<div class="container-submit mt-5">
     <h2>Подача заявки на мероприятие</h2>
 
     <form th:method="PATCH" th:action="@{/submission}" th:object="${event}">
@@ -88,10 +89,12 @@
                 <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
             </div>
             <div class="col-md-3">
-                <label for="hall" class="form-label">Зал</label>
-                <select id="hall" class="form-select" name="hallId" required>
-                    <option value="1">Малый</option>
-                    <option value="2">Большой</option>
+                <label for="hall" class="form-label">Зал:</label>
+                <select class="form-select"  id="hall"  name="hallId" th:field="*{hall}">
+                    <option th:each="hall1 : ${halls}"
+                            th:value="${hall1.id}"
+                            th:text="${hall1.name}">Hall Name:
+                    </option>
                 </select>
             </div>
         </div>
@@ -104,25 +107,8 @@
             <label for="description" class="form-label">Описание</label>
             <textarea th:field = "*{description}" class="form-control" id="description" name="description" rows="3" required></textarea>
         </div>
-        <div class="mb-3">
-            <label for="eventDate" class="form-label">Дата</label>
-            <input type="date" class="form-control" id="eventDate" name="eventDate" required>
 
-        </div>
-        <div class="mb-3">
-            <label for="eventTime" class="form-label">Время</label>
-            <input type="time" class="form-control" id="eventTime" name="eventTime"  required>
-        </div>
 
-        <div class="mb-3">
-            <label for="hall" class="form-label">Зал:</label>
-            <select class="form-select"  id="hall"  name="hallId" th:field="*{hall}">
-                <option th:each="hall1 : ${halls}"
-                        th:value="${hall1.id}"
-                        th:text="${hall1.name}">Hall Name:
-                </option>
-            </select>
-        </div>
         <div class="mb-3">
             <label for="prices" class="form-label">Цена за билеты (от самого дешевого до самого дорогого):</label>
             <div id="prices" class="input-group">
