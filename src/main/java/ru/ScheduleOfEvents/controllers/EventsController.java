@@ -38,7 +38,7 @@ public class EventsController {
                              Model model) {
         Pageable pageable = PageRequest.of(page, limit);
         List<Event> eventList = eventsService.findAll().stream()
-                .filter(event -> event.isStatus())
+                .filter(Event::isStatus)
                 .sorted(Comparator.comparing(Event::getDate)).collect(Collectors.toList());
         if (!thirdParam.equals("defaultThird")) {
             eventList = eventsService.findAllByCategoryOrName(thirdParam);
