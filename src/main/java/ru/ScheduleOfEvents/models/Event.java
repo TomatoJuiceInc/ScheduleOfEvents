@@ -66,11 +66,10 @@ public class Event {
 
 
     public int compareAge(String str1){
-        str1 = str1.substring(1);
-        String str2 = this.age.substring(1);
+        str1 = str1.substring(0,str1.length()-1);
+        String str2 = this.age.substring(0,age.length()-1);
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
-
 
 
 }

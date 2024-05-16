@@ -3,6 +3,8 @@ package ru.ScheduleOfEvents.services;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ScheduleOfEvents.models.Event;
@@ -56,8 +58,6 @@ public class EventsService {
     public List<Event> findAll() {
         return eventRepository.findAll();
     }
-
-
     public List<Event> findEventByDateBefore() {
         return eventRepository.findEventsByDateBefore(new Date());
     }
@@ -85,6 +85,12 @@ public class EventsService {
 
     public List<Event> findAllByName(String name){
         return eventRepository.findAllByNameStartingWith(name);
+    }
+    public List<Event> findAllByCategory(String category){
+        return eventRepository.findAllByCategoryIsStartingWith(category);
+    }
+    public List<Event> findAllByCategoryOrName(String name){
+        return eventRepository.findAllByNameStartingWithOrCategoryStartingWith(name,name);
     }
 }
 
