@@ -2,6 +2,7 @@ package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -70,7 +71,6 @@ public class Event {
         String str2 = this.age.substring(1);
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
-
 
 
 }
