@@ -92,7 +92,6 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
     <ul class="pagination pagination-sm justify-content-center" th:if="${event.totalPages > 0}">
         <li class="page-item" aria-current="page" th:each="pageNumber : ${#numbers.sequence(0, event.totalPages - 1)}"

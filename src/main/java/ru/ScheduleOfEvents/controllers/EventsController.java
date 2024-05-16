@@ -12,8 +12,12 @@ import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.util.InputTextExtractor;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
@@ -31,10 +35,12 @@ public class EventsController {
                              @RequestParam(value = "secondParam",required = false,defaultValue = "defaultSecond") String secondParam,
                              @RequestParam(value = "thirdParam",required = false,defaultValue = "defaultThird") String thirdParam,
                              @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-                             @RequestParam(value = "limit", required = false, defaultValue = "5") int limit,
+                             @RequestParam(value = "limit", required = false, defaultValue = "6") int limit,
                              Model model) {
         Pageable pageable = PageRequest.of(page, limit);
-        List<Event> eventList = eventsService.findAll().stream().filter(event -> event.isStatus()).toList();
+        List<Event> eventList = eventsService.findAll().stream()
+                .filter(event -> event.isStatus())
+                .sorted(Comparator.comparing(Event::getDate)).collect(Collectors.toList());
         if (!thirdParam.equals("defaultThird")){
             eventList = eventsService.findAllByName(thirdParam);
         }
@@ -86,7 +92,7 @@ public class EventsController {
 
     @PostMapping("/events/{firstParam}/{secondParam}/{thirdParam}/{page}")
     public String filterEvent(@PathVariable("firstParam") String firstParam, @PathVariable("secondParam") String secondParam,@PathVariable("thirdParam") String thirdParam,@PathVariable("page") int page){
-        return "redirect:/events?firstParam=" + firstParam + "&secondParam=" + secondParam + "&thirdParam=" + thirdParam + "&page=" + page;
+        return "redirect:/events?firstParam=" + firstParam + "&secondParam=" + secondParam + "&thirdParam=" + convert(thirdParam) + "&page=" + page;
     }
     @PostMapping("/events/{reboot}")
     public String rebootEvent(){
@@ -95,7 +101,7 @@ public class EventsController {
 
     @PostMapping("/events/search")
     public String performSearch(InputTextExtractor inputTextExtractor) {
-        return "redirect:/events?thirdParam=" + inputTextExtractor.getName();
+        return "redirect:/events?thirdParam=" + convert(inputTextExtractor.getName());
     }
     public Page<Event> convertListToPage(List<Event> eventList, Pageable pageable) {
         int total = eventList.size();
@@ -103,5 +109,14 @@ public class EventsController {
         int end = Math.min((start + pageable.getPageSize()), total);
         List<Event> paginatedList = eventList.subList(start, end);
         return new PageImpl<>(paginatedList, pageable, total);
+    }
+    public String convert(String s){
+        String encodedSearchTerm = s;
+        try {
+            encodedSearchTerm = URLEncoder.encode(s, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encodedSearchTerm;
     }
 }
