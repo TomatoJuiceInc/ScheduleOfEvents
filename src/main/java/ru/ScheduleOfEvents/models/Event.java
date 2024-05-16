@@ -74,6 +74,9 @@ public class Event {
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
 
-
-
+    public Event(String name, Date date, Hall hall) {
+        this.name = name;
+        this.date = date;
+        this.hall = hall;
+    }
 }

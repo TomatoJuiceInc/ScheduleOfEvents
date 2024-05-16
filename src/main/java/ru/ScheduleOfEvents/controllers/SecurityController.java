@@ -13,6 +13,8 @@ import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.RegistrationService;
 import ru.ScheduleOfEvents.util.UserValidator;
 
+import java.io.File;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -39,7 +41,7 @@ public class SecurityController {
         if (bindingResult.hasErrors()) {
             return "auth/registration";
         }
-
+        user.setAvatarFileName("user_pic.jpg");
         registrationService.register(user);
 
         return "redirect:/auth/login?success";
