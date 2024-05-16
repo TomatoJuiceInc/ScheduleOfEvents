@@ -6,12 +6,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.models.*;
 import ru.ScheduleOfEvents.repositories.UserRepository;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +54,73 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         userToBeUpdated.setUsername(updatedUser.getUsername());
         userToBeUpdated.setEmail(updatedUser.getEmail());
-        userToBeUpdated.setPassword(updatedUser.getPassword());
+
+        // обновление аватарки
+//        File newPic = updatedUser.getAvatarFile();
+//        System.out.println(newPic.toPath());
+//        if (newPic != null) { // новый файл не null
+//            if (getFileExtension(newPic).equals("jpg")) { // новый файл - jpg
+//                File targetFile = null;
+//                if (userToBeUpdated.getAvatarFileName().equals("user_pic.jpg")) { // старая ава - дефолт
+//                    targetFile = new File("/profileViewStatic/images", "new_user_pic.jpg");
+//                    userToBeUpdated.setAvatarFileName("new_user_pic.jpg");
+//                } else {
+//                    targetFile = new File("/profileViewStatic/images/new_user_pic.jpg");
+//                }
+//                Path targetPath = targetFile.toPath();
+//                try {
+//                    Files.copy(new FileInputStream(newPic), targetPath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }
+
+        // обновление пароля
+        if (!(updatedUser.getPassword() == null || updatedUser.getPassword().isEmpty())) {
+            userToBeUpdated.setPassword(updatedUser.getPassword());
+        }
+    }
+
+    // сортировка билетов
+    public void sortTickets(long id) {
+        User userToBeUpdated = findOne(id);
+        userToBeUpdated.getTickets().stream()
+                .sorted(Comparator.comparing(ticket -> ticket.getEvent().getDate()))
+                .collect(Collectors.toList());
+    }
+
+    // добавление билета в пользователя
+    public void addTestTickets(long id) {
+        User userToBeUpdated = findOne(id);
+        List<Ticket> tickets = new ArrayList<>();
+        tickets.add(new Ticket("1", "1",
+                new Event("Any event",
+                        new Date(2024, 7, 12, 13, 5,5),
+                        new Hall("Актовый зал")),
+                new Price(200)));
+        tickets.add(new Ticket("1", "1",
+                new Event("Any event",
+                        new Date(2024, 8, 18, 13, 5,5),
+                        new Hall("Актовый зал")),
+                new Price(200)));
+        tickets.add(new Ticket("1", "1",
+                new Event("Any event",
+                        new Date(2024, 8, 12, 13, 05,05),
+                        new Hall("Актовый зал")),
+                new Price(200)));
+        tickets.add(new Ticket("1", "1",
+                new Event("Any event",
+                        new Date(2024, 7, 13, 13, 05,05),
+                        new Hall("Актовый зал")),
+                new Price(200)));
+        tickets.add(new Ticket("1", "1",
+                new Event("Any event",
+                        new Date(2024, 7, 28, 13, 05,05),
+                        new Hall("Актовый зал")),
+                new Price(200)));
+
+        userToBeUpdated.setTickets(tickets);
     }
 
     @Transactional

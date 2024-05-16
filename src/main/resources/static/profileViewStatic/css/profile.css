@@ -1,8 +1,10 @@
-body{
-	background-color: #141414;
+main{
+	margin: 50px;
 	margin-top: 70px;
-	margin-left: 60px;
-	margin-right: 60px;
+	background-color: #000000;
+	display: grid;
+	place-items: center;
+	zoom: 90%;
 }
 
 .profile-info{
@@ -21,6 +23,33 @@ body{
   	border-radius: 10px;
   	margin-bottom: 20px;
 }
+
+.current-password{
+	display: flex;
+}
+
+/*.current-password-field{*/
+/*	width: 435px;*/
+/*	height: 50px;*/
+/*	background-color: #3E3E3E;*/
+/*	padding: 10px;*/
+/*	border-radius: 10px;*/
+/*}*/
+
+/*.look-password-button{*/
+/*	width: 50px;*/
+/*	font-size: 20px;*/
+/*	margin-left: 10px;*/
+/*	border-radius: 50%;*/
+/*	background-color: #3E3E3E;*/
+/*	color: #EC7F00;*/
+/*	border: none;*/
+/*}*/
+
+/*.look-password-button:active{*/
+/*	background-color: #EC7F00;*/
+/*	color: #3E3E3E;*/
+/*}*/
 
 .area-for-lastName-text, .area-for-name-text, .area-for-secondLastName-text, .area-for-phone-number-text, .area-for-mail-text, .username-text{
 	font-size: 20px;
@@ -51,6 +80,21 @@ body{
 
 .info-text, .history-text{
 	font-size: 45px;
+}
+
+.exit-button{
+	margin-left: 500px;
+	border-radius: 10px;
+	border: none;
+	background-color: #f52020;
+	color: white;
+	align-items: center;
+	height: 40px;
+	width: 130px;
+}
+
+.exit-button:hover{
+	background-color: #b02323;
 }
 
 .image{
@@ -104,6 +148,26 @@ body{
 
 .list-element{
 	display: flex;
+}
+
+.name-event-info {
+	width: 135px;
+}
+
+.name-place-info{
+	width: 175px;
+}
+
+.date-info{
+	width: 160px;
+}
+
+.seat-place-info{
+	width: 160px;
+}
+
+.price-info{
+	width: 70px;
 }
 
 .name-event-info, .name-place-info, .date-info, .seat-place-info, .price-info{
