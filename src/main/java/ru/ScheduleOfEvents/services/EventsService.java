@@ -86,5 +86,11 @@ public class EventsService {
     public List<Event> findAllByName(String name){
         return eventRepository.findAllByNameStartingWith(name);
     }
+    public List<Event> findAllByCategory(String category){
+        return eventRepository.findAllByCategoryIsStartingWith(category);
+    }
+    public List<Event> findAllByCategoryOrName(String name){
+        return eventRepository.findAllByNameStartingWithOrCategoryStartingWith(name,name);
+    }
 }
 

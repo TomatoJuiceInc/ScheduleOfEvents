@@ -32,7 +32,6 @@ public class EventsController {
 
     @GetMapping("/events")
     public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam,
-                             @RequestParam(value = "secondParam",required = false,defaultValue = "defaultSecond") String secondParam,
                              @RequestParam(value = "thirdParam",required = false,defaultValue = "defaultThird") String thirdParam,
                              @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                              @RequestParam(value = "limit", required = false, defaultValue = "6") int limit,
@@ -41,8 +40,8 @@ public class EventsController {
         List<Event> eventList = eventsService.findAll().stream()
                 .filter(event -> event.isStatus())
                 .sorted(Comparator.comparing(Event::getDate)).collect(Collectors.toList());
-        if (!thirdParam.equals("defaultThird")){
-            eventList = eventsService.findAllByName(thirdParam);
+        if (!thirdParam.equals("defaultThird")) {
+            eventList = eventsService.findAllByCategoryOrName(thirdParam);
         }
         if (!firstParam.equals("defaultFirst")){
             eventList = eventList.stream().sorted(new Comparator<Event>() {
@@ -58,31 +57,12 @@ public class EventsController {
                 }
             }).toList();
         }
-        if (!secondParam.equals("defaultSecond")){
-            eventList = eventList.stream().sorted(new Comparator<Event>() {
-                @Override
-                public int compare(Event o1, Event o2) {
-                    if (o1.getCategory().equals(o2.getCategory())) {
-                        return o1.getDate().compareTo(o2.getDate());
-                    } else {
-                        return switch (secondParam) {
-                            case "concert" -> o1.getCategory().equals("концерт") ? -1 : 1;
-                            case "play" -> o1.getCategory().equals("детский спектакль") ? -1 : 1;
-                            case "show" -> o1.getCategory().equals("новогоднее шоу") ? -1 : 1;
-                            case "performance" -> o1.getCategory().equals("представление для взрослых") ? -1 : 1;
-                            default -> o2.getDate().compareTo(o1.getDate());
-                        };
-                    }
-                }
-            }).toList();
-        }
         Page<Event> eventPage = convertListToPage(eventList, pageable);
 
         model.addAttribute("event",eventPage);
         model.addAttribute ("numbers", IntStream.range(0,eventPage.getTotalPages()).toArray());
 
         model.addAttribute("firstParam", firstParam);
-        model.addAttribute("secondParam", secondParam);
         model.addAttribute("thirdParam", thirdParam);
         model.addAttribute("page",page);
         model.addAttribute("search",new InputTextExtractor());
@@ -90,9 +70,9 @@ public class EventsController {
         return "scheduleEvents/Events";
     }
 
-    @PostMapping("/events/{firstParam}/{secondParam}/{thirdParam}/{page}")
-    public String filterEvent(@PathVariable("firstParam") String firstParam, @PathVariable("secondParam") String secondParam,@PathVariable("thirdParam") String thirdParam,@PathVariable("page") int page){
-        return "redirect:/events?firstParam=" + firstParam + "&secondParam=" + secondParam + "&thirdParam=" + convert(thirdParam) + "&page=" + page;
+    @PostMapping("/events/{firstParam}/{thirdParam}/{page}")
+    public String filterEvent(@PathVariable("firstParam") String firstParam,@PathVariable("thirdParam") String thirdParam,@PathVariable("page") int page){
+        return "redirect:/events?firstParam=" + firstParam  + "&thirdParam=" + convert(thirdParam) + "&page=" + page;
     }
     @PostMapping("/events/{reboot}")
     public String rebootEvent(){
