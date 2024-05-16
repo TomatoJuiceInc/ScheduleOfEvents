@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>TomatoJuice</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="basehead">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
+    <title>Past</title>
+    <script src="/admin/script.js"></script></head>
 <body>
+
+<header th:insert="base/base::baseheader">
+
+</header>
 
 <h1>Past Events Details</h1>
 
@@ -19,16 +24,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="event:${pastEvents}">
+    <tr th:each="event : ${pastEvents}">
         <td th:text="${event.getName()}"></td>
         <td th:text="${event.getDate()}"></td>
         <td th:text="${event.getDescription()}"></td>
         <td>
             <a th:href="@{/admin/events/{id}/edit (id=${event.getId()})}">edit event</a>
+            <a th:href="@{/admin/events/{id} (id=${event.getId()})}">Show event</a>
         </td>
     </tr>
     </tbody>
 </table>
-
+<footer th:insert="base/base::basefooter"></footer>
 </body>
 </html>

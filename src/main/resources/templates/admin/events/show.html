@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Event</title>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="basehead">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
+    <title>Show</title>
+    <script src="/admin/script.js"></script>
 </head>
-<h1 th:text="${event.getName()}"></h1>
-<h1 th:text="${event.getId()}"></h1>
+
+
+<header th:insert="base/base::baseheader">
+</header>
 <body>
-<p th:text="${event.getDescription()}"></p>
-<p th:text="${event.getDate()}"></p>
-<p th:text="${event.getDuration()}"></p>
+
+
+
+<link rel="stylesheet" type="text/css" href="/admin/show.css"/>
+<div class="container mt-5">
+    <div class="card text-white bg-dark mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <!--<img src="/admin/logo.jpeg" class="img-fluid rounded-start" alt="Event Image">-->
+                <img src="/branding/favicon.ico" class="img-fluid rounded-start" alt="...">
+                <div class="age-rating">18+</div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${event.getName()}">Заголовок меропрития</h5>
+                    <h6 class="card-subtitle mb-2" th:text="${event.getDescription()}">вид мероприятия</h6>
+                    <p class="card-text">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>
+                    <p class="icon-with-date">
+                        <i class="bi bi-calendar4-week"></i>
+                        <span th:text="${#dates.format(event.getDate(), 'dd-MM-yyyy')}"></span>
+                        <i class="bi bi-clock"></i>
+                        <span th:text="${#dates.format(event.getDate(), 'HH:mm')}"></span>
+                    </p>
+                    <a class="text-decoration-none" >КУПИТЬ БИЛЕТЫ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="base/base::basefooter"></footer>
 </body>
 </html>

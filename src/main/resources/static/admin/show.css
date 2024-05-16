@@ -1,0 +1,99 @@
+div.container.mt-5 {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    min-height: 100vh;      /* Makes sure the container fills the screen height */
+}
+
+html {
+    scrollbar-width: none;
+    height: 30vh;
+}
+
+body {
+    height: 50vh;
+}
+
+
+.card {
+    width: 160vw; /* Set the width to 80% of the viewport width */
+    max-width: 900px; /* But don't let it get wider than 900px */
+    border: none; /* Remove default card border */
+    border-radius: 10px; /* Round the corners */
+    overflow: hidden; /* Ensure the image stays within the rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
+}
+
+.card-img-top {
+    height: 100px; /* Set a fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the entire area */
+}
+
+.age-rating {
+    position: absolute;
+    top: 7px; /* Положение возрастного ценза относительно верхнего края */
+    right: 10px; /* Положение возрастного ценза относительно правого края */ /* Цвет фона возрастного ценза */
+    color: orange; /* Цвет текста возрастного ценза */
+    padding: 5px; /* Отступ внутри возрастного ценза */
+    border-radius: 5px; /* Скругление углов возрастного ценза */
+    font-size: 19px; /* Размер шрифта возрастного ценза */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #ddd; /* Slightly lighter text for the subtitle */
+}
+
+.card-text {
+    margin-bottom: 1rem;
+}
+
+.icon-with-date {
+    display: flex; /* Arrange icons and text in a row */
+    align-items: center; /* Vertically align items */
+}
+
+.icon-with-date i {
+    margin-right: 6px; /* Space between icon and text */
+}
+
+.bi-calendar4-week{
+    color: orange;
+    font-size: x-large;
+}
+.bi-clock{
+    color: orange;
+    font-size: x-large;
+    padding-left: 30px;
+}
+.card-subtitle{
+    color: gray;
+}
+.text-decoration-none:hover {
+    color: orange /* Оранжевый цвет текста */
+}
+.text-decoration-none {
+    color: white;
+    transition: color 0.3s;
+}
+.custom-form {
+    /* Add styles for the form */
+    margin-bottom: 10px;
+}
+
+.transparent-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: white;
+    transition: color 0.3s; /* Плавное изменение цвета текста */
+}
+
+.transparent-button:hover {
+    color: orange; /* Цвет текста при наведении */
+}
