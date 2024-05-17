@@ -12,8 +12,10 @@
 </header>
 
 <div th:class="second-header">
-    <a th:id="pastLink" th:href="@{/admin/events/past}">Past</a>
-    <a th:class="active" th:id="currentLink" th:href="@{/admin/events}">Current</a>
+    <form th:id="eventsForm" th:method="GET" th:action="@{/admin/events}">
+        <button th:type="submit" name="choice" th:value="past">Past</button>
+        <button th:type="submit" name="choice" th:value="current">Current</button>
+    </form>
     <a th:id="requestsLink" th:href="@{/admin/events/requests}">Requests</a>
 </div>
 
@@ -37,7 +39,7 @@
             <td th:text="${event.getId()}"></td>
             <td th:text="${event.getName()}"></td>
             <td th:text="${event.getOwner()}"></td> <!-- TODO Add .getEmail() -->
-            <td th:class="expandable-text" th:text="${event.getDescription()}"></td>
+            <td th:text="${event.getDescription()}"></td>
             <td th:text="${event.getHall()}"></td>
             <td th:text="${#dates.format(event.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
             <td th:text="${event.isStatus()}"></td>
