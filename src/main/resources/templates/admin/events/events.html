@@ -4,22 +4,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
     <title>Current</title>
-    <script src="/admin/script.js"></script></head>
+    <script src="/admin/eventPageScript.js"></script></head>
 
 <link rel="stylesheet" type="text/css" href="/admin/events.css">
 <body>
 <header th:insert="base/base::baseheader">
-    <a th:href="@{/events}" class="btn">click</a>
 </header>
 
 <div th:class="second-header">
     <a th:id="pastLink" th:href="@{/admin/events/past}">Past</a>
-    <a th:class="active" th:id="currentLink" th:href="@{/admin/events/}">Current</a>
+    <a th:class="active" th:id="currentLink" th:href="@{/admin/events}">Current</a>
     <a th:id="requestsLink" th:href="@{/admin/events/requests}">Requests</a>
 </div>
 
 
-<div th:fragment="table-for-events" th:class="wrapper"><!--th:fragment="table-for-events" -->
+<div th:class="wrapper">
     <table>
         <thead>
         <tr>
@@ -37,14 +36,14 @@
         <tr th:each="event : ${events}">
             <td th:text="${event.getId()}"></td>
             <td th:text="${event.getName()}"></td>
-            <td th:text="${event.getOwner()}"></td> <!-- Add .getEmail() -->
-            <td th:text="${event.getDescription()}"></td>
+            <td th:text="${event.getOwner()}"></td> <!-- TODO Add .getEmail() -->
+            <td th:class="expandable-text" th:text="${event.getDescription()}"></td>
             <td th:text="${event.getHall()}"></td>
-            <td th:text="${event.getDate()}"></td>
+            <td th:text="${#dates.format(event.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
             <td th:text="${event.isStatus()}"></td>
-            <td>
-                <a th:href="@{/admin/events/{id}/edit (id=${event.getId()})}" class="btn">Редактировать</a>
-                <a th:href="@{/admin/events/{id} (id=${event.getId()})}" class="btn">Предпоказ</a>
+            <td th:id="editButtons">
+                <a th:class="btn" th:href="@{/admin/events/{id}/edit (id=${event.getId()})}">Редактировать</a>
+                <a th:class="btn" th:href="@{/admin/events/{id} (id=${event.getId()})}">Предпоказ</a>
             </td>
         </tr>
         </tbody>
@@ -52,6 +51,10 @@
 </div>
 
 
-<footer th:insert="base/base::basefooter"></footer>
+
+<button onclick="topFunction()" id="scrollBtn" title="Go to top">TOP</button>
+
+
 </body>
+<footer th:insert="base/base::basefooter"></footer>
 </html>

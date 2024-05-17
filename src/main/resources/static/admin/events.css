@@ -6,7 +6,7 @@
     background-color: #946102;
     padding: 25px;
     margin-top: 65px;
-    margin-bottom: 100px;
+    margin-bottom: 65px;
 }
 
 .second-header a {
@@ -15,14 +15,14 @@
     margin: 0 10px;
     padding: 8px 12px;
     border-radius: 2px;
-    transition: color 0.4s ease-in-out;
+    transition: color 0.3s ease-in-out;
 }
 
 /* Add styles for 'active' links (e.g., the current page) if needed */
 .second-header a.active {
     text-decoration: none;
     color: #000000;               /* Example active link text color */
-    transition: color 0.4s ease-in-out;
+    transition: color 0.3s ease-in-out;
 }
 
 .second-header a:hover {
@@ -35,8 +35,10 @@
 
 /* second-header part is over*/
 
-
 .wrapper {
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: none;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -45,40 +47,85 @@
     background-color: #946102;
     border-radius: 10px;
 }
+
 html {
     scrollbar-width: none;
 }
 
+/*wrapper and html part is over*/
+
+
 table {
-    width: 80%;
-    align-items: center;
-    border: 2px solid black;
-    border-radius: 5px;
-    table-layout: fixed;
-}
-
-th, td {
-    border: 2px solid black;
-    padding: 8px;
-    text-align: left;
-    background-color: #fffff5;
-}
-
-#editCol {
     text-align: center;
+    width: 95%;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #946102; /* Orange header */
+    color: #222;
+    padding: 10px;
+    text-align: center;
+}
+
+#descriptionCol {
+    text-align: center;
+    width: 30%;
+}
+
+#editButtons a {
+    border: 1px black;
+    background-color: #414141;
+    color: #2ec4a5;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+#editButtons a:hover {
+    background-color: grey;
+}
+
+tr {
+    transition: background-color 0.3s ease-in-out;
+    background-color: #1e1e1e;
+    color: #2ec4a5;
+}
+
+td {
+    color: #2ec4a5;
+    padding: 8px;
+    border-bottom: 1px solid #333;
+}
+
+td:hover {
+    background-color: #2d2d2d;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #f9f9f9;
+    background-color: #282828; /* Slightly lighter dark row */
 }
 
 
+    /*scrollBtn*/
+#scrollBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: #946102;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+
+#scrollBtn:hover {
+    background-color: #555;
+}
 
