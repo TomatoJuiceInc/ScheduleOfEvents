@@ -88,6 +88,17 @@
                 <label for="duration" class="form-label">Продолжительность</label>
                 <input th:field= "*{duration}" type="text" class="form-control" id="duration" name="duration" required>
             </div>
+
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="category" class="form-label">Категория</label>
+                <input th:field= "*{category}" type="text" class="form-control" id="category" name="duration" required>
+            </div>
+            <div class="col-md-3">
+                <label for="age" class="form-label">Возрастное ограничение</label>
+                <input th:field= "*{age}" type="text" class="form-control" id="age" name="duration" required>
+            </div>
             <div class="col-md-3">
                 <label for="hall" class="form-label">Зал:</label>
                 <select class="form-select"  id="hall"  name="hallId" th:field="*{hall}">
@@ -99,10 +110,7 @@
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="age" class="form-label">Возрастное ограничение</label>
-            <input th:field= "*{age}" type="text" class="form-control" id="age" name="duration" required>
-        </div>
+
         <div class="mb-3">
             <label for="description" class="form-label">Описание</label>
             <textarea th:field = "*{description}" class="form-control" id="description" name="description" rows="3" required></textarea>

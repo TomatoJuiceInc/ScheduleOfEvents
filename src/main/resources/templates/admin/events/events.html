@@ -15,7 +15,7 @@
 <div th:class="second-header">
     <a th:id="pastLink" th:href="@{/admin/events/past}">Past</a>
     <a th:class="active" th:id="currentLink" th:href="@{/admin/events/}">Current</a>
-    <a th:id="requestsLink" th:href="@{/admin/events/requests}">Requests</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/application}">Requests</a>
 </div>
 
 
@@ -37,7 +37,7 @@
         <tr th:each="event : ${events}">
             <td th:text="${event.getId()}"></td>
             <td th:text="${event.getName()}"></td>
-            <td th:text="${event.getOwner()}"></td> <!-- Add .getEmail() -->
+            <td th:text="${event.getOwner.getEmail()}"></td> <!-- Add .getEmail() -->
             <td th:text="${event.getDescription()}"></td>
             <td th:text="${event.getHall()}"></td>
             <td th:text="${event.getDate()}"></td>

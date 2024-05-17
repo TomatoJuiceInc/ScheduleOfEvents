@@ -89,13 +89,13 @@ public class PaymentController {
         Long id = user.getId();
         Event eventDB = eventsService.findOne(eventId);
         if (bankCard == null){
-            return String.format("redirect:/payment?a=%d&e=%d&error=%b", price, eventId, true);
+            return String.format("redirect:/payment?e=%d&seats=%s&error=%b", eventId, seats, true);
         }
 
 
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
         if (bCard == null){
-            return String.format("redirect:/payment?a=%d&e=%d&error=%b", price, eventId, true);
+            return String.format("redirect:/payment?e=%d&seats=%s&error=%b", eventId, seats, true);
         }
         if (bCard.getCvc().equals(bankCard.getCvc())
                 && bCard.getDuration().equals(bankCard.getDuration())

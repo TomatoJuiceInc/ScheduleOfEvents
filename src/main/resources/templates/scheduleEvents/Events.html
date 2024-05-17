@@ -9,7 +9,7 @@
 
 </head>
 ъ
-<body style="height: 5000px;">
+<body style="height: 2000px;">
 
 
 <header th:insert="base/base :: baseheader">
@@ -61,7 +61,7 @@
                         <div class="card-body h-100 d-flex flex-column">
                             <h5 th:text="${data.getName()}" class="card-title">Заголовок меропрития</h5>
                             <h6 th:text="${data.getCategory()}" class="card-subtitle mb-2">вид мероприятия</h6>
-                            <p class="card-text mb-3">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>
+                            <p class="card-text mb-3" th:text="${data.getDescription()}"></p>
                             <div class="icon-with-date-container mb-auto">
                                 <div class="icon-with-date">
                                     <i class="bi bi-calendar4-week"></i>
@@ -85,7 +85,7 @@
         <li class="page-item" aria-current="page" th:each="pageNumber : ${#numbers.sequence(0, event.totalPages - 1)}"
             th:classappend="${pageNumber == event.number} ? 'active'">
             <form class="page-link"
-                  th:action="@{/events/{firstParam}/{secondParam}/{thirdParam}/{page}(firstParam=${firstParam}, secondParam=${secondParam}, thirdParam=${thirdParam}, page=${pageNumber})}"
+                  th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${firstParam}, thirdParam=${thirdParam}, page=${pageNumber})}"
                   th:method="post">
                 <button class="page-link btn-page" type="submit" th:text="${pageNumber + 1}"></button>
             </form>

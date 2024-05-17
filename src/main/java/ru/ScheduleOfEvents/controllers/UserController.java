@@ -34,8 +34,8 @@ public class UserController {
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
 
-        userDetailsService.addTestTickets(user.getId());
-        userDetailsService.sortTickets(user.getId());
+//        userDetailsService.addTestTickets(user.getId());
+//        userDetailsService.sortTickets(user.getId());
 
         model.addAttribute("user", user);
         return "profileView/profileInfo";

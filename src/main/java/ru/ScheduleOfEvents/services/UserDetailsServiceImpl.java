@@ -91,37 +91,37 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     // добавление билета в пользователя
-    public void addTestTickets(long id) {
-        User userToBeUpdated = findOne(id);
-        List<Ticket> tickets = new ArrayList<>();
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(2024, 7, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(2024, 8, 18, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(2024, 8, 12, 13, 05,05),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(2024, 7, 13, 13, 05,05),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(2024, 7, 28, 13, 05,05),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-
-        userToBeUpdated.setTickets(tickets);
-    }
+//    public void addTestTickets(long id) {
+//        User userToBeUpdated = findOne(id);
+//        List<Ticket> tickets = new ArrayList<>();
+//        tickets.add(new Ticket("1", "1",
+//                new Event("Any event",
+//                        new Date(2024, 7, 12, 13, 5,5),
+//                        new Hall("Актовый зал")),
+//                new Price(200)));
+//        tickets.add(new Ticket("1", "1",
+//                new Event("Any event",
+//                        new Date(2024, 8, 18, 13, 5,5),
+//                        new Hall("Актовый зал")),
+//                new Price(200)));
+//        tickets.add(new Ticket("1", "1",
+//                new Event("Any event",
+//                        new Date(2024, 8, 12, 13, 05,05),
+//                        new Hall("Актовый зал")),
+//                new Price(200)));
+//        tickets.add(new Ticket("1", "1",
+//                new Event("Any event",
+//                        new Date(2024, 7, 13, 13, 05,05),
+//                        new Hall("Актовый зал")),
+//                new Price(200)));
+//        tickets.add(new Ticket("1", "1",
+//                new Event("Any event",
+//                        new Date(2024, 7, 28, 13, 05,05),
+//                        new Hall("Актовый зал")),
+//                new Price(200)));
+//
+//        userToBeUpdated.setTickets(tickets);
+//    }
 
     @Transactional
     public void delete(long id) {
