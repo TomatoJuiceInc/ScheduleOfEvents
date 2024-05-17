@@ -46,6 +46,7 @@ body {
 }
 
 .card-subtitle {
+    min-height: 100px;
     font-size: 1rem;
     color: #ddd; /* Slightly lighter text for the subtitle */
 }

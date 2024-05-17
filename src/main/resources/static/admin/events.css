@@ -38,25 +38,25 @@
 
 /* second-header part is over*/
 
-.wrapper {
-    max-height: 90vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-    justify-content: center;
+.table-background {
+    margin: 0 auto;
+    width: 90%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 30px;
     padding: 30px;
     background-color: #946102;
     border-radius: 10px;
-}
-
-html {
     scrollbar-width: none;
 }
 
-/*wrapper and html part is over*/
+body,html {
+    scrollbar-width: none;
+    margin-bottom: 150px;
+}
 
+
+/*wrapper and html part is over*/
 
 table {
     text-align: center;
@@ -78,6 +78,7 @@ th {
 }
 
 #editButtons a {
+    padding: 2px;
     border: 1px black;
     background-color: #414141;
     color: #2ec4a5;
@@ -110,7 +111,7 @@ tr:nth-child(even) {
 }
 
 
-    /*scrollBtn*/
+/*scrollBtn*/
 #scrollBtn {
     display: none;
     position: fixed;
@@ -131,4 +132,5 @@ tr:nth-child(even) {
 #scrollBtn:hover {
     background-color: #555;
 }
+
 

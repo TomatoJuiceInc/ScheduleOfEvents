@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html >
-<head th:insert="base/base::baseheader">
+<head >
     <meta charset="UTF-8">
     <title>Edit event</title>
+
 </head>
 <body>
-
-
+<header th:insert="~{base/base::baseheader}"></header>
+<link rel="stylesheet" type="text/css" href="/admin/editEvent.css">
 <form th:method="PATCH" th:action="@{/admin/events/{id}(id=${event.getId()})}" th:object="${event}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
@@ -49,6 +50,6 @@
     <input type="submit" value="Delete">
 </form>
 
-<footer th:insert="base/base::basefooter"></footer>
 </body>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </html>

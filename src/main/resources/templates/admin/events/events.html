@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:fragment="basehead">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
     <title>Current</title>
     <script src="/admin/eventPageScript.js"></script></head>
 
 <link rel="stylesheet" type="text/css" href="/admin/events.css">
+
 <body>
-<header th:insert="base/base::baseheader">
+
+<header th:insert="~{base/base::baseheader}">
 </header>
 
 <div th:class="second-header">
@@ -20,12 +22,12 @@
 </div>
 
 
-<div th:class="wrapper">
+<div th:class="table-background">
     <table>
         <thead>
         <tr>
             <th th:id="idCol">ID клиента</th>
-            <th th:id="nameCol">Имя клиента</th>
+            <th th:id="nameCol">Название мероприятия</th>
             <th th:id="emailCol">email</th>
             <th th:id="descriptionCol">Описание</th>
             <th th:id="hallCol">Зал</th>
@@ -38,7 +40,7 @@
         <tr th:each="event : ${events}">
             <td th:text="${event.getId()}"></td>
             <td th:text="${event.getName()}"></td>
-            <td th:text="${event.getOwner()}"></td> <!-- TODO Add .getEmail() -->
+            <td th:text="${event.getOwner()}"></td>             <!-- TODO Add .getEmail() -->
             <td th:text="${event.getDescription()}"></td>
             <td th:text="${event.getHall()}"></td>
             <td th:text="${#dates.format(event.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
@@ -52,11 +54,7 @@
     </table>
 </div>
 
-
-
 <button onclick="topFunction()" id="scrollBtn" title="Go to top">TOP</button>
 
-
 </body>
-<footer th:insert="base/base::basefooter"></footer>
 </html>
