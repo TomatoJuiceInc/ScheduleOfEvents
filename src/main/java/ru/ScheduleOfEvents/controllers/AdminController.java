@@ -1,5 +1,6 @@
 package ru.ScheduleOfEvents.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.Date;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/admin/events")
 public class AdminController {
 
@@ -30,13 +32,13 @@ public class AdminController {
     private final UserDetailsServiceImpl userDetailsService;
 
 
-    @Autowired
-    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
-        this.applicationService = applicationService;
-        this.eventsService = eventsService;
-        this.hallsService = hallsService;
-        this.userDetailsService = userDetailsService;
-    }
+//    @Autowired
+//    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
+//        this.applicationService = applicationService;
+//        this.eventsService = eventsService;
+//        this.hallsService = hallsService;
+//        this.userDetailsService = userDetailsService;
+//    }
 
 
     @GetMapping()

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CustomErrorController implements ErrorController {
     @RequestMapping("/error")
     public String errorPage(){
-        System.out.println("Sdf");
         return "error/error";
     }
 }

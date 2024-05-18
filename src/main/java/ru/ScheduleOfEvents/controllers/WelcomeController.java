@@ -7,14 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping()
+@RequestMapping("/welcome")
 public class WelcomeController {
     @GetMapping()
     public String showPage(){
         return "welcome/welcome";
-    }
-    @PostMapping("/welcome")
-    public String redirectForEventPage(){
-        return "redirect:/events";
     }
 }

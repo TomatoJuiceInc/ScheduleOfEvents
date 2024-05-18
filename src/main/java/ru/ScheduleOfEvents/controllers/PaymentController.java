@@ -72,7 +72,7 @@ public class PaymentController {
     }
     @GetMapping("/successful-payment")
     public String successPage()  {
-        return "succes/successfulPayment";
+        return "success/successfulPayment";
     }
 
 
@@ -137,7 +137,7 @@ public class PaymentController {
                 mailStructure.setTickets(tickets);
 
                 bankService.pay(bankCard.getCardNumber(), price);
-                if (!user.getEmail().isEmpty()){
+                if (user.getEmail() != null){
                     try {
                         mailService.sendMail( user.getEmail(), mailStructure);
                     }

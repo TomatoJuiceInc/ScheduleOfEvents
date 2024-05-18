@@ -4,7 +4,7 @@
 <head th:fragment="basehead">
     <title>Выбор мест</title>
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css"  href="order/style.css">
+    <link rel="stylesheet" type="text/css"  href="/orderStatic/style.css">
 </head>
 <header th:insert="base/base :: baseheader">
 </header>
@@ -48,7 +48,7 @@
 
 
 <div class="submit-container">
-    <form id="booking-form"  th:action="@{/order/more/{event}(event=${event.getId()})}" th:method="POST" th:object="${seatData}">
+    <form id="booking-form" th:action="@{/order/more/{event}(event=${event.getId()})}" th:method="POST" th:object="${seatData}">
         <input th:field="*{seat}"  type="hidden" id="selectedSeats" th:value="${seatData.seat}"/>
         <button id="reservation-button" type="submit" class="btn-sb">Купить</button>
     </form>
@@ -56,7 +56,7 @@
 
 
 
-<script src="js/order/reservation.js"></script>
+<script src="/orderStatic/reservation.js"></script>
 
 
 </body>

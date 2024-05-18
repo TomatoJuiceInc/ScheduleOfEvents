@@ -40,7 +40,7 @@ public class Event {
     @Column(name = "age")
     private String age;
     @ManyToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User owner;
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;

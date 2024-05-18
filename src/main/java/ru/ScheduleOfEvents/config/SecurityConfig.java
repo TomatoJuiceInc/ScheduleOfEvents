@@ -22,14 +22,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-//                .authorizeHttpRequests(request -> request
-//                        .requestMatchers("/auth/**").permitAll()
-//                        .anyRequest().authenticated())
-//                .formLogin(login -> login
-//                        .loginPage("/auth/login")
-//                        .permitAll())
-//                .logout(LogoutConfigurer::permitAll);
-                .authorizeHttpRequests(request -> request.anyRequest().permitAll());
+                .authorizeHttpRequests(request -> request.anyRequest().permitAll())
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .successForwardUrl("/welcome")
+                        .permitAll());
 
         return http.build();
     }

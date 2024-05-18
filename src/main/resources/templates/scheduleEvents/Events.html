@@ -3,8 +3,8 @@
 <head th:fragment="basehead">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events</title>
-    <script src="scheduleEvents/script.js"></script>
-    <link rel="icon" href="/scheduleEvents/logo.png" type="image/x-icon">
+    <script src="/scheduleEventsStatic/script.js"></script>
+    <link rel="icon" href="/scheduleEventsStatic/logo.png" type="image/x-icon">
 </head>
 <body style="height: 2000px;">
 
@@ -13,7 +13,7 @@
 </header>
 
 <main style="margin-top: 80px;">
-    <link rel="stylesheet" type="text/css" href="scheduleEvents/events.css"/>
+    <link rel="stylesheet" type="text/css" href="/scheduleEventsStatic/events.css"/>
 
     <div class="d-flex justify-content-center position-relative mb-3">
         <div class="d-flex ms-0" role="search">
@@ -51,7 +51,7 @@
             <div class="card text-white bg-dark mb-3" style="max-width: 540px; height: 350px;">
                 <div class="row g-0" style="height: 100%;">
                     <div class="col-md-4" style="height: 100%;">
-                        <img src="/scheduleEvents/logo.png" class="img-fluid rounded-start" alt="...">
+                        <img src="/scheduleEventsStatic/logo.png" class="img-fluid rounded-start" alt="...">
                         <div th:text="${data.getAge()}" class="age-rating">18+</div>
                     </div>
                     <div class="col-md-8" style="height: 100%;">

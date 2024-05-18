@@ -13,7 +13,7 @@ public class Application {
     private int id;
 
     @ManyToOne()
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User applicantName;  // Имя заявителя
 
     @Column(name = "is_Approved")
