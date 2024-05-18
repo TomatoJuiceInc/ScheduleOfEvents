@@ -3,14 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #946102;
+    background-color: #ec7f00;
     padding: 25px;
     margin-top: 65px;
     margin-bottom: 65px;
 }
 
 #eventsForm button {
-    background-color: #946102;
+    background-color: #ec7f00;
     border: 0;
     text-decoration: none;
     color: #fff;
@@ -45,7 +45,7 @@
     justify-content: center;
     align-items: center;
     padding: 30px;
-    background-color: #946102;
+    background-color: #ec7f00;
     border-radius: 10px;
     scrollbar-width: none;
     margin-bottom: 100px !important;
@@ -53,9 +53,14 @@
 
 body {
     height: 100% !important;
+    min-width: 924px;
     width: 100%;
     scrollbar-width: none;
     margin-bottom: 150px;
+}
+
+html {
+    scrollbar-width: none;
 }
 
 
@@ -70,7 +75,7 @@ table {
 }
 
 th {
-    background-color: #946102; /* Orange header */
+    background-color: #ec7f00; /* Orange header */
     color: #222;
     padding: 10px;
     text-align: center;
@@ -95,7 +100,7 @@ th {
 }
 
 tr {
-    transition: background-color 0.3s ease-in-out;
+    min-height: 60px;
     background-color: #1e1e1e;
     color: #2ec4a5;
 }
@@ -125,11 +130,12 @@ tr:nth-child(even) {
     font-size: 20px;
     border: none;
     outline: none;
-    background-color: #946102;
+    background-color: #ec7f00;
     color: white;
     cursor: pointer;
     padding: 15px;
     border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
 }
 
 

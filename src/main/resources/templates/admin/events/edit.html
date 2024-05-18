@@ -7,7 +7,7 @@
 </head>
 <body>
 <header th:insert="~{base/base::baseheader}"></header>
-<link rel="stylesheet" type="text/css" href="/admin/editEvent.css">
+<link rel="stylesheet" type="text/css" href="/admin/edit.css">
 <form th:method="PATCH" th:action="@{/admin/events/{id}(id=${event.getId()})}" th:object="${event}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
