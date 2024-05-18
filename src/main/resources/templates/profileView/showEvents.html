@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="base/base :: basehead">
+    <meta charset="UTF-8">
+    <title>Info</title>
+
+</head>
+<body>
+<header th:insert="base/base :: baseheader">
+</header>
+<main style="margin-top: 70px; background-color: #000000">
+    <link rel="stylesheet" type="text/css" href="/profileViewStatic/css/showEvents.css"/>
+
+    <div class="events">
+        <button class="return-on-profile-button" onclick="window.history.back()" type="button">
+            <i class="bi bi-arrow-return-right"></i>
+            <span class="return-text">
+                Вернуться в личный кабинет
+            </span>
+        </button>
+        <h1 class="name">Tickets</h1>
+        <ul class="event" th:each="ticket : ${user.getTickets()}">
+            <div class="list-element">
+                <ul class="event-bar">
+                    <li class="name-event-info">
+                        <span class="name-concert" th:text="${ticket.getEvent().getName()}">
+                        </span>
+                    </li>
+                    <li class="name-place-info">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="name-place" th:text="${ticket.getEvent().getHall().getName()}">
+                        </span>
+                    </li>
+                    <li class="date-info">
+                        <i class="bi bi-calendar3"></i>
+                        <span class="date" th:text="${ticket.getEvent().getDate().toLocaleString()}">
+                        </span>
+                    </li>
+                    <li class="seat-place-info">
+                        <i class="bi bi-ticket-perforated"></i>
+                        <span class="seat-place" th:text="${ticket.getRow() + ' ряд / ' + ticket.getCol() + ' место'}">
+                        </span>
+                    </li>
+                    <li class="price-info">
+                        <i class="bi bi-tag-fill"></i>
+                        <span class="price" th:text="${ticket.getPrice().getPrice()}">
+                        </span>
+                    </li>
+                </ul>
+                <form th:action="@{/order(type=${ticket.getEvent().getHall().getId()}, e=${ticket.getEvent().getId()})}">
+                    <button class="event-link-button">
+                        ссылка на мероприятие
+                    </button>
+                </form>
+            </div>
+        </ul>
+    </div>
+</main>
+</body>
+</html>
