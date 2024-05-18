@@ -48,9 +48,12 @@
     background-color: #946102;
     border-radius: 10px;
     scrollbar-width: none;
+    margin-bottom: 100px !important;
 }
 
-body,html {
+body {
+    height: 100% !important;
+    width: 100%;
     scrollbar-width: none;
     margin-bottom: 150px;
 }
@@ -63,6 +66,7 @@ table {
     width: 95%;
     overflow-y: auto;
     scrollbar-width: none;
+    margin-bottom: 30px;
 }
 
 th {
@@ -132,5 +136,4 @@ tr:nth-child(even) {
 #scrollBtn:hover {
     background-color: #555;
 }
-
 

@@ -12,7 +12,6 @@
 
 <header th:insert="~{base/base::baseheader}">
 </header>
-
 <div th:class="second-header">
     <form th:id="eventsForm" th:method="GET" th:action="@{/admin/events}">
         <button th:type="submit" name="choice" th:value="past">Past</button>
@@ -20,7 +19,6 @@
     </form>
     <a th:id="requestsLink" th:href="@{/admin/events/requests}">Requests</a>
 </div>
-
 
 <div th:class="table-background">
     <table>
@@ -52,9 +50,10 @@
         </tr>
         </tbody>
     </table>
+
 </div>
 
 <button onclick="topFunction()" id="scrollBtn" title="Go to top">TOP</button>
-
+<footer th:insert="~{base/base::basefooter}"></footer>
 </body>
 </html>
