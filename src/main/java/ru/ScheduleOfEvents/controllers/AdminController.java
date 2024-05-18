@@ -2,26 +2,19 @@ package ru.ScheduleOfEvents.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import ru.ScheduleOfEvents.models.Application;
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
-import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.LinkedList;
 
 
 @Controller

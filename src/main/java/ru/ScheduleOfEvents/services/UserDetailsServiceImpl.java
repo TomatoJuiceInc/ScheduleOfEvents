@@ -6,17 +6,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.ScheduleOfEvents.models.*;
+import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.repositories.UserRepository;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,109 +64,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .collect(Collectors.toList()));
     }
 
-    // добавление билета в пользователя (тестовое)
-    public void addTestTickets(long id) {
-        User userToBeUpdated = findOne(id);
-        List<Ticket> tickets = new ArrayList<>();
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.SEPTEMBER, 18, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.SEPTEMBER, 12, 13, 5, 5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 13, 13, 5, 5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 28, 13, 5, 5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-
-        userToBeUpdated.setTickets(tickets);
-        sortTickets(userToBeUpdated);
-    }
+//    // добавление билета в пользователя (тестовое)
+//    public void addTestTickets(long id) {
+//        User userToBeUpdated = findOne(id);
+//        sortTickets(userToBeUpdated);
+//    }
 
     @Transactional
     public void delete(long id) {

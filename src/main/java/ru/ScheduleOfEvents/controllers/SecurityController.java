@@ -13,8 +13,6 @@ import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.RegistrationService;
 import ru.ScheduleOfEvents.util.UserValidator;
 
-import java.io.File;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/auth")

@@ -1,6 +1,5 @@
 package ru.ScheduleOfEvents.controllers;
 
-import jakarta.persistence.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
@@ -9,14 +8,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.ScheduleOfEvents.models.*;
+import ru.ScheduleOfEvents.models.Application;
+import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.Price;
+import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class ApplicationController {
