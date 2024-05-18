@@ -62,6 +62,7 @@ public class TemporaryTicketService {
             deleteById(ticket.getId());
         }
         userDetailsService.save(user);
+        userDetailsService.sortTickets(user);
         eventsService.save(event);
     }
 }

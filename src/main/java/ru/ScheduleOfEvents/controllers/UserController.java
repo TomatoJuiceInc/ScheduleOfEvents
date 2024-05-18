@@ -21,12 +21,6 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
 
-//    @GetMapping()
-//    public String index(Model model) {
-//        model.addAttribute("users", userDetailsService.findAll());
-//        return "profileView/index";
-//    }
-
     @GetMapping()
     public String show(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -35,7 +29,6 @@ public class UserController {
         User user = userDetailsService.findByUsername(name);
 
         userDetailsService.addTestTickets(user.getId());
-        userDetailsService.sortTickets(user.getId());
 
         model.addAttribute("user", user);
         return "profileView/profileInfo";
@@ -51,11 +44,19 @@ public class UserController {
         return "profileView/edit";
     }
 
-//    @GetMapping("/showEvents")
-//    public String showEvents(Model model, @PathVariable("id") int id) {
-//        model.addAttribute("user", userDetailsService.findOne(id));
-//        return "profileView/showEvents";
-//    }
+    @GetMapping("/showEvents")
+    public String showEvents(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String name = userDetails.getUsername();
+        User user = userDetailsService.findByUsername(name);
+
+//        userDetailsService.addTestTickets(user.getId());
+//        userDetailsService.addTestTickets(user.getId());
+
+        model.addAttribute("user", user);
+        return "profileView/showEvents";
+    }
 
     @PatchMapping()
     public String update(@ModelAttribute("user") User person) {
