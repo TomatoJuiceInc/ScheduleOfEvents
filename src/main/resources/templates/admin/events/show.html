@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="basehead">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
     <title>Show</title>
@@ -8,7 +8,7 @@
 </head>
 
 
-<header th:insert="base/base::baseheader">
+<header th:insert="~{base/base::baseheader}">
 </header>
 <body>
 
@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${event.getName()}">Заголовок меропрития</h5>
                     <h6 class="card-subtitle mb-2" th:text="${event.getDescription()}">вид мероприятия</h6>
-                    <p class="card-text">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>
+                    <!--<p class="card-text">Небольшой пример текста, который должен основываться на названии карточки и составлять основную часть содержимого карты.</p>-->
                     <p class="icon-with-date">
                         <i class="bi bi-calendar4-week"></i>
                         <span th:text="${#dates.format(event.getDate(), 'dd-MM-yyyy')}"></span>
@@ -41,6 +41,6 @@
     </div>
 </div>
 
-<footer th:insert="base/base::basefooter"></footer>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </body>
 </html>

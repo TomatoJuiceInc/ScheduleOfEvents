@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.LinkedList;
 
 
 @Controller
@@ -45,7 +46,22 @@ public class AdminController {
     }
 
 
-
+    @GetMapping()
+    public String events(Model model, @RequestParam(value = "choice", required = false) String choice) {
+        if (choice == null) {
+            model.addAttribute("events", eventsService.findEventByDateAfter());
+        } else {
+            switch (choice) {
+                case "past":
+                    model.addAttribute("events", eventsService.findEventByDateBefore());
+                    break;
+                case "current":
+                    model.addAttribute("events", eventsService.findEventByDateAfter());
+                    break;
+            }
+        }
+        return "admin/events/events";
+    }
 
 
     // checked
@@ -64,13 +80,13 @@ public class AdminController {
         model.addAttribute("message", "Application with ID " + id + " approved successfully!");
         return "redirect:/admin/events/application";  // Повторно отображаем страницу с сообщением
     }
-    // checked
+    /*// checked
     @GetMapping("/past")
     public String past(Model model) {
         model.addAttribute("pastEvents", eventsService.findEventByDateBefore());
         return "admin/events/past";
     }
-
+*/
     // checked
 
     @PostMapping("/reject/{id}")
@@ -84,11 +100,11 @@ public class AdminController {
     public String requests() { return "admin/events/requests"; }
 
 
-    @GetMapping()
+    /*@GetMapping()
     public String events(Model model) {
         model.addAttribute("events", eventsService.findEventByDateAfter());
         return "admin/events/events";
-    }
+    }*/
 
 
     @GetMapping("/{id}/edit")
