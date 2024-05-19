@@ -8,7 +8,7 @@
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
 
 </head>
-<header th:insert="base/base :: baseheader">
+<header th:insert="~{base/base::baseheader}">
 </header>
 <body>
 <div class="container h-100">
@@ -93,5 +93,5 @@
 <script src="/paymentStatic/payment.js"></script>
 
 </body>
-<footer th:insert="base/base::basefooter"></footer>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </html>

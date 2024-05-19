@@ -9,7 +9,7 @@
 <body style="height: 2000px;">
 
 
-<header th:insert="base/base :: baseheader">
+<header th:insert="~{base/base::baseheader}">
 </header>
 
 <main style="margin-top: 80px;">
@@ -89,6 +89,6 @@
         </li>
     </ul>
 </main>
-<footer th:insert="base/base::basefooter"></footer>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </body>
 </html>

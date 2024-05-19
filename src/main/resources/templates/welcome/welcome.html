@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/welcomeStatic/welcome.css" />
 
 </head>
-<header th:insert="base/base :: baseheader">
+<header th:insert="~{base/base::baseheader}">
 </header>
 <body>
 <header class="header" id="home">
@@ -103,5 +103,5 @@
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="/welcomeStatic/welcome.js"></script>
 </body>
-<footer th:insert="base/base::basefooter"></footer>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </html>
