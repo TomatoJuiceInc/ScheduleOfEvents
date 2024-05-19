@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="basehead">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error page</title>
+
 </head>
+<header th:insert="base/base :: baseheader">
+</header>
 <body>
-пу пу пу, ошибочка
+
+<div class="error-container">
+    <link rel="stylesheet" href="/errorStatic/error.css">
+    <img src="/errorStatic/error.jpeg" alt="not found">
+    <div class="error-text">
+        <p style="color: #767268">
+            We're sorry, the page you requested could not be found.
+            Pleaser go back to the homepage!
+        </p>
+    </div>
+</div>
+
 </body>
+<footer th:insert="base/base::basefooter"></footer>
 </html>

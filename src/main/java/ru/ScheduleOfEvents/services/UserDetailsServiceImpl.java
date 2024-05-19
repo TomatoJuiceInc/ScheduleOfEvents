@@ -10,8 +10,10 @@ import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.repositories.UserRepository;
 import ru.ScheduleOfEvents.security.UserDetailsImpl;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,10 +48,27 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void update(long id, User updatedUser) {
         User userToBeUpdated = findOne(id);
 
-        userToBeUpdated.setUsername(updatedUser.getUsername());
+        userToBeUpdated.setFamilyName(updatedUser.getFamilyName());
+        userToBeUpdated.setName(updatedUser.getName());
+        userToBeUpdated.setSurname(updatedUser.getSurname());
         userToBeUpdated.setEmail(updatedUser.getEmail());
-        userToBeUpdated.setPassword(updatedUser.getPassword());
+        if (!(updatedUser.getPassword() == null || updatedUser.getPassword().isEmpty())) {
+            userToBeUpdated.setPassword(updatedUser.getPassword());
+        }
     }
+
+    // сортировка билетов
+    public void sortTickets(User user) {
+        user.setTickets(user.getTickets().stream()
+                .sorted(Comparator.comparing(ticket -> ticket.getEvent().getDate()))
+                .collect(Collectors.toList()));
+    }
+
+//    // добавление билета в пользователя (тестовое)
+//    public void addTestTickets(long id) {
+//        User userToBeUpdated = findOne(id);
+//        sortTickets(userToBeUpdated);
+//    }
 
     @Transactional
     public void delete(long id) {

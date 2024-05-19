@@ -31,6 +31,10 @@ public class Price {
         this.price = price;
         this.ownerEvent = ownerEvent;
     }
+
+    public Price(int price) {
+        this.price = price;
+    }
 }
 
 

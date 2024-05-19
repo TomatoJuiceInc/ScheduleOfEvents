@@ -6,7 +6,7 @@
     background-color: #ec7f00;
     padding: 25px;
     margin-top: 65px;
-    margin-bottom: 65px;
+    margin-bottom: 10px;
 }
 
 #eventsForm button {
@@ -23,16 +23,18 @@
     color: grey;
 }
 
-.second-header a  {
+.second-header a, button  {
+    font-weight: bolder !important;
+    font-size: 25px !important;
     text-decoration: none;
     color: #fff;
     margin: 0 10px;
-    padding: 8px 12px;
+    padding: 16px 60px;
     border-radius: 2px;
     transition: color 0.3s ease-in-out;
 }
 
-.second-header a:hover {
+.second-header a:hover, button:hover {
     color: grey;
 }
 
@@ -44,7 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 30px 5px;
     background-color: #ec7f00;
     border-radius: 10px;
     scrollbar-width: none;
@@ -65,6 +67,43 @@ html {
 
 
 /*wrapper and html part is over*/
+
+
+/*
+image block
+*/
+
+.filter {
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+    background-color: #ec7f00;
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    max-width: 100px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+}
+
+.filter:hover {
+    background-color: #555;
+}
+
+.filter text {
+    margin: 5px auto;
+}
+
+.filter img {
+    margin: 5px 10px;
+    display: flex;
+    max-width: 30px;
+    height: auto;
+}
 
 table {
     text-align: center;
@@ -124,13 +163,14 @@ tr:nth-child(even) {
 #scrollBtn {
     display: none;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 40px;
+    right: 40px;
     z-index: 99;
     font-size: 20px;
     border: none;
     outline: none;
     background-color: #ec7f00;
+    opacity: 0.25;
     color: white;
     cursor: pointer;
     padding: 15px;
@@ -140,6 +180,35 @@ tr:nth-child(even) {
 
 
 #scrollBtn:hover {
+    opacity: 0.6;
     background-color: #555;
 }
 
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}

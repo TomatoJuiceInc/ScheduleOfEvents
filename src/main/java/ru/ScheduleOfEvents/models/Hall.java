@@ -41,5 +41,7 @@ public class Hall {
         this.events = events;
     }
 
-
+    public Hall(String name) {
+        this.name = name;
+    }
 }

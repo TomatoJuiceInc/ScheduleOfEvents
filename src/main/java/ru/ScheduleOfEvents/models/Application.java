@@ -1,11 +1,8 @@
 package ru.ScheduleOfEvents.models;
 
-import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +13,7 @@ public class Application {
     private int id;
 
     @ManyToOne()
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User applicantName;  // Имя заявителя
 
     @Column(name = "is_Approved")

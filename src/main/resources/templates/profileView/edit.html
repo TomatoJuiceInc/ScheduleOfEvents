@@ -4,12 +4,12 @@
     <title>Info</title>
 
 </head>
-<body style="height: 700px;">
+<body style="height: 600px;">
 <header th:insert="base/base :: baseheader">
 </header>
 <main style="margin-top: 70px; background-color: #000000">
     <link rel="stylesheet" type="text/css" href="/profileViewStatic/css/edit.css"/>
-    <script src="/profileViewStatic/js/editPage.js"></script>
+    <script src="/profileViewStatic/js/editPage/editPage.js"></script>
     <div class="edit-page">
 
         <button class="return-on-profile-button" onclick="window.history.back()" type="button">
@@ -19,64 +19,74 @@
 	        </span>
         </button>
 
-        <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}" onsubmit="updateHiddenField()">
+        <form th:method="PATCH" th:action="@{/user}" th:object="${user}" onsubmit="return fieldsUpdateCheck()">
 
             <div class="fields-for-editing">
                 <div class="text-editing">
-
+                    <p class="familyName-text">Фамилия</p>
                     <label for="familyName" style="display: none"></label>
-                    <input type="text" th:field="*{familyName}" id="familyName" style="display: none"/>
+                    <input type="text" th:field="*{familyName}" id="familyName"/>
 
+                    <p class="name-text">Имя</p>
                     <label for="name" style="display: none"></label>
-                    <input type="text" th:field="*{name}" id="name" style="display: none"/>
+                    <input type="text" th:field="*{name}" id="name"/>
 
+                    <p class="surname-text">Отчество</p>
                     <label for="surname" style="display: none"></label>
-                    <input type="text" th:field="*{surname}" id="surname" style="display: none"/>
+                    <input type="text" th:field="*{surname}" id="surname"/>
 
-                    <label for="phone_number" style="display: none"></label>
-                    <input type="text" th:field="*{phone_number}" id="phone_number" style="display: none"/>
-
-                    <p class="username-text">@Username</p>
                     <label for="username" style="display: none"></label>
-                    <input type="text" class="input-username" th:field="*{username}" id="username"/>
+                    <input type="text" class="input-username" th:field="*{username}" id="username" style="display: none"/>
 
                     <p class="email-text">Почта</p>
-                    <label for="email" style="display: none"></label>
-                    <input type="text" class="input-email" th:field="*{email}" id="email"/>
+                    <label for="new-email" style="display: none"></label>
+                    <input type="email" class="input-email" th:field="*{email}" id="new-email"/>
+                    <br>
+                    <span id="email-error" style="color: red;"></span>
 
                     <p class="password-text">Пароль</p>
 
-                    <label for="current-password" style="display: none"></label>
-                    <input type="text" id="current-password" class="input-current-password" placeholder="Текущий пароль"/><br>
-
-                    <label for="password" style="display: none"></label>
-                    <input type="hidden" th:field="*{password}" id="password" />
+                    <label for="oldPassword" style="display: none"></label>
+                    <input type="hidden" th:field="*{password}" id="oldPassword" />
+                    <!---->
                     <label for="input-password" style="display: none"></label>
-                    <input type="text" id="input-password" class="input-new-password" placeholder="Новый пароль"/><br>
+                    <input type="password" id="input-password" class="input-new-password" placeholder="Новый пароль"/><br>
 
                     <label for="repeat-password" style="display: none"></label>
-                    <input type="text" id="repeat-password" class="input-repeat-new-password" placeholder="Повторите новый пароль"/><br>
+                    <input type="password" id="repeat-password" class="input-repeat-new-password" placeholder="Повторите новый пароль"/>
+                    <br>
+                    <span id="repeat-password-error" style="color: red;"></span>
                 </div>
                 <div class="image-editing">
-                    <img src="/profileViewStatic/images/user_pic.jpg" alt="Картинка" class="image">
-                    <br>
-                    <button class="image-edit-button" type="button">
-                        <i class="bi bi-camera"></i>
-                        <span class="image-editing-text">
-                            Изменить фото
-                        </span>
-                    </button>
+                    <div class="boom">
+                        <img th:src="@{'/profileViewStatic/images/' + ${user.avatarFileName}}" alt="Картинка" class="image">
+                        <br>
+                        <div class="image-edit-button">
+                            <label for="file-upload" class="custom-button">
+                                <i class="bi bi-camera"></i>
+                                <span class="image-editing-text">
+                                    Изменить фото
+                                </span>
+                            </label>
+                            <input type="file" id="file-upload" style="display: none">
+                            <span id="file-name"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <button class="save-changes-button" type="submit">
-                <span class="save-text">
-	                Сохранить изменения
-	            </span>
-            </button>
+            <div class="save-changes-button-field">
+                <button class="save-changes-button" type="submit">
+                    <span class="save-text">
+                        Сохранить изменения
+                    </span>
+                </button>
+            </div>
 
         </form>
     </div>
+
+    <script src="/profileViewStatic/js/editPage/changePhoto.js"></script>
 </main>
 <footer th:insert="base/base :: basefooter"></footer>
 </body>

@@ -1,30 +1,25 @@
 package ru.ScheduleOfEvents.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import ru.ScheduleOfEvents.models.Application;
 import ru.ScheduleOfEvents.models.Event;
-import ru.ScheduleOfEvents.models.User;
+import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
-import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.LinkedList;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/admin/events")
 public class AdminController {
 
@@ -37,13 +32,13 @@ public class AdminController {
     private final UserDetailsServiceImpl userDetailsService;
 
 
-    @Autowired
-    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
-        this.applicationService = applicationService;
-        this.eventsService = eventsService;
-        this.hallsService = hallsService;
-        this.userDetailsService = userDetailsService;
-    }
+//    @Autowired
+//    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
+//        this.applicationService = applicationService;
+//        this.eventsService = eventsService;
+//        this.hallsService = hallsService;
+//        this.userDetailsService = userDetailsService;
+//    }
 
 
     @GetMapping()
@@ -134,7 +129,7 @@ public class AdminController {
                         .toInstant())
         );
         eventsService.updateEvent(id, updatedEvent);
-        return "redirect:/admin/events";
+        return updatedEvent.getDate().after(new Date()) ? "redirect:/admin/events?choice=current" : "redirect:/admin/events?choice=past";
     }
 
     @PostMapping("/{id}")

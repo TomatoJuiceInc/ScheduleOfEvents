@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -13,7 +12,6 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Data
-@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
@@ -23,6 +21,9 @@ public class User {
     @NotEmpty
     @Column(name = "username", unique = true)
     private String username;
+
+    @Column(name = "avatarFileName")
+    private String avatarFileName;
 
     @Column(name = "name")
     private String name;

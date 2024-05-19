@@ -45,4 +45,11 @@ public class Ticket {
         this.event = event;
         this.price = price;
     }
+
+    public Ticket(String col, String row, Event event, Price price) {
+        this.col = col;
+        this.row = row;
+        this.event = event;
+        this.price = price;
+    }
 }

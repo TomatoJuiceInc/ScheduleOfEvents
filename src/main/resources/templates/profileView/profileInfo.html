@@ -5,18 +5,21 @@
     <title>Info</title>
 
 </head>
-<body style="height: 1100px;">
+<body style="height: 1000px;">
 <header th:insert="base/base :: baseheader">
 </header>
-<main style="margin: 50px; margin-top: 70px; background-color: #000000">
+<main>
     <link rel="stylesheet" type="text/css" href="/profileViewStatic/css/profile.css"/>
     <div class="profile">
         <span class="info-text" style="color: #FFFFFF;">Контактная информация</span>
-        <a class="edit-link" th:href="@{/users/{id}/edit(id=${user.getId()})}">редактировать</a>
+        <a class="edit-link" th:href="@{/user/edit}">редактировать</a>
+        <button class="exit-button">
+            <i class="bi bi-box-arrow-right"></i> ВЫЙТИ
+        </button>
         <br>
         <div class="profile-info">
             <div class="avatar-username">
-                <img src="/profileViewStatic/images/user_pic.jpg" alt="Картинка" class="image">
+                <img th:src="@{'/profileViewStatic/images/user_pic.jpg'}" alt="Картинка" class="image">
                 <div class="username-field">
                     <p class="username-text" th:text="${user.getUsername()}">@Username</p>
                 </div>
@@ -27,13 +30,10 @@
                     <p class="area-for-lastName-text" th:text="${user.getFamilyName()}">Фамилия</p>
                 </div>
                 <div class="text-field">
-                    <p class="area-for-name-text" th:text="${user.getName()}">Имя</p>
+                    <p class="area-for-name-text" th:text="${user.getName}">Имя</p>
                 </div>
                 <div class="text-field">
                     <p class="area-for-secondLastName-text" th:text="${user.getSurname()}">Отчество</p>
-                </div>
-                <div class="text-field">
-                    <p class="area-for-phone-number-text" th:text="${user.getPhone_number()}">Телефон</p>
                 </div>
                 <div class="text-field">
                     <p class="area-for-mail-text" th:text="${user.getEmail()}">Почта</p>
@@ -52,191 +52,179 @@
             <div class="list-element first-event">
                 <ul class="event-bar">
                     <li class="name-event-info">
-                    <span class="name-concert">
-                      Name of the event
-                    </span>
+                        <span class="name-concert" th:text="${user.getTickets().get(0).getEvent().getName()}">
+                        </span>
                     </li>
                     <li class="name-place-info">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span class="name-place">
-                      Name of the building
-                    </span>
+                        <span class="name-place" th:text="${user.getTickets().get(0).getEvent().getHall().getName()}">
+                        </span>
                     </li>
                     <li class="date-info">
                         <i class="bi bi-calendar3"></i>
-                        <span class="date">
-                      dd.mm.yyyy hh:mm
-                    </span>
+                        <span class="date" th:text="${user.getTickets().get(0).getEvent().getDate().toLocaleString()}">
+                        </span>
                     </li>
                     <li class="seat-place-info">
                         <i class="bi bi-ticket-perforated"></i>
-                        <span class="seat-place">
-                      Seat (row/place)
-                    </span>
+                        <span class="seat-place" th:text="${user.getTickets().get(0).getRow() + ' ряд / ' + user.getTickets().get(0).getCol() + ' место'}">
+                        </span>
                     </li>
                     <li class="price-info">
                         <i class="bi bi-tag-fill"></i>
-                        <span class="price">
-                      Price
-                    </span>
+                        <span class="price" th:text="${user.getTickets().get(0).getPrice().getPrice()}">
+                        </span>
                     </li>
                 </ul>
-                <button class="event-link-button">
-                    ссылка на мероприятие
-                </button>
+                <form th:action="@{/order(type=${user.getTickets().get(0).getEvent().getHall().getId()}, e=${user.getTickets().get(0).getEvent().getId()})}">
+                    <button class="event-link-button">
+                        ссылка на мероприятие
+                    </button>
+                </form>
             </div>
 
             <div class="list-element second-event">
                 <ul class="event-bar">
                     <li class="name-event-info">
-                    <span class="name-concert">
-                      Name of the event
-                    </span>
+                        <span class="name-concert" th:text="${user.getTickets().get(1).getEvent().getName()}">
+                        </span>
                     </li>
                     <li class="name-place-info">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span class="name-place">
-                      Name of the building
-                    </span>
+                        <span class="name-place" th:text="${user.getTickets().get(1).getEvent().getHall().getName()}">
+                        </span>
                     </li>
                     <li class="date-info">
                         <i class="bi bi-calendar3"></i>
-                        <span class="date">
-                      dd.mm.yyyy hh:mm
-                    </span>
+                        <span class="date" th:text="${user.getTickets().get(1).getEvent().getDate().toLocaleString()}">
+                        </span>
                     </li>
                     <li class="seat-place-info">
                         <i class="bi bi-ticket-perforated"></i>
-                        <span class="seat-place">
-                      Seat (row/place)
-                    </span>
+                        <span class="seat-place" th:text="${user.getTickets().get(1).getRow() + ' ряд / ' + user.getTickets().get(0).getCol() + ' место'}">
+                        </span>
                     </li>
                     <li class="price-info">
                         <i class="bi bi-tag-fill"></i>
-                        <span class="price">
-                      Price
-                    </span>
+                        <span class="price" th:text="${user.getTickets().get(1).getPrice().getPrice()}">
+                        </span>
                     </li>
                 </ul>
-                <button class="event-link-button">
-                    ссылка на мероприятие
-                </button>
+                <form th:action="@{/order(type=${user.getTickets().get(1).getEvent().getHall().getId()}, e=${user.getTickets().get(1).getEvent().getId()})}">
+                    <button class="event-link-button">
+                        ссылка на мероприятие
+                    </button>
+                </form>
             </div>
 
             <div class="list-element third-event">
                 <ul class="event-bar">
                     <li class="name-event-info">
-                    <span class="name-concert">
-                      Name of the event
-                    </span>
+                        <span class="name-concert" th:text="${user.getTickets().get(2).getEvent().getName()}">
+                        </span>
                     </li>
                     <li class="name-place-info">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span class="name-place">
-                      Name of the building
-                    </span>
+                        <span class="name-place" th:text="${user.getTickets().get(2).getEvent().getHall().getName()}">
+                        </span>
                     </li>
                     <li class="date-info">
                         <i class="bi bi-calendar3"></i>
-                        <span class="date">
-                      dd.mm.yyyy hh:mm
-                    </span>
+                        <span class="date" th:text="${user.getTickets().get(2).getEvent().getDate().toLocaleString()}">
+                        </span>
                     </li>
                     <li class="seat-place-info">
                         <i class="bi bi-ticket-perforated"></i>
-                        <span class="seat-place">
-                      Seat (row/place)
-                    </span>
+                        <span class="seat-place" th:text="${user.getTickets().get(2).getRow() + ' ряд / ' + user.getTickets().get(0).getCol() + ' место'}">
+                        </span>
                     </li>
                     <li class="price-info">
                         <i class="bi bi-tag-fill"></i>
-                        <span class="price">
-                      Price
-                    </span>
+                        <span class="price" th:text="${user.getTickets().get(2).getPrice().getPrice()}">
+                        </span>
                     </li>
                 </ul>
-                <button class="event-link-button">
-                    ссылка на мероприятие
-                </button>
+                <form th:action="@{/order(type=${user.getTickets().get(2).getEvent().getHall().getId()}, e=${user.getTickets().get(2).getEvent().getId()})}">
+                    <button class="event-link-button">
+                        ссылка на мероприятие
+                    </button>
+                </form>
             </div>
 
             <div class="list-element fourth-event">
                 <ul class="event-bar">
                     <li class="name-event-info">
-                    <span class="name-concert">
-                      Name of the event
-                    </span>
+                        <span class="name-concert" th:text="${user.getTickets().get(3).getEvent().getName()}">
+                        </span>
                     </li>
                     <li class="name-place-info">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span class="name-place">
-                      Name of the building
-                    </span>
+                        <span class="name-place" th:text="${user.getTickets().get(3).getEvent().getHall().getName()}">
+                        </span>
                     </li>
                     <li class="date-info">
                         <i class="bi bi-calendar3"></i>
-                        <span class="date">
-                      dd.mm.yyyy hh:mm
-                    </span>
+                        <span class="date" th:text="${user.getTickets().get(3).getEvent().getDate().toLocaleString()}">
+                        </span>
                     </li>
                     <li class="seat-place-info">
                         <i class="bi bi-ticket-perforated"></i>
-                        <span class="seat-place">
-                      Seat (row/place)
-                    </span>
+                        <span class="seat-place" th:text="${user.getTickets().get(3).getRow() + ' ряд / ' + user.getTickets().get(0).getCol() + ' место'}">
+                        </span>
                     </li>
                     <li class="price-info">
                         <i class="bi bi-tag-fill"></i>
-                        <span class="price">
-                      Price
-                    </span>
+                        <span class="price" th:text="${user.getTickets().get(3).getPrice().getPrice()}">
+                        </span>
                     </li>
                 </ul>
-                <button class="event-link-button">
-                    ссылка на мероприятие
-                </button>
+                <form th:action="@{/order(type=${user.getTickets().get(3).getEvent().getHall().getId()}, e=${user.getTickets().get(3).getEvent().getId()})}">
+                    <button class="event-link-button">
+                        ссылка на мероприятие
+                    </button>
+                </form>
             </div>
 
             <div class="list-element fifth-event">
                 <ul class="event-bar">
                     <li class="name-event-info">
-                    <span class="name-concert">
-                      Name of the event
-                    </span>
+                        <span class="name-concert" th:text="${user.getTickets().get(4).getEvent().getName()}">
+                        </span>
                     </li>
                     <li class="name-place-info">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span class="name-place">
-                      Name of the building
-                    </span>
+                        <span class="name-place" th:text="${user.getTickets().get(4).getEvent().getHall().getName()}">
+                        </span>
                     </li>
                     <li class="date-info">
                         <i class="bi bi-calendar3"></i>
-                        <span class="date">
-                      dd.mm.yyyy hh:mm
-                    </span>
+                        <span class="date" th:text="${user.getTickets().get(4).getEvent().getDate().toLocaleString()}">
+                        </span>
                     </li>
                     <li class="seat-place-info">
                         <i class="bi bi-ticket-perforated"></i>
-                        <span class="seat-place">
-                      Seat (row/place)
-                    </span>
+                        <span class="seat-place" th:text="${user.getTickets().get(4).getRow() + ' ряд / ' + user.getTickets().get(0).getCol() + ' место'}">
+                        </span>
                     </li>
                     <li class="price-info">
-                        <i class="bi bi-tag-fill"></i>
-                        <span class="price">
-                      Price
-                    </span>
+                        <i class="bi bi-tag-fill" ></i>
+                        <span class="price" th:text="${user.getTickets().get(4).getPrice().getPrice()}">
+                        </span>
                     </li>
                 </ul>
-                <button class="event-link-button">
-                    ссылка на мероприятие
-                </button>
+                <form th:action="@{/order(type=${user.getTickets().get(4).getEvent().getHall().getId()}, e=${user.getTickets().get(4).getEvent().getId()})}">
+                    <button class="event-link-button">
+                        ссылка на мероприятие
+                    </button>
+                </form>
             </div>
         </div>
-        <button class="all-events-link-button">
-            Посмотреть все...
-        </button>
+        <form th:action="@{/user/showEvents}">
+            <button class="all-events-link-button">
+                Посмотреть все...
+            </button>
+        </form>
+
     </div>
 </main>
 <footer th:insert="base/base :: basefooter"></footer>

@@ -2,7 +2,6 @@ package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -41,7 +40,7 @@ public class Event {
     @Column(name = "age")
     private String age;
     @ManyToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User owner;
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
@@ -67,8 +66,8 @@ public class Event {
 
 
     public int compareAge(String str1){
-        str1 = str1.substring(1);
-        String str2 = this.age.substring(1);
+        str1 = str1.substring(0,str1.length()-1);
+        String str2 = this.age.substring(0,age.length()-1);
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
 

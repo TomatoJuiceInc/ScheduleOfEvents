@@ -3,21 +3,26 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <title>Current</title>
-    <script src="/admin/eventPageScript.js"></script></head>
+    <title>Ongoing</title>
+    <script src="/adminStatic/eventPageScript.js"></script></head>
 
-<link rel="stylesheet" type="text/css" href="/admin/events.css">
+<link rel="stylesheet" type="text/css" href="/adminStatic/events.css">
 
 <body>
 
 <header th:insert="~{base/base::baseheader}">
 </header>
 <div th:class="second-header">
-    <form th:id="eventsForm" th:method="GET" th:action="@{/admin/events}">
-        <button th:type="submit" name="choice" th:value="past">Past</button>
-        <button th:type="submit" name="choice" th:value="current">Current</button>
-    </form>
-    <a th:id="requestsLink" th:href="@{/admin/events/requests}">Requests</a>
+    <a th:id="pastLink" href="/admin/events?choice=past">Прошедшие</a>
+    <a th:id="currentLink" href="/admin/events?choice=current">Текущие</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/requests}">Запросы</a>
+</div>
+
+<div th:class="filter" onclick="openSortOptions()" >
+    <img src="/adminStatic/filter_icon.png" alt="filter">
+    <div th:class="text">
+        <a>filter</a>
+    </div>
 </div>
 
 <div th:class="table-background">
@@ -50,7 +55,14 @@
         </tr>
         </tbody>
     </table>
+</div>
 
+<div id="sortModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSortOptions()">&times;</span>
+        <button onclick="sortTableByStatus()">Sort by Status</button>
+        <button onclick="sortTableByDate()">Sort by Date</button>
+    </div>
 </div>
 
 <button onclick="topFunction()" id="scrollBtn" title="Go to top">TOP</button>
