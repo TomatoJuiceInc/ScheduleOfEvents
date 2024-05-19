@@ -1,7 +1,6 @@
 package ru.ScheduleOfEvents.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,6 @@ import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
-import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,24 +20,9 @@ import java.util.Date;
 @RequiredArgsConstructor
 @RequestMapping("/admin/events")
 public class AdminController {
-
-
     private final ApplicationService applicationService;
-
     private final EventsService eventsService;
-
     private final HallsService hallsService;
-    private final UserDetailsServiceImpl userDetailsService;
-
-
-//    @Autowired
-//    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
-//        this.applicationService = applicationService;
-//        this.eventsService = eventsService;
-//        this.hallsService = hallsService;
-//        this.userDetailsService = userDetailsService;
-//    }
-
 
     @GetMapping()
     public String events(Model model, @RequestParam(value = "choice", required = false) String choice) {
@@ -58,15 +41,12 @@ public class AdminController {
         return "admin/events/events";
     }
 
-
     // checked
     @GetMapping("/application")
-    public String successPage(Model model)  {
+    public String successPage(Model model) {
         model.addAttribute("applications", applicationService.findAll());
         return "admin/application";
     }
-
-
 
     // checked
     @PostMapping("/approve/{id}")
@@ -92,15 +72,15 @@ public class AdminController {
     }
 
     @GetMapping("/requests")
-    public String requests() { return "admin/events/requests"; }
-
+    public String requests() {
+        return "admin/events/requests";
+    }
 
     /*@GetMapping()
     public String events(Model model) {
         model.addAttribute("events", eventsService.findEventByDateAfter());
         return "admin/events/events";
     }*/
-
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
@@ -143,5 +123,4 @@ public class AdminController {
         eventsService.delete(eventsService.findEventById(id));
         return "redirect:/admin/events";
     }
-
 }

@@ -1,6 +1,6 @@
 package ru.ScheduleOfEvents.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,15 +14,10 @@ import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-
     private final UserDetailsServiceImpl userDetailsService;
-
-    @Autowired
-    public UserController(UserDetailsServiceImpl userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
 
     @GetMapping()
     public String show(Model model) {

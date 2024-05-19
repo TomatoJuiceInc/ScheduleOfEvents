@@ -1,6 +1,6 @@
 package ru.ScheduleOfEvents.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,26 +20,13 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Controller
+@RequiredArgsConstructor
 public class ApplicationController {
-
     private final ApplicationService applicationService;
-
     private final EventsService eventsService;
-
     private final HallsService hallsService;
-
     private final UserDetailsServiceImpl userDetailsService;
     private final PriceService priceService;
-
-
-    @Autowired
-    public ApplicationController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService, PriceService priceService) {
-        this.applicationService = applicationService;
-        this.eventsService = eventsService;
-        this.hallsService = hallsService;
-        this.userDetailsService = userDetailsService;
-        this.priceService = priceService;
-    }
 
     @GetMapping("/create-event")
     public String submitForm(Model model) {
@@ -49,7 +36,7 @@ public class ApplicationController {
     }
 
     @PatchMapping("/submission")
-    public String handleEventSubmission(@ModelAttribute("event") Event event,  @RequestParam("eventDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eventDate,
+    public String handleEventSubmission(@ModelAttribute("event") Event event, @RequestParam("eventDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate eventDate,
                                         @RequestParam("eventTime") @DateTimeFormat(pattern = "HH:mm") LocalTime eventTime,
                                         @RequestParam("price1") int price1, @RequestParam("price2") int price2,
                                         @RequestParam("price3") int price3, @RequestParam("price4") int price4, @RequestParam("price5") int price5) {
@@ -91,10 +78,11 @@ public class ApplicationController {
     @GetMapping("/successfully")
     public String creatingEvent(Model model) {
         model.addAttribute("event", new Event());
-        return "admin/create-event";}
+        return "admin/create-event";
+    }
 
     @PostMapping("/create-event")
     public String createEvent(Event event) {
-        return "redirect:/uccessfully";
+        return "redirect:/unsuccessfully";
     }
 }

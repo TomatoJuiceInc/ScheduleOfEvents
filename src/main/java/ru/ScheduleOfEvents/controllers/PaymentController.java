@@ -2,7 +2,7 @@ package ru.ScheduleOfEvents.controllers;
 
 
 import jakarta.mail.MessagingException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/payment")
 public class PaymentController {
     private final BankService bankService;
@@ -30,26 +31,15 @@ public class PaymentController {
     private final EventsService eventsService;
     private final PriceService priceService;
 
-    @Autowired
-    public PaymentController(BankService bankService, UserDetailsServiceImpl userDetailsService, TicketService ticketService, MailService mailService, EventsService eventsService, PriceService priceService) {
-        this.bankService = bankService;
-        this.userDetailsService = userDetailsService;
-        this.ticketService = ticketService;
-        this.mailService = mailService;
-        this.eventsService = eventsService;
-        this.priceService = priceService;
-    }
-
     @GetMapping()
     public String showPage(Model model,
                            @RequestParam("seats") String seats,
                            @RequestParam("e") int eventId,
-                           @RequestParam(value = "error", required = false) String  isError,
-                           @RequestParam(value = "message", required = false, defaultValue = " Введены неправильные данные, попробуйте еще раз!") String  message)
-    {
+                           @RequestParam(value = "error", required = false) String isError,
+                           @RequestParam(value = "message", required = false, defaultValue = " Введены неправильные данные, попробуйте еще раз!") String message) {
         int price = 0;
 
-        for(String seat: seats.split(",")){
+        for (String seat : seats.split(",")) {
             String[] currentSeat = seat.split(":");
             Price price1 = priceService.findOne(Integer.parseInt(currentSeat[1]));
             price += price1.getPrice();
@@ -60,25 +50,25 @@ public class PaymentController {
         model.addAttribute("seats", seats);
 
         model.addAttribute("message", message);
-        if (isError != null){
+        if (isError != null) {
             model.addAttribute("error", true);
-        }
-        else {
+        } else {
             model.addAttribute("error", false);
         }
 
         return "payment/show";
 
     }
+
     @GetMapping("/successful-payment")
-    public String successPage()  {
+    public String successPage() {
         return "success/successfulPayment";
     }
 
 
     @PostMapping("/buy/{price}/{event}/{seats}")
     public String buy(BankCard bankCard,
-                            @PathVariable("price") int price, @PathVariable("event") int eventId,
+                      @PathVariable("price") int price, @PathVariable("event") int eventId,
                       @PathVariable("seats") String seats) {
 
 
@@ -88,24 +78,24 @@ public class PaymentController {
         User user = userDetailsService.findByUsername(name);
         Long id = user.getId();
         Event eventDB = eventsService.findOne(eventId);
-        if (bankCard == null){
+        if (bankCard == null) {
             return String.format("redirect:/payment?e=%d&seats=%s&error=%b", eventId, seats, true);
         }
 
 
         BankCard bCard = bankService.findByCardNumber(bankCard.getCardNumber());
-        if (bCard == null){
+        if (bCard == null) {
             return String.format("redirect:/payment?e=%d&seats=%s&error=%b", eventId, seats, true);
         }
         if (bCard.getCvc().equals(bankCard.getCvc())
                 && bCard.getDuration().equals(bankCard.getDuration())
-                && bCard.getOwner().equals(bankCard.getOwner())){
-            if (bCard.getBalance() >= price){
+                && bCard.getOwner().equals(bankCard.getOwner())) {
+            if (bCard.getBalance() >= price) {
                 List<Ticket> tickets = new ArrayList<>();
-                for(String seat: seats.split(",")){
+                for (String seat : seats.split(",")) {
                     String[] currentSeat = seat.split(":");
                     Price price1 = priceService.findOne(Integer.parseInt(currentSeat[1]));
-                    Ticket ticket =  new Ticket(
+                    Ticket ticket = new Ticket(
                             currentSeat[0].split(" ")[0],
                             currentSeat[0].split(" ")[1],
                             user,
@@ -116,12 +106,12 @@ public class PaymentController {
                     eventDB.getTickets().add(ticket);
                     tickets.add(ticket);
                 }
-                if (!checkTicket(tickets, eventId)){
+                if (!checkTicket(tickets, eventId)) {
                     return String.format("redirect:/payment?e=%d&seats=%s&error=%b&message=%s", eventId, seats, true, "Unfortunately, one of the seats has already been purchased :(");
 
                 }
 
-                for (Ticket ticket: tickets){
+                for (Ticket ticket : tickets) {
                     ticketService.save(ticket);
                 }
 
@@ -137,33 +127,30 @@ public class PaymentController {
                 mailStructure.setTickets(tickets);
 
                 bankService.pay(bankCard.getCardNumber(), price);
-                if (user.getEmail() != null){
+                if (user.getEmail() != null) {
                     try {
-                        mailService.sendMail( user.getEmail(), mailStructure);
-                    }
-                    catch (MessagingException e){
+                        mailService.sendMail(user.getEmail(), mailStructure);
+                    } catch (MessagingException e) {
                         e.printStackTrace();
                     }
                 }
                 userDetailsService.save(user);
                 eventsService.save(eventDB);
 
-                return "redirect:/payment/successful-payment" ;
+                return "redirect:/payment/successful-payment";
             }
         }
         return String.format("redirect:/payment?a=%d&u=%d&e=%d&error=%b", price, id, eventId, true);
     }
 
-    private boolean checkTicket(List<Ticket> tickets, int eventId){
+    private boolean checkTicket(List<Ticket> tickets, int eventId) {
         HashSet<String> ticketsDB = new HashSet<>(ticketService.findAllWhereEventId(eventId).stream().map(t -> t.getRow() + " " + t.getCol()).toList());
         System.out.println(ticketsDB);
-        for (Ticket ticket: tickets){
-            if (ticketsDB.contains(ticket.getRow() + " " + ticket.getCol())){
+        for (Ticket ticket : tickets) {
+            if (ticketsDB.contains(ticket.getRow() + " " + ticket.getCol())) {
                 return false;
             }
         }
         return true;
     }
-
-
 }

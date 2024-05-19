@@ -3,15 +3,13 @@ package ru.ScheduleOfEvents.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.models.Price;
 import ru.ScheduleOfEvents.services.EventsService;
-import ru.ScheduleOfEvents.services.PriceService;
-import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
 import ru.ScheduleOfEvents.util.SeatData;
 
 import java.time.LocalDateTime;
@@ -23,31 +21,26 @@ import java.util.Set;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/order")
-
 public class ReservationController {
     private final EventsService eventsService;
 
-    @Autowired
-    public ReservationController(EventsService eventsService, UserDetailsServiceImpl userDetailsService, PriceService priceService) {
-        this.eventsService = eventsService;
-    }
-
     @GetMapping()
     public String showPage(Model model, @RequestParam("type") int type,
-                                        @RequestParam("e") int eventId)  {
+                           @RequestParam("e") int eventId) {
         ObjectMapper mapper = new ObjectMapper();
         String jsonReservedSeats = "";
         String jsonPriceSeats = "";
         String jsonPriceId = "";
         Event event = eventsService.findOne(eventId);
-        if (event == null){
+        if (event == null) {
             return "error/error.html";
         }
 
         LocalDateTime dateTime = LocalDateTime.ofInstant(event.getDate().toInstant(), ZoneId.of("Europe/Moscow"));
         String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
-        Set<String> reserved =new HashSet<>(event.getTickets()
+        Set<String> reserved = new HashSet<>(event.getTickets()
                 .stream()
                 .map(t -> (t.getCol() + " " + t.getRow()))
                 .toList());
@@ -62,8 +55,7 @@ public class ReservationController {
             jsonPriceId = mapper.writeValueAsString(event.getPrices()
                     .stream().sorted((Comparator.comparingInt(Price::getPrice))).map(Price::getId).toList());
             System.out.println(jsonPriceId);
-        }
-        catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
@@ -84,12 +76,10 @@ public class ReservationController {
 
     @PostMapping("/more/{event}")
     public String bookSeats(@ModelAttribute("seatData") SeatData seatData,
-                            @PathVariable("event") int event ) {
+                            @PathVariable("event") int event) {
 
 
-
-
-        if (seatData == null){
+        if (seatData == null) {
             return "error/error.html";
         }
 
@@ -97,8 +87,6 @@ public class ReservationController {
         return String.format("redirect:/payment?e=%d&seats=%s", event, seatData.getSeat());
 
     }
-
-
 
 
 }
