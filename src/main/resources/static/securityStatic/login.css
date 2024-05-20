@@ -12,7 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #141414;
+    background: #141414 url('img/loginBG.svg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .wrapper {
