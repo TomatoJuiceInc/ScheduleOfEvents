@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,11 +23,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(request -> request.anyRequest().permitAll())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/welcome/**", "/welcomeStatic/**",
+                                "/events/**", "/eventsStatic/**",
+                                "/base/**", "/baseStatic/**",
+                                "/error/**", "/errorStatic/**",
+                                "/branding/**").permitAll()
+                        .requestMatchers("/security/**", "/securityStatic/**", "/registration").anonymous()
+                        .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login")
                         .successForwardUrl("/welcome")
-                        .permitAll());
+                        .permitAll())
+                .logout(LogoutConfigurer::permitAll);
 
         return http.build();
     }
