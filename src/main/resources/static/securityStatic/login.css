@@ -128,3 +128,23 @@ body {
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.message-box-success {
+    margin-top: 15px;
+    background-color: rgb(95,109,65);
+    padding: 10px;
+    border: 1px solid green;
+    width: 420px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.message-box-error {
+    margin-top: 15px;
+    background-color: rgb(205,23,23);
+    padding: 10px;
+    border: 1px solid red;
+    width: 420px;
+    font-size: 12px;
+    text-align: center;
+}

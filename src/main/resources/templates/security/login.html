@@ -31,12 +31,16 @@
             <p>Ещё не зарегистрировались? <a class="registration" href="/registration">Регистрация</a></p>
         </div>
 
-        <div th:if="${param.error}" style="color: red">
-            <p>Неправильные логин или пароль</p>
+        <div th:if="${param.error}" class="message-box-error">
+            <span>
+                Неверный логин или пароль
+            </span>
         </div>
 
-        <div th:if="${param.success}" style="color: red">
-            Вы успешно зарегистрировались, повторите введённые данные
+        <div th:if="${param.success}" class="message-box-success">
+            <span>
+                Вы успешно зарегистрировались, повторите введённые данные
+            </span>
         </div>
     </form>
 </div>
