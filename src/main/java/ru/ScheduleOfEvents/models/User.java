@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
@@ -44,13 +46,6 @@ public class User {
     @Column(name = "phone_number")
     private String phone_number;
 
-    //    @ManyToMany
-//    @JoinTable(
-//            name = "user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id")
-//    )
-//    private Collection<Role> roles;
     private String role;
 
     @Min(value = 0)
@@ -62,15 +57,4 @@ public class User {
 
     @OneToMany(mappedBy = "ownerTicket",  cascade = CascadeType.ALL)
     private List<Ticket> tickets;
-
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

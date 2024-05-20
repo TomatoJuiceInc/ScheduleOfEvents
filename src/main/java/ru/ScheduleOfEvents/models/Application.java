@@ -1,11 +1,11 @@
 package ru.ScheduleOfEvents.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @Entity
 public class Application {
     @Id
@@ -23,9 +23,6 @@ public class Application {
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;           // Связанное событие
 
-    // Конструкторы
-    public Application() {
-    }
 
     public Application(User applicantName, Event event) {
         this.applicantName = applicantName;
