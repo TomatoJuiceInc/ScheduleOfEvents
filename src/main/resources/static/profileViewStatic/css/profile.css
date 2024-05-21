@@ -28,32 +28,14 @@ main{
 	display: flex;
 }
 
-/*.current-password-field{*/
-/*	width: 435px;*/
-/*	height: 50px;*/
-/*	background-color: #3E3E3E;*/
-/*	padding: 10px;*/
-/*	border-radius: 10px;*/
-/*}*/
-
-/*.look-password-button{*/
-/*	width: 50px;*/
-/*	font-size: 20px;*/
-/*	margin-left: 10px;*/
-/*	border-radius: 50%;*/
-/*	background-color: #3E3E3E;*/
-/*	color: #EC7F00;*/
-/*	border: none;*/
-/*}*/
-
-/*.look-password-button:active{*/
-/*	background-color: #EC7F00;*/
-/*	color: #3E3E3E;*/
-/*}*/
-
 .area-for-lastName-text, .area-for-name-text, .area-for-secondLastName-text, .area-for-phone-number-text, .area-for-mail-text, .username-text{
 	font-size: 20px;
 	color: #FFFFFF;
+}
+
+.area-for-default-name-text, .area-for-default-secondLastName-text, .area-for-default-lastName-name-text {
+	font-size: 20px;
+	color: #adadad;
 }
 
 .profile-info{

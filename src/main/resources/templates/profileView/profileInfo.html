@@ -27,16 +27,17 @@
 
             <div class="text-container">
                 <div class="text-field">
-                    <p class="area-for-lastName-text" th:text="${user.getFamilyName()}">Фамилия</p>
+                    <p th:class="${user.getFamilyName()} ? 'area-for-lastName-text' : 'area-for-default-lastName-name-text'" th:text="${user.getFamilyName()} ? ${user.getFamilyName()} : 'Фамилия не указана'"/>
+                </div>
+
+                <div class="text-field">
+                    <p th:class="${user.getName} ? 'area-for-name-text' : 'area-for-default-name-text'" th:text="${user.getName} ? ${user.getName} : 'Имя не указано'"/>
                 </div>
                 <div class="text-field">
-                    <p class="area-for-name-text" th:text="${user.getName}">Имя</p>
+                    <p th:class="${user.getSurname()} ? 'area-for-secondLastName-text' : 'area-for-default-secondLastName-text'" th:text="${user.getSurname()} ? ${user.getSurname()} : 'Отчество не указано'"/>
                 </div>
                 <div class="text-field">
-                    <p class="area-for-secondLastName-text" th:text="${user.getSurname()}">Отчество</p>
-                </div>
-                <div class="text-field">
-                    <p class="area-for-mail-text" th:text="${user.getEmail()}">Почта</p>
+                    <p class="area-for-mail-text" th:text="${user.getEmail()}"/>
                 </div>
             </div>
 

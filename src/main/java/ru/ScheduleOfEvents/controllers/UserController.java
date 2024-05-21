@@ -56,6 +56,9 @@ public class UserController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
+        if (person.getName().isEmpty()) person.setName(null);
+        if (person.getSurname().isEmpty()) person.setSurname(null);
+        if (person.getFamilyName().isEmpty()) person.setFamilyName(null);
         userDetailsService.update(user.getId(), person);
         return "redirect:/user";
     }

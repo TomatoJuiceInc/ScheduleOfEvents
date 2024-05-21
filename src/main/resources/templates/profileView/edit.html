@@ -25,15 +25,15 @@
                 <div class="text-editing">
                     <p class="familyName-text">Фамилия</p>
                     <label for="familyName" style="display: none"></label>
-                    <input type="text" th:field="*{familyName}" id="familyName"/>
+                    <input type="text" th:field="*{familyName}" id="familyName" placeholder="Ввести..."/>
 
                     <p class="name-text">Имя</p>
                     <label for="name" style="display: none"></label>
-                    <input type="text" th:field="*{name}" id="name"/>
+                    <input type="text" th:field="*{name}" id="name" placeholder="Ввести..."/>
 
                     <p class="surname-text">Отчество</p>
                     <label for="surname" style="display: none"></label>
-                    <input type="text" th:field="*{surname}" id="surname"/>
+                    <input type="text" th:field="*{surname}" id="surname" placeholder="Ввести..."/>
 
                     <label for="username" style="display: none"></label>
                     <input type="text" class="input-username" th:field="*{username}" id="username" style="display: none"/>
@@ -48,7 +48,7 @@
 
                     <label for="oldPassword" style="display: none"></label>
                     <input type="hidden" th:field="*{password}" id="oldPassword" />
-                    <!---->
+
                     <label for="input-password" style="display: none"></label>
                     <input type="password" id="input-password" class="input-new-password" placeholder="Новый пароль"/><br>
 
