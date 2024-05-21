@@ -24,16 +24,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/welcome/**", "/welcomeStatic/**",
+                        .requestMatchers("/", "/welcome/**", "/welcomeStatic/**",
                                 "/events/**", "/eventsStatic/**",
                                 "/base/**", "/baseStatic/**",
                                 "/error/**", "/errorStatic/**",
                                 "/branding/**").permitAll()
-                        .requestMatchers("/security/**", "/securityStatic/**", "/registration").anonymous()
+                        .requestMatchers("/security/**", "/securityStatic/**", "/registration", "/login").anonymous()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .successForwardUrl("/welcome")
+                        .successForwardUrl("/")
                         .permitAll())
                 .logout(LogoutConfigurer::permitAll);
 

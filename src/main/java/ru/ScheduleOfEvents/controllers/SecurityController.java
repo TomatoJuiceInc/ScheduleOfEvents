@@ -41,6 +41,6 @@ public class SecurityController {
         user.setAvatarFileName("user_pic.jpg");
         registrationService.register(user);
 
-        return "redirect:/login";
+        return "redirect:/login?success";
     }
 }

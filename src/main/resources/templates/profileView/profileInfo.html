@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="base/base :: basehead">
+<head th:insert="~{base/base::baseheader}">
     <meta charset="UTF-8">
     <title>Info</title>
 
@@ -88,6 +88,6 @@
         </button>
     </form>
 </main>
-<footer th:insert="base/base :: basefooter"></footer>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </body>
 </html>
