@@ -11,11 +11,15 @@
 <main>
     <link rel="stylesheet" type="text/css" href="/profileViewStatic/css/profile.css"/>
     <div class="profile">
-        <span class="info-text" style="color: #FFFFFF;">Контактная информация</span>
-        <a class="edit-link" th:href="@{/user/edit}">редактировать</a>
-        <button class="exit-button">
-            <i class="bi bi-box-arrow-right"></i> ВЫЙТИ
-        </button>
+        <div class="profile-nav">
+            <span class="info-text" style="color: #FFFFFF;">Контактная информация</span>
+            <a class="edit-link" th:href="@{/user/edit}">редактировать</a>
+            <form class="exit-form" th:method="POST" th:action="@{/logout}">
+                <button th:method="POST" th:action="@{/logout}" class="exit-button">
+                    <i class="bi bi-box-arrow-right"></i> ВЫЙТИ
+                </button>
+            </form>
+        </div>
         <br>
         <div class="profile-info">
             <div class="avatar-username">
@@ -29,7 +33,6 @@
                 <div class="text-field">
                     <p th:class="${user.getFamilyName()} ? 'area-for-lastName-text' : 'area-for-default-lastName-name-text'" th:text="${user.getFamilyName()} ? ${user.getFamilyName()} : 'Фамилия не указана'"/>
                 </div>
-
                 <div class="text-field">
                     <p th:class="${user.getName} ? 'area-for-name-text' : 'area-for-default-name-text'" th:text="${user.getName} ? ${user.getName} : 'Имя не указано'"/>
                 </div>

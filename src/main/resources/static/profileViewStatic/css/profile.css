@@ -1,6 +1,5 @@
-main{
-	margin: 50px;
-	margin-top: 70px;
+main {
+	margin: 70px 50px 50px;
 	background-color: #000000;
 	display: grid;
 	place-items: center;
@@ -38,7 +37,7 @@ main{
 	color: #adadad;
 }
 
-.profile-info{
+.profile-info {
 	display: flex;
 }
 
@@ -50,7 +49,7 @@ main{
 	margin-bottom: 20px;
 }
 
-.username-field{
+.username-field {
 	width: 250px;
   	height: 40px;
   	background-color: #EC7F00;
@@ -64,7 +63,7 @@ main{
 	font-size: 45px;
 }
 
-.exit-button{
+.exit-button {
 	margin-left: 500px;
 	border-radius: 10px;
 	border: none;
@@ -73,6 +72,10 @@ main{
 	align-items: center;
 	height: 40px;
 	width: 130px;
+}
+
+.profile-nav {
+	display: flex;
 }
 
 .exit-button:hover{
@@ -97,6 +100,7 @@ main{
 	color: #717171;
 	text-decoration: none;
 	margin-left: 80px;
+	margin-top: 17px;
 }
 
 .event-bar li{
@@ -122,6 +126,10 @@ main{
   	color: #FFFFFF;
   	border: none;
   	margin-left: 20px;
+}
+
+.exit-form {
+	margin-top: 20px;
 }
 
 .event-link-button:hover{
