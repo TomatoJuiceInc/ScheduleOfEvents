@@ -26,8 +26,6 @@ public class UserController {
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
 
-//        userDetailsService.addTestTickets(user.getId());
-
         model.addAttribute("user", user);
         return "profileView/profileInfo";
     }
@@ -48,10 +46,6 @@ public class UserController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
-
-//        userDetailsService.addTestTickets(user.getId());
-//        userDetailsService.addTestTickets(user.getId());
-
         model.addAttribute("user", user);
         return "profileView/showEvents";
     }

@@ -64,12 +64,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .collect(Collectors.toList()));
     }
 
-//    // добавление билета в пользователя (тестовое)
-//    public void addTestTickets(long id) {
-//        User userToBeUpdated = findOne(id);
-//        sortTickets(userToBeUpdated);
-//    }
-
     @Transactional
     public void delete(long id) {
         userRepository.deleteById(id);
