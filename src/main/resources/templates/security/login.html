@@ -42,6 +42,12 @@
                 Вы успешно зарегистрировались, повторите введённые данные
             </span>
         </div>
+
+        <div th:if="${param.logout}" class="message-box-logout">
+            <span>
+                Вы вышли из аккаунта
+            </span>
+        </div>
     </form>
 </div>
 </body>
