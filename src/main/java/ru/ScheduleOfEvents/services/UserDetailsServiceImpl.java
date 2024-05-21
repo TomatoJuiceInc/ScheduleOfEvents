@@ -79,77 +79,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 new Price(200)));
         tickets.add(new Ticket("1", "1",
                 new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
-                        new Date(124, Calendar.AUGUST, 12, 13, 5,5),
-                        new Hall("Актовый зал")),
-                new Price(200)));
-        tickets.add(new Ticket("1", "1",
-                new Event("Any event",
                         new Date(124, Calendar.SEPTEMBER, 18, 13, 5,5),
+                        new Hall("Актовый зал")),
+                new Price(200)));
+        tickets.add(new Ticket("1", "1",
+                new Event("Any event",
+                        new Date(124, Calendar.SEPTEMBER, 17, 13, 5,5),
                         new Hall("Актовый зал")),
                 new Price(200)));
         tickets.add(new Ticket("1", "1",

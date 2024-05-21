@@ -28,10 +28,20 @@ public class UserController {
         String name = userDetails.getUsername();
         User user = userDetailsService.findByUsername(name);
 
-        userDetailsService.addTestTickets(user.getId());
-
         model.addAttribute("user", user);
         return "profileView/profileInfo";
+    }
+
+    @GetMapping("/showEvents")
+    public String showEvents(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String name = userDetails.getUsername();
+        User user = userDetailsService.findByUsername(name);
+        System.out.println(user.getTickets().size());
+
+        model.addAttribute("user", user);
+        return "profileView/showEvents";
     }
 
     @GetMapping("/edit")
@@ -44,19 +54,7 @@ public class UserController {
         return "profileView/edit";
     }
 
-    @GetMapping("/showEvents")
-    public String showEvents(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String name = userDetails.getUsername();
-        User user = userDetailsService.findByUsername(name);
 
-//        userDetailsService.addTestTickets(user.getId());
-//        userDetailsService.addTestTickets(user.getId());
-
-        model.addAttribute("user", user);
-        return "profileView/showEvents";
-    }
 
     @PatchMapping()
     public String update(@ModelAttribute("user") User person) {
