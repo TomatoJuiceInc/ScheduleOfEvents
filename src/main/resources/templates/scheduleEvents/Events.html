@@ -5,6 +5,7 @@
     <title>Events</title>
     <script src="/scheduleEventsStatic/script.js"></script>
     <link rel="icon" href="/branding/tomato.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/scheduleEventsStatic/events.css"/>
 </head>
 <body style="height: 2000px;">
 
@@ -13,8 +14,6 @@
 </header>
 
 <main style="margin-top: 80px;">
-    <link rel="stylesheet" type="text/css" href="/scheduleEventsStatic/events.css"/>
-
     <div class="d-flex justify-content-center position-relative mb-3">
         <div class="d-flex ms-0" role="search">
             <form th:object="${search}" th:action="@{/events/search}" th:method="post" style="display: flex; align-items: center;">

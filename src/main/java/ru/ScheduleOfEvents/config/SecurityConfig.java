@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/", "/welcome/**", "/welcomeStatic/**",
-                                "/events/**", "/eventsStatic/**",
+                                "/scheduleEvents/**", "/scheduleEventsStatic/**", "/events/**",
                                 "/base/**", "/baseStatic/**",
                                 "/error/**", "/errorStatic/**",
                                 "/branding/**").permitAll()
