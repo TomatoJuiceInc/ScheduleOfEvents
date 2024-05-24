@@ -1,17 +1,53 @@
-form {
-    margin-top: 65px;
-    scrollbar-width: none;
-}
+
 
 body {
-    width: 100%;
-    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    height: 95% !important;
     scrollbar-width: none;
+    margin: 0;
 }
 
 /* color: #ec7f00; */
 
 html {
-    width: 100%;
+    width: 100% !important;
+    height: 95% !important;
     scrollbar-width: none;
+}
+
+.wrapper {
+    font-weight: bold;
+    color: wheat;
+    font-size: 25px;
+    margin: 50px auto;
+    margin-top: 100px !important;
+    padding: 10px;
+    padding-bottom: 15px !important;
+    background-color: #ec7f00;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.wrapper a {
+    font-weight: bold;
+    font-size: 30px;
+    color: #222;
+}
+
+form {
+    margin: 5px auto;
+    padding: 10px;
+    background-color: #282828;
+    border-radius: 6px;
+}
+
+form input, select {
+    background-color: #1e1e1e;
+    border: 0;
+    border-radius: 6px;
+    color: wheat;
+    display: flex;
+    max-width: 200px;
+    max-height: 50px;
 }

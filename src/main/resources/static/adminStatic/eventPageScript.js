@@ -48,7 +48,7 @@ function sortTableByStatus() {
 
     // Toggle the sort direction for the next click
     isStatusAscending = !isStatusAscending;
-
+    displaySortMessage();
 }
 
 function sortTableByDate() {
@@ -72,6 +72,8 @@ function sortTableByDate() {
 
     // Toggle the sort direction for the next click
     isDateAscending = !isDateAscending;
+
+    displaySortMessage();
 }
 
 function openSortOptions() {
@@ -90,3 +92,14 @@ window.onclick = function(event) {
     }
 }
 
+function displaySortMessage() {
+    var messageDiv = document.getElementById("sortMessage");
+    messageDiv.classList.add("shake");
+    messageDiv.style.display = "block";
+
+    // Hide the message after 3 seconds
+    setTimeout(function() {
+        messageDiv.style.display = "none";
+        messageDiv.classList.remove("shake");
+    }, 3000);
+}

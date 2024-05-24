@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <title>Ongoing</title>
+    <title>Events</title>
     <script src="/adminStatic/eventPageScript.js"></script></head>
 
 <link rel="stylesheet" type="text/css" href="/adminStatic/events.css">
@@ -14,14 +14,14 @@
 </header>
 <div th:class="second-header">
     <a th:id="pastLink" href="/admin/events?choice=past">Прошедшие</a>
-    <a th:id="currentLink" href="/admin/events?choice=current">Текущие</a>
+    <a th:id="currentLink" href="/admin/events?choice=current">Ближайшие</a>
     <a th:id="requestsLink" th:href="@{/admin/events/requests}">Запросы</a>
 </div>
 
 <div th:class="filter" onclick="openSortOptions()" >
     <img src="/adminStatic/filter_icon.png" alt="filter">
     <div th:class="text">
-        <a>filter</a>
+        <a>фильтр</a>
     </div>
 </div>
 
@@ -60,10 +60,15 @@
 <div id="sortModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeSortOptions()">&times;</span>
-        <button onclick="sortTableByStatus()">Sort by Status</button>
-        <button onclick="sortTableByDate()">Sort by Date</button>
+        <div th:class="container">
+            <button onclick="sortTableByStatus()">по статусу</button>
+            <button onclick="sortTableByDate()">по дате</button>
+        </div>
+        <a>Нажмите на кнопку несколько раз для сортировки в другом направлении</a>
     </div>
 </div>
+
+<div id="sortMessage">Мероприятия отсортированы</div>
 
 <button onclick="topFunction()" id="scrollBtn" title="Go to top">TOP</button>
 <footer th:insert="~{base/base::basefooter}"></footer>
