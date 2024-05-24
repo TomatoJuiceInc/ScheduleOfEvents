@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
+import ru.ScheduleOfEvents.services.UserUpdateService;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
     private final UserDetailsServiceImpl userDetailsService;
+    private final UserUpdateService userUpdateService;
 
     @GetMapping()
     public String show(Model model) {
@@ -59,7 +61,7 @@ public class UserController {
         if (person.getName().isEmpty()) person.setName(null);
         if (person.getSurname().isEmpty()) person.setSurname(null);
         if (person.getFamilyName().isEmpty()) person.setFamilyName(null);
-        userDetailsService.update(user.getId(), person);
+        userUpdateService.update(user.getId(), person);
         return "redirect:/user";
     }
 }

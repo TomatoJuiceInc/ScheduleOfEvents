@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.repositories.UserRepository;
@@ -42,19 +43,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public User findByUsername(String username){
         return userRepository.findByUsername(username).orElse(null);
-    }
-
-    @Transactional
-    public void update(long id, User updatedUser) {
-        User userToBeUpdated = findOne(id);
-
-        userToBeUpdated.setFamilyName(updatedUser.getFamilyName());
-        userToBeUpdated.setName(updatedUser.getName());
-        userToBeUpdated.setSurname(updatedUser.getSurname());
-        userToBeUpdated.setEmail(updatedUser.getEmail());
-        if (!(updatedUser.getPassword() == null || updatedUser.getPassword().isEmpty())) {
-            userToBeUpdated.setPassword(updatedUser.getPassword());
-        }
     }
 
     // сортировка билетов
