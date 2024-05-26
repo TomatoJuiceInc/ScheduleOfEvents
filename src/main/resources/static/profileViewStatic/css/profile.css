@@ -32,7 +32,7 @@ main {
 	color: #FFFFFF;
 }
 
-.area-for-default-name-text, .area-for-default-secondLastName-text, .area-for-default-lastName-name-text {
+.area-for-default-name-text, .area-for-default-secondLastName-text, .area-for-default-lastName-name-text, .area-for-default-mail-text {
 	font-size: 20px;
 	color: #adadad;
 }
@@ -64,7 +64,6 @@ main {
 }
 
 .exit-button {
-	margin-left: 500px;
 	border-radius: 10px;
 	border: none;
 	background-color: #f52020;
@@ -72,6 +71,23 @@ main {
 	align-items: center;
 	height: 40px;
 	width: 130px;
+}
+.action-button {
+	display: flex;
+	justify-content: flex-end;
+	width: 640px;
+	height: 67px;
+}
+.requests-button {
+	margin-top: 18px;
+	margin-right: 50px;
+	border-radius: 10px;
+	border: none;
+	background-color: #ec7f00;
+	color: white;
+	align-items: center;
+	height: 40px;
+	width: 160px;
 }
 
 .profile-nav {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="~{base/base::baseheader}">
     <meta charset="UTF-8">
     <title>Info</title>
@@ -14,18 +15,30 @@
         <div class="profile-nav">
             <span class="info-text" style="color: #FFFFFF;">Контактная информация</span>
             <a class="edit-link" th:href="@{/user/edit}">редактировать</a>
-            <form class="exit-form" th:method="POST" th:action="@{/logout}">
-                <button th:method="POST" th:action="@{/logout}" class="exit-button">
-                    <i class="bi bi-box-arrow-right"></i> ВЫЙТИ
-                </button>
-            </form>
+            <div class="action-button">
+                <form sec:authorize="hasAnyAuthority('VIP', 'ADMIN')" class="requests-form" th:method="GET" th:action="@{/create-event}">
+                    <button class="requests-button">
+                        ПОДАТЬ ЗАЯВКУ
+                    </button>
+                </form>
+                <form sec:authorize="hasAuthority('ADMIN')" class="requests-form" th:method="GET" th:action="@{/admin/events}">
+                    <button class="requests-button">
+                        МЕРОПРИЯТИЯ
+                    </button>
+                </form>
+                <form class="exit-form" th:method="POST" th:action="@{/logout}">
+                    <button class="exit-button">
+                        <i class="bi bi-box-arrow-right"></i> ВЫЙТИ
+                    </button>
+                </form>
+            </div>
         </div>
         <br>
         <div class="profile-info">
             <div class="avatar-username">
                 <img th:src="@{'/profileViewStatic/images/user_pic.jpg'}" alt="Картинка" class="image">
                 <div class="username-field">
-                    <p class="username-text" th:text="${user.getUsername()}">@Username</p>
+                    <p class="username-text" th:text="${'@' + user.getUsername()}"/>
                 </div>
             </div>
 
@@ -40,8 +53,9 @@
                     <p th:class="${user.getSurname()} ? 'area-for-secondLastName-text' : 'area-for-default-secondLastName-text'" th:text="${user.getSurname()} ? ${user.getSurname()} : 'Отчество не указано'"/>
                 </div>
                 <div class="text-field">
-                    <p class="area-for-mail-text" th:text="${user.getEmail()}"/>
+                    <p th:class="${user.getEmail()} ? 'area-for-mail-text' : 'area-for-default-mail-text'" th:text="${user.getEmail()} ? ${user.getEmail()} : 'Почта не указана'"/>
                 </div>
+
             </div>
 
             <img src="/profileViewStatic/images/Реклама.png" alt="Картинка" class="add-image">
