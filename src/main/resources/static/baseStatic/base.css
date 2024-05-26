@@ -34,6 +34,10 @@ body {
     align-items: center;
 }
 
+.nav-item {
+    margin-right: 5px;
+}
+
 .bi-door-open {
     color: orange;
     font-size: large;
