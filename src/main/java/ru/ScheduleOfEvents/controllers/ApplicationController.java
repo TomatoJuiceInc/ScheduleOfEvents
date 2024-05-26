@@ -2,6 +2,7 @@ package ru.ScheduleOfEvents.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Controller
+@PreAuthorize("hasAnyAuthority('VIP', 'ADMIN')")
 @RequiredArgsConstructor
 public class ApplicationController {
     private final ApplicationService applicationService;
