@@ -46,7 +46,9 @@ public class User {
     @Column(name = "phone_number")
     private String phone_number;
 
-    private String role;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Min(value = 0)
     @Column(name = "age")
