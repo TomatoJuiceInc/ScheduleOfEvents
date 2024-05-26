@@ -21,12 +21,12 @@ public class RegistrationService {
         userRepository.save(user);
     }
 
-    public User findOne(long id){
+    public User findOne(long id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @Transactional
-    public void save(User user){
+    public void save(User user) {
         userRepository.save(user);
     }
 }

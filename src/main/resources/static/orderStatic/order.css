@@ -1,8 +1,9 @@
-body{
+body {
     background-color: #1c1b1b;
     position: relative;
     min-height: 100%;
 }
+
 svg {
     display: block;
     /*margin: 20px auto 0;*/
@@ -10,22 +11,27 @@ svg {
     background-color: #1c1b1b;
 
 }
+
 .seat {
     /*fill: #00c5ff;*/
     user-select: none;
 
 }
+
 .seat.selected {
     fill: red;
 }
+
 .seat, text {
     cursor: pointer;
 }
-.submit-container{
+
+.submit-container {
     position: absolute;
     right: 100px;
 
 }
+
 #tooltip {
     position: absolute;
     display: none;
@@ -49,7 +55,6 @@ svg {
 }
 
 
-
 .table-container {
     padding: 0 20px;
 }
@@ -63,7 +68,7 @@ table {
 
 th, td {
     color: whitesmoke;
-    font-family: "Arialsans-serif",serif;
+    font-family: "Arialsans-serif", serif;
     padding: 8px;
     text-align: center;
 }
@@ -75,9 +80,11 @@ th, td {
     display: inline-block;
     margin-right: 5px;
 }
+
 .table-container {
     margin-top: 30px;
 }
+
 .btn-sb {
     background-color: #8D917A;
     color: white;
@@ -90,6 +97,7 @@ th, td {
 .btn-sb:hover {
     background-color: #DDADAF;
 }
+
 .event-name {
     color: #cccccc;
     text-align: center;

@@ -1,21 +1,21 @@
-p{
+p {
     margin-bottom: 5px;
 }
 
-.edit-page{
+.edit-page {
     display: grid;
     place-items: center;
     margin-top: 90px;
 }
 
-.text-editing{
+.text-editing {
 }
 
-.fields-for-editing{
+.fields-for-editing {
     display: flex;
 }
 
-.return-on-profile-button{
+.return-on-profile-button {
     width: 300px;
     height: 35px;
     background-color: #EC7F00;
@@ -27,24 +27,24 @@ p{
     margin-bottom: 10px;
 }
 
-.return-on-profile-button:hover{
+.return-on-profile-button:hover {
     background-color: #BC6500;
 }
 
-.return-on-profile-button:active{
+.return-on-profile-button:active {
     background-color: #aa4500;
 }
 
-.familyName-text, .name-text, .surname-text, .email-text, .password-text{
+.familyName-text, .name-text, .surname-text, .email-text, .password-text {
     color: #FFFFFF;
     font-size: 20px;
 }
 
-.familyName-text{
+.familyName-text {
     margin-top: 0px;
 }
 
-.name-text, .surname-text, .email-text, .password-text{
+.name-text, .surname-text, .email-text, .password-text {
     margin-top: 10px;
 }
 
@@ -58,32 +58,32 @@ input {
     color: white;
 }
 
-input:focus{
+input:focus {
     outline: none;
     color: white;
 }
 
-input::placeholder{
+input::placeholder {
     color: #8A8A8A;
 }
 
-.input-new-password, .input-repeat-new-password{
+.input-new-password, .input-repeat-new-password {
     margin-top: 10px;
 }
 
-.image-editing{
+.image-editing {
     margin-left: 70px;
     margin-top: 15px;
 }
 
-.image{
+.image {
     width: 250px;
     height: 330px;
     border-radius: 20px;
     border: 5px solid #8A8A8A;
 }
 
-.custom-button{
+.custom-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,22 +119,22 @@ input::placeholder{
     color: #ffffff;
 }
 
-.bi-camera{
+.bi-camera {
     margin-right: 5px;
 }
 
-.image-edit-button{
+.image-edit-button {
     border-radius: 10px;
     margin-top: 15px;
     margin-left: 30px;
 }
 
-.save-changes-button-field{
+.save-changes-button-field {
     display: flex;
     justify-content: center;
 }
 
-.save-changes-button{
+.save-changes-button {
     width: 250px;
     height: 45px;
     background-color: #81AA29;
@@ -146,10 +146,10 @@ input::placeholder{
     margin-top: 20px;
 }
 
-.save-changes-button:hover{
+.save-changes-button:hover {
     background-color: #678820;
 }
 
-.save-changes-button:active{
+.save-changes-button:active {
     background-color: #aa4500;
 }

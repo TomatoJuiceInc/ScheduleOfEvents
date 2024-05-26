@@ -1,18 +1,18 @@
-:root{
-    --primary-color : #f9b23c;
+:root {
+    --primary-color: #f9b23c;
     --primary-color-dark: #f49a20;
     --text-dark: #333333;
     --text-light: #767268;
     --extra-light: black;
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.error-container{
+.error-container {
 
     height: 100vh;
     padding-top: 50px;
@@ -24,14 +24,15 @@
     color: var(--text-dark);
     flex-direction: column;
 }
-.error-container img{
+
+.error-container img {
     width: 100%;
     max-width: 600px;
     margin-bottom: 20px;
 }
 
 
-.error-text{
+.error-text {
     width: 90%;
     display: grid;
     gap: 2rem;

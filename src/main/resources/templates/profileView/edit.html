@@ -36,7 +36,8 @@
                     <input type="text" th:field="*{surname}" id="surname" placeholder="Ввести..."/>
 
                     <label for="username" style="display: none"></label>
-                    <input type="text" class="input-username" th:field="*{username}" id="username" style="display: none"/>
+                    <input type="text" class="input-username" th:field="*{username}" id="username"
+                           style="display: none"/>
 
                     <p class="email-text">Почта</p>
                     <label for="new-email" style="display: none"></label>
@@ -47,19 +48,22 @@
                     <p class="password-text">Пароль</p>
 
                     <label for="oldPassword" style="display: none"></label>
-                    <input type="hidden" th:field="*{password}" id="oldPassword" />
+                    <input type="hidden" th:field="*{password}" id="oldPassword"/>
 
                     <label for="input-password" style="display: none"></label>
-                    <input type="password" id="input-password" class="input-new-password" placeholder="Новый пароль"/><br>
+                    <input type="password" id="input-password" class="input-new-password"
+                           placeholder="Новый пароль"/><br>
 
                     <label for="repeat-password" style="display: none"></label>
-                    <input type="password" id="repeat-password" class="input-repeat-new-password" placeholder="Повторите новый пароль"/>
+                    <input type="password" id="repeat-password" class="input-repeat-new-password"
+                           placeholder="Повторите новый пароль"/>
                     <br>
                     <span id="repeat-password-error" style="color: red;"></span>
                 </div>
                 <div class="image-editing">
                     <div class="boom">
-                        <img th:src="@{'/profileViewStatic/images/' + ${user.avatarFileName}}" alt="Картинка" class="image">
+                        <img th:src="@{'/profileViewStatic/images/' + ${user.avatarFileName}}" alt="Картинка"
+                             class="image">
                         <br>
                         <div class="image-edit-button">
                             <label for="file-upload" class="custom-button">

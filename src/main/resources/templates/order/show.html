@@ -4,7 +4,7 @@
 <head th:fragment="basehead">
     <title>Выбор мест</title>
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css"  href="/orderStatic/order.css">
+    <link rel="stylesheet" type="text/css" href="/orderStatic/order.css">
 </head>
 <header th:insert="~{base/base::baseheader}">
 </header>
@@ -18,7 +18,7 @@
         <h1 class="event-name" th:text="${event.getName()}"></h1>
         <h2 class="event-date" th:text="'КСК Уникс | ' + ${time}">Date and Time: </h2>
         <h2 class="event-date" th:text="${event.getDescription()}">desc </h2>
-        <h2 class="event-date" th:text="'Длительность: ' + ${event.getDuration()} + ' минут'" >desc  </h2>
+        <h2 class="event-date" th:text="'Длительность: ' + ${event.getDuration()} + ' минут'">desc </h2>
     </div>
 
 
@@ -48,12 +48,12 @@
 
 
 <div class="submit-container">
-    <form id="booking-form" th:action="@{/order/more/{event}(event=${event.getId()})}" th:method="POST" th:object="${seatData}">
-        <input th:field="*{seat}"  type="hidden" id="selectedSeats" th:value="${seatData.seat}"/>
+    <form id="booking-form" th:action="@{/order/more/{event}(event=${event.getId()})}" th:method="POST"
+          th:object="${seatData}">
+        <input th:field="*{seat}" type="hidden" id="selectedSeats" th:value="${seatData.seat}"/>
         <button id="reservation-button" type="submit" class="btn-sb">Купить</button>
     </form>
 </div>
-
 
 
 <script src="/orderStatic/reservation.js"></script>

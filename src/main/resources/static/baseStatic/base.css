@@ -2,39 +2,45 @@ html {
     position: relative;
     min-height: 100%;
 }
-.nav-link{
+
+.nav-link {
     color: #fff;
     display: flex;
     align-items: center;
 }
-.navbar{
+
+.navbar {
     height: 68px;
     display: flex;
     align-items: center;
 }
+
 .navbar-custom {
     background-color: black;
 }
-.custom-footer{
+
+.custom-footer {
     background-color: black;
 }
-body{
+
+body {
     height: 100vh;
-    background-color:  black;
+    background-color: black;
 }
+
 .navbar-nav {
     margin-left: 20px;
     display: flex;
     align-items: center;
 }
 
-.bi-door-open{
+.bi-door-open {
     color: orange;
     font-size: large;
     margin-right: 4px;
 }
 
-.bx-user-circle{
+.bx-user-circle {
     color: orange;
     font-size: large;
     margin-top: 1px;
@@ -51,6 +57,7 @@ body{
     background-color: black;
     color: #fff;
 }
+
 .bi-ticket-perforated {
     color: orange;
     font-size: x-large;

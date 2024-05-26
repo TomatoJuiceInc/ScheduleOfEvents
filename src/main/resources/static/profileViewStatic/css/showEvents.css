@@ -1,4 +1,4 @@
-main{
+main {
     margin-top: 70px;
     background-color: #000000;
     display: grid;
@@ -6,18 +6,18 @@ main{
     zoom: 90%;
 }
 
-.events{
+.events {
     margin-top: 30px;
     display: grid;
     place-items: center;
 }
 
-.name{
+.name {
     margin-bottom: 20px;
     color: white;
 }
 
-.return-on-profile-button{
+.return-on-profile-button {
     width: 300px;
     height: 35px;
     background-color: #EC7F00;
@@ -28,26 +28,26 @@ main{
     margin-bottom: 60px;
 }
 
-.return-on-profile-button:hover{
+.return-on-profile-button:hover {
     background-color: #BC6500;
 }
 
-.return-on-profile-button:active{
+.return-on-profile-button:active {
     background-color: #aa4500;
 }
 
-.list-element{
+.list-element {
     display: flex;
     align-items: center;
 }
 
-.event-bar li{
+.event-bar li {
     list-style-type: none;
     display: inline-block;
     margin-right: 40px;
 }
 
-.event-bar{
+.event-bar {
     width: 1000px;
     height: 45px;
     background-color: #3E3E3E;
@@ -57,7 +57,7 @@ main{
     align-items: center;
 }
 
-.event-link-button{
+.event-link-button {
     width: 200px;
     height: 45px;
     background-color: #EC7F00;
@@ -68,11 +68,11 @@ main{
     margin-left: 20px;
 }
 
-.event-link-button:hover{
+.event-link-button:hover {
     background-color: #DA6606;
 }
 
-.list-element{
+.list-element {
     display: flex;
 }
 
@@ -80,36 +80,36 @@ main{
     width: 135px;
 }
 
-.name-place-info{
+.name-place-info {
     width: 175px;
 }
 
-.date-info{
+.date-info {
     width: 200px;
 }
 
-.seat-place-info{
+.seat-place-info {
     width: 160px;
 }
 
-.price-info{
+.price-info {
     width: 70px;
 }
 
-.name-event-info, .name-place-info, .date-info, .seat-place-info, .price-info{
+.name-event-info, .name-place-info, .date-info, .seat-place-info, .price-info {
     color: #FFFFFF;
 }
 
-.bi-geo-alt-fill, .bi-calendar3, .bi-ticket-perforated, .bi-tag-fill{
+.bi-geo-alt-fill, .bi-calendar3, .bi-ticket-perforated, .bi-tag-fill {
     color: #EC7F00;
 }
 
-.bi-ticket-perforated{
+.bi-ticket-perforated {
     position: relative;
     top: 3px;
 }
 
-.event-link-button{
+.event-link-button {
     width: 200px;
     height: 45px;
     background-color: #EC7F00;
@@ -120,6 +120,6 @@ main{
     margin-left: 20px;
 }
 
-.event-link-button:hover{
+.event-link-button:hover {
     background-color: #DA6606;
 }

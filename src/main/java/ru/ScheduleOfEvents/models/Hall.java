@@ -31,7 +31,7 @@ public class Hall {
     private int count_seats;
 
 
-    @OneToMany(mappedBy = "hall",  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL)
 
     private List<Event> events;
 

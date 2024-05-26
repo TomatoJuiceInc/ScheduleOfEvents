@@ -11,8 +11,9 @@ public class WelcomeController {
     public String showPage() {
         return "welcome/welcome";
     }
+
     @PostMapping()
-    public String redirectForWelcomePage(){
+    public String redirectForWelcomePage() {
         return "redirect:/";
     }
 }

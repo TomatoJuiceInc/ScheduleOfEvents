@@ -4,7 +4,6 @@ public class SeatData {
     private String seat;
 
 
-
     public String getSeat() {
         return seat;
     }

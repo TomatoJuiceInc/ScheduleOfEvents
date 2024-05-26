@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:fragment="basehead">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Events</title>
     <script src="/scheduleEventsStatic/script.js"></script>
     <link rel="icon" href="/branding/tomato.png" type="image/x-icon">
@@ -16,11 +16,13 @@
 <main style="margin-top: 80px;">
     <div class="d-flex justify-content-center position-relative mb-3">
         <div class="d-flex ms-0" role="search">
-            <form th:object="${search}" th:action="@{/events/search}" th:method="post" style="display: flex; align-items: center;">
+            <form th:object="${search}" th:action="@{/events/search}" th:method="post"
+                  style="display: flex; align-items: center;">
                 <button type="submit" class="btn btn-success me-2">
                     <i class="bi bi-search"></i>
                 </button>
-                <input th:value="${thirdParam}" th:field="*{name}" id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="margin-right: 2px;">
+                <input th:value="${thirdParam}" th:field="*{name}" id="search-input" class="form-control me-2"
+                       type="search" placeholder="Search" aria-label="Search" style="margin-right: 2px;">
             </form>
             <button class="btn btn-outline-secondary me-2" onclick="toggleList()" id="filter">
                 <i class="bi bi-filter-right"></i>
@@ -32,13 +34,16 @@
             </form>
 
             <div id="listContainer">
-                <form th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${'age'},thirdParam=${thirdParam},page=${page})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${'age'},thirdParam=${thirdParam},page=${page})}"
+                      th:method="post">
                     <button type="submit" class="transparent-button">По возрасту</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${'ageReverse'},thirdParam=${thirdParam},page=${page})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${'ageReverse'},thirdParam=${thirdParam},page=${page})}"
+                      th:method="post">
                     <button type="submit" class="transparent-button">По возрасту убывание</button>
                 </form>
-                <form th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${'date'},thirdParam=${thirdParam},page=${page})}" th:method="post">
+                <form th:action="@{/events/{firstParam}/{thirdParam}/{page}(firstParam=${'date'},thirdParam=${thirdParam},page=${page})}"
+                      th:method="post">
                     <button type="submit" class="transparent-button">По дате мероприятия</button>
                 </form>
             </div>
@@ -70,7 +75,8 @@
                                     <span th:text="${data.getDuration()}"></span>
                                 </div>
                             </div>
-                            <a th:if="${data != null }" class="text-decoration-none mt-auto" th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()})}">КУПИТЬ БИЛЕТЫ</a>
+                            <a th:if="${data != null }" class="text-decoration-none mt-auto"
+                               th:href="@{/order(type=${data.getHall().getId()}, e=${data.getId()})}">КУПИТЬ БИЛЕТЫ</a>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 div.container.mt-5 {
     display: flex;
     justify-content: center; /* Centers horizontally */
-    align-items: center;    /* Centers vertically */
-    min-height: 100vh;      /* Makes sure the container fills the screen height */
+    align-items: center; /* Centers vertically */
+    min-height: 100vh; /* Makes sure the container fills the screen height */
 }
 
 html {
@@ -21,7 +21,7 @@ body {
     border: none; /* Remove default card border */
     border-radius: 10px; /* Round the corners */
     overflow: hidden; /* Ensure the image stays within the rounded corners */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .card-img-top {
@@ -64,25 +64,30 @@ body {
     margin-right: 6px; /* Space between icon and text */
 }
 
-.bi-calendar4-week{
+.bi-calendar4-week {
     color: orange;
     font-size: x-large;
 }
-.bi-clock{
+
+.bi-clock {
     color: orange;
     font-size: x-large;
     padding-left: 30px;
 }
-.card-subtitle{
+
+.card-subtitle {
     color: gray;
 }
+
 .text-decoration-none:hover {
     color: orange /* Оранжевый цвет текста */
 }
+
 .text-decoration-none {
     color: white;
     transition: color 0.3s;
 }
+
 .custom-form {
     /* Add styles for the form */
     margin-bottom: 10px;

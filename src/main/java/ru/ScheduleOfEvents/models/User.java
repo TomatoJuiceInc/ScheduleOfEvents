@@ -54,9 +54,9 @@ public class User {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "owner",  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Event> events;
 
-    @OneToMany(mappedBy = "ownerTicket",  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ownerTicket", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 }

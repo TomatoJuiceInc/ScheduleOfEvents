@@ -17,12 +17,12 @@ public class EventsService {
 
     private final EventRepository eventRepository;
 
-    public Event findOne(int id){
+    public Event findOne(int id) {
         return eventRepository.findById(id).orElse(null);
     }
 
     @Transactional
-    public void save(Event event){
+    public void save(Event event) {
         eventRepository.save(event);
     }
 
@@ -54,6 +54,7 @@ public class EventsService {
     public List<Event> findAll() {
         return eventRepository.findAll();
     }
+
     public List<Event> findEventByDateBefore() {
         return eventRepository.findEventsByDateBefore(new Date());
     }
@@ -79,14 +80,16 @@ public class EventsService {
     }
 
 
-    public List<Event> findAllByName(String name){
+    public List<Event> findAllByName(String name) {
         return eventRepository.findAllByNameStartingWith(name);
     }
-    public List<Event> findAllByCategory(String category){
+
+    public List<Event> findAllByCategory(String category) {
         return eventRepository.findAllByCategoryIsStartingWith(category);
     }
-    public List<Event> findAllByCategoryOrName(String name){
-        return eventRepository.findAllByNameStartingWithOrCategoryStartingWith(name,name);
+
+    public List<Event> findAllByCategoryOrName(String name) {
+        return eventRepository.findAllByNameStartingWithOrCategoryStartingWith(name, name);
     }
 }
 

@@ -15,7 +15,7 @@ import ru.ScheduleOfEvents.models.MailStructure;
 @Service
 public class MailService {
 
-    private  final JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     private final SpringTemplateEngine templateEngine;
 

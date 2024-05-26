@@ -1,8 +1,7 @@
-#card-number-field, #cvv,  #owner, #card-dur {
+#card-number-field, #cvv, #owner, #card-dur {
     border: none;
     outline: none;
 }
-
 
 
 .creditCardForm {
@@ -49,8 +48,6 @@
 }
 
 
-
-
 .creditCardForm .payment .btn {
     display: block;
     margin-top: 3px;
@@ -75,11 +72,9 @@
 }
 
 
-
-.labels-p{
+.labels-p {
     width: 70%;
 }
-
 
 
 .inputBox {
@@ -88,7 +83,8 @@
 
     /*width: 200px;*/
 }
-.inputBox input{
+
+.inputBox input {
 
     width: 100%;
     background: transparent;
@@ -100,7 +96,8 @@
     letter-spacing: 0.1em;
     padding: 10px 0 5px;
 }
-.inputBox span{
+
+.inputBox span {
     position: absolute;
     left: 0;
     padding: 10px 0 5px;
@@ -112,25 +109,24 @@
     transition: 0.5s;
 }
 
-.inputBox input:valid ~ span,.inputBox input:focus ~ span
-{
+.inputBox input:valid ~ span, .inputBox input:focus ~ span {
     color: #2196f3;
     transform: translateY(-16px);
     font-size: 0.65em;
 }
 
-.inputBox i{
+.inputBox i {
     position: absolute;
     left: 0;
     bottom: 0;
 
     width: 83%;
     height: 2px;
-    background: #008B8B ;
+    background: #008B8B;
     overflow: hidden;
 }
-.inputBox i::before
-{
+
+.inputBox i::before {
     content: '';
     position: absolute;
     left: -100%;
@@ -142,29 +138,33 @@
     animation: animate 2s linear infinite;
     transition: 0.5s;
 }
+
 .inputBox input:valid ~ i::before,
-.inputBox input:focus ~ i::before{
+.inputBox input:focus ~ i::before {
     left: 0;
 }
-@keyframes  animate
-{
+
+@keyframes animate {
 
     0% {
         background-position-x: 0;
     }
-    100%{
+    100% {
         background-position-x: 250px;
     }
 }
+
 .form-group-second {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
+
 .center-content {
     max-width: 600px;
 }
+
 @media (max-width: 768px) {
     .creditCardForm {
         margin: 50px 10px;

@@ -131,7 +131,7 @@ body {
 
 .message-box-success {
     margin-top: 15px;
-    background-color: rgb(131,185,16);
+    background-color: rgb(131, 185, 16);
     padding: 10px;
     border: 1px solid green;
     width: 420px;
@@ -143,7 +143,7 @@ body {
 
 .message-box-error {
     margin-top: 15px;
-    background-color: rgb(205,23,23);
+    background-color: rgb(205, 23, 23);
     padding: 10px;
     border: 1px solid red;
     width: 420px;

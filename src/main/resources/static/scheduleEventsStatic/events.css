@@ -2,25 +2,31 @@
     display: flex;
     align-items: center;
 }
+
 .icon-with-date i {
     margin-right: 6px;
 }
-.bi-calendar4-week{
+
+.bi-calendar4-week {
     color: orange;
     font-size: x-large;
 }
-.bi-clock{
+
+.bi-clock {
     color: orange;
     font-size: x-large;
     padding-left: 30px;
 }
-.bi-hourglass-split{
+
+.bi-hourglass-split {
     color: orange;
     font-size: xx-large;
 }
-.card-subtitle{
+
+.card-subtitle {
     color: gray;
 }
+
 .age-rating {
     position: absolute;
     top: 7px; /* Положение возрастного ценза относительно верхнего края */
@@ -30,10 +36,12 @@
     border-radius: 5px; /* Скругление углов возрастного ценза */
     font-size: 19px; /* Размер шрифта возрастного ценза */
 }
+
 .text-decoration-none:hover {
     color: orange /* Оранжевый цвет текста */
 }
-.text-decoration-none{
+
+.text-decoration-none {
     color: white;
     transition: color 0.3s;
 }
@@ -49,7 +57,8 @@
     display: none;
     z-index: 999; /* Ensure it appears above other content */
 }
-#listContainer a{
+
+#listContainer a {
     text-decoration: none;
 }
 
@@ -74,6 +83,7 @@
     display: flex;
     justify-content: center;
 }
+
 .btn-page {
     border: none; /* Убираем границу */
     color: black; /* Цвет текста */
@@ -81,10 +91,12 @@
     padding: 0.375rem 0.75rem;
     transition: color 0.3s; /* Плавный переход для цвета текста */
 }
+
 .btn-page:hover {
     background-color: transparent; /* Прозрачный фон при наведении */
     color: #ff9800; /* Изменяем цвет текста при наведении */
 }
+
 .page-item.active .btn-page {
     background-color: transparent; /* Прозрачный фон для активного элемента */
     color: #ff9800; /* Цвет текста для активного элемента */
