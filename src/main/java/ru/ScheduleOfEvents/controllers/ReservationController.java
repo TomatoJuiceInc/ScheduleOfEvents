@@ -75,7 +75,7 @@ public class ReservationController {
     }
 
     @PostMapping("/more/{event}")
-    public String bookSeats(@ModelAttribute("seatData") SeatData seatData,
+    public String checkSeats(@ModelAttribute("seatData") SeatData seatData,
                             @PathVariable("event") int event) {
 
 
