@@ -36,6 +36,7 @@ public class AdminController {
         } else {
             switch (choice) {
                 case "past":
+                    System.out.println(eventsService.findEventByDateBefore().size());
                     model.addAttribute("events", eventsService.findEventByDateBefore());
                     break;
                 case "current":
@@ -105,6 +106,7 @@ public class AdminController {
                         .atZone(ZoneId.systemDefault())
                         .toInstant())
         );
+        updatedEvent.setOwner(eventsService.findEventById(id).getOwner());
         eventsService.updateEvent(id, updatedEvent);
         return updatedEvent.getDate().after(new Date()) ? "redirect:/admin/events?choice=current" : "redirect:/admin/events?choice=past";
     }

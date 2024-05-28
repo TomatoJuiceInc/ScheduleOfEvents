@@ -70,5 +70,21 @@ public class Event {
         return Integer.parseInt(str1) - Integer.parseInt(str2);
     }
 
-
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", status=" + status +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", duration=" + duration +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", age='" + age + '\'' +
+                ", owner=" + owner +
+                ", tickets=" + tickets +
+                ", prices=" + prices +
+                ", hall=" + hall +
+                '}';
+    }
 }

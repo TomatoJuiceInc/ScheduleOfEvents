@@ -15,7 +15,8 @@
 <div th:class="second-header">
     <a th:id="pastLink" href="/admin/events?choice=past">Прошедшие</a>
     <a th:id="currentLink" href="/admin/events?choice=current">Ближайшие</a>
-    <a th:id="requestsLink" th:href="@{/admin/events/requests}">Запросы</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/application}">Запросы</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/vip-application}">VIP -Запросы</a>
 </div>
 
 <div th:class="filter" onclick="openSortOptions()" >
@@ -43,7 +44,7 @@
         <tr th:each="event : ${events}">
             <td th:text="${event.getId()}"></td>
             <td th:text="${event.getName()}"></td>
-            <td th:text="${event.getOwner()}"></td>             <!-- TODO Add .getEmail() -->
+            <td th:text="${event.getOwner().getEmail()}"></td>             <!-- TODO Add .getEmail() -->
             <td th:text="${event.getDescription()}"></td>
             <td th:text="${event.getHall()}"></td>
             <td th:text="${#dates.format(event.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
