@@ -8,14 +8,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ru.ScheduleOfEvents.models.User;
 import ru.ScheduleOfEvents.services.RegistrationService;
 import ru.ScheduleOfEvents.util.UserValidator;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping()
 public class SecurityController {
     private final UserValidator userValidator;
     private final RegistrationService registrationService;
@@ -33,7 +31,7 @@ public class SecurityController {
 
     @PostMapping("/registration")
     public String performRegistrationPage(@ModelAttribute("user") @Valid User user,
-                                    BindingResult bindingResult) {
+                                          BindingResult bindingResult) {
 
         userValidator.validate(user, bindingResult);
 
@@ -43,6 +41,6 @@ public class SecurityController {
         user.setAvatarFileName("user_pic.jpg");
         registrationService.register(user);
 
-        return "redirect:/login";
+        return "redirect:/login?success";
     }
 }

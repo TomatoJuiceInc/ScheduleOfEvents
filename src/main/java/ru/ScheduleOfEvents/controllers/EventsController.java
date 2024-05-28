@@ -1,6 +1,6 @@
 package ru.ScheduleOfEvents.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +12,6 @@ import ru.ScheduleOfEvents.models.Event;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.util.InputTextExtractor;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
@@ -22,17 +21,14 @@ import java.util.stream.IntStream;
 
 
 @Controller
-@RequestMapping()
+@RequiredArgsConstructor
+@RequestMapping("/events")
 public class EventsController {
     private final EventsService eventsService;
-    @Autowired
-    public EventsController(EventsService eventsService) {
-        this.eventsService = eventsService;
-    }
 
-    @GetMapping("/events")
-    public String showEvents(@RequestParam(value = "firstParam",required = false,defaultValue = "defaultFirst") String firstParam,
-                             @RequestParam(value = "thirdParam",required = false,defaultValue = "defaultThird") String thirdParam,
+    @GetMapping()
+    public String showEvents(@RequestParam(value = "firstParam", required = false, defaultValue = "defaultFirst") String firstParam,
+                             @RequestParam(value = "thirdParam", required = false, defaultValue = "defaultThird") String thirdParam,
                              @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                              @RequestParam(value = "limit", required = false, defaultValue = "6") int limit,
                              Model model) {
@@ -43,7 +39,7 @@ public class EventsController {
         if (!thirdParam.equals("defaultThird")) {
             eventList = eventsService.findAllByCategoryOrName(thirdParam);
         }
-        if (!firstParam.equals("defaultFirst")){
+        if (!firstParam.equals("defaultFirst")) {
             eventList = eventList.stream().sorted(new Comparator<Event>() {
                 @Override
                 public int compare(Event o1, Event o2) {
@@ -59,30 +55,32 @@ public class EventsController {
         }
         Page<Event> eventPage = convertListToPage(eventList, pageable);
 
-        model.addAttribute("event",eventPage);
-        model.addAttribute ("numbers", IntStream.range(0,eventPage.getTotalPages()).toArray());
+        model.addAttribute("event", eventPage);
+        model.addAttribute("numbers", IntStream.range(0, eventPage.getTotalPages()).toArray());
 
         model.addAttribute("firstParam", firstParam);
         model.addAttribute("thirdParam", thirdParam);
-        model.addAttribute("page",page);
-        model.addAttribute("search",new InputTextExtractor());
+        model.addAttribute("page", page);
+        model.addAttribute("search", new InputTextExtractor());
 
         return "scheduleEvents/Events";
     }
 
-    @PostMapping("/events/{firstParam}/{thirdParam}/{page}")
-    public String filterEvent(@PathVariable("firstParam") String firstParam,@PathVariable("thirdParam") String thirdParam,@PathVariable("page") int page){
-        return "redirect:/events?firstParam=" + firstParam  + "&thirdParam=" + convert(thirdParam) + "&page=" + page;
+    @PostMapping("/{firstParam}/{thirdParam}/{page}")
+    public String filterEvent(@PathVariable("firstParam") String firstParam, @PathVariable("thirdParam") String thirdParam, @PathVariable("page") int page) {
+        return "redirect:/events?firstParam=" + firstParam + "&thirdParam=" + convert(thirdParam) + "&page=" + page;
     }
-    @PostMapping("/events/{reboot}")
-    public String rebootEvent(){
+
+    @PostMapping("/{reboot}")
+    public String rebootEvent() {
         return "redirect:/events";
     }
 
-    @PostMapping("/events/search")
+    @PostMapping("/search")
     public String performSearch(InputTextExtractor inputTextExtractor) {
         return "redirect:/events?thirdParam=" + convert(inputTextExtractor.getName());
     }
+
     public Page<Event> convertListToPage(List<Event> eventList, Pageable pageable) {
         int total = eventList.size();
         int start = Math.toIntExact(pageable.getOffset());
@@ -90,13 +88,10 @@ public class EventsController {
         List<Event> paginatedList = eventList.subList(start, end);
         return new PageImpl<>(paginatedList, pageable, total);
     }
-    public String convert(String s){
+
+    public String convert(String s) {
         String encodedSearchTerm = s;
-        try {
-            encodedSearchTerm = URLEncoder.encode(s, StandardCharsets.UTF_8.toString());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        encodedSearchTerm = URLEncoder.encode(s, StandardCharsets.UTF_8);
         return encodedSearchTerm;
     }
 }

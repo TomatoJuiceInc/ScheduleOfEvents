@@ -18,7 +18,6 @@ let priceId = document.getElementById('priceId')
     .dataset.priceid.replace("[", '').replace("]", '').split(",");
 
 
-
 let selectedSeats = [];
 document.addEventListener('DOMContentLoaded', function () {
     const cinemaHall = document.getElementById('cinema-hall');
@@ -41,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
         createSideSeats(200 - 6 * size, 30 + yCoord * 5, 13, 21, 49, 1);
         createSideSeats(200 - 6 * size, 30 + yCoord * 6, 13, 20, 49, 1);
         createSideSeats(200 - 6 * size, 30 + yCoord * 7, 13, 19, 49, 1);
-
 
 
         for (let i = 0; i < 7; i++) {
@@ -104,15 +102,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    function createSeatsSecondHall()
-    {
+    function createSeatsSecondHall() {
         const size = 25;
         const yCoord = 25;
         const xCoord = 100;
 
         // left
-        createSideSeats(xCoord  + size * 7, 0, 4, 25, 8, 0);
-        createSideSeats(xCoord  + size * 6, yCoord, 8, 24, 14, 0);
+        createSideSeats(xCoord + size * 7, 0, 4, 25, 8, 0);
+        createSideSeats(xCoord + size * 6, yCoord, 8, 24, 14, 0);
         createSideSeats(xCoord + size * 5, yCoord * 2, 9, 23, 18, 0);
         createSideSeats(xCoord + size * 2, yCoord * 3, 12, 22, 24, 1);
         createSideSeats(xCoord + size * 2, yCoord * 4, 12, 21, 24, 1);
@@ -139,30 +136,30 @@ document.addEventListener('DOMContentLoaded', function () {
         createSideSeats(xCoord + 2 * size, yCoord * 25, 12, 1, 24, 4);
 
         //right
-        createSideSeats(xCoord  + size * 18, yCoord, 2, 24, 6, 0);
-        createSideSeats(xCoord  + size * 18, yCoord * 2, 9, 23, 9, 0);
-        createSideSeats(xCoord  + size * 18, yCoord * 3, 12, 22, 12, 1);
-        createSideSeats(xCoord  + size * 18, yCoord * 4, 12, 21, 12, 1);
-        createSideSeats(xCoord  + size * 18, yCoord * 5, 14, 20, 14, 1);
-        createSideSeats(xCoord  + size * 18, yCoord * 6, 13, 19, 13, 1);
-        createSideSeats(xCoord  + size * 18, yCoord * 7, 12, 18, 12, 1);
-        createSideSeats(xCoord  + size * 18, yCoord * 8, 14, 17, 14, 1);
-        createSideSeats(xCoord  + size * 18, yCoord * 9, 13, 16, 13, 2);
-        createSideSeats(xCoord  + size * 18, yCoord * 10, 12, 15, 12, 2);
-        createSideSeats(xCoord  + size * 18, yCoord * 11, 12, 14, 12, 2);
-        createSideSeats(xCoord  + size * 18, yCoord * 12, 14, 13, 14, 2);
-        createSideSeats(xCoord  + size * 18, yCoord * 13, 13, 12, 13, 2);
-        createSideSeats(xCoord  + size * 18, yCoord * 14, 12, 11, 12, 2);
-        createSideSeats(xCoord  + size * 18, yCoord * 16, 14, 10, 14, 3);
-        createSideSeats(xCoord  + size * 18, yCoord * 17, 13, 9, 13, 3);
-        createSideSeats(xCoord  + size * 18, yCoord * 18, 12, 8, 12, 3);
-        createSideSeats(xCoord  + size * 18, yCoord * 19, 12, 7, 12, 3);
-        createSideSeats(xCoord  + size * 18, yCoord * 20, 12, 6, 12, 3);
-        createSideSeats(xCoord  + size * 18, yCoord * 21, 12, 5, 12, 3);
-        createSideSeats(xCoord  + size * 20, yCoord * 22, 10, 4, 10, 4);
-        createSideSeats(xCoord  + size * 20, yCoord * 23, 10, 3, 10, 4);
-        createSideSeats(xCoord  + size * 18, yCoord * 24, 12, 2, 12, 4);
-        createSideSeats(xCoord  + size * 18, yCoord * 25, 12, 1, 12, 4 );
+        createSideSeats(xCoord + size * 18, yCoord, 2, 24, 6, 0);
+        createSideSeats(xCoord + size * 18, yCoord * 2, 9, 23, 9, 0);
+        createSideSeats(xCoord + size * 18, yCoord * 3, 12, 22, 12, 1);
+        createSideSeats(xCoord + size * 18, yCoord * 4, 12, 21, 12, 1);
+        createSideSeats(xCoord + size * 18, yCoord * 5, 14, 20, 14, 1);
+        createSideSeats(xCoord + size * 18, yCoord * 6, 13, 19, 13, 1);
+        createSideSeats(xCoord + size * 18, yCoord * 7, 12, 18, 12, 1);
+        createSideSeats(xCoord + size * 18, yCoord * 8, 14, 17, 14, 1);
+        createSideSeats(xCoord + size * 18, yCoord * 9, 13, 16, 13, 2);
+        createSideSeats(xCoord + size * 18, yCoord * 10, 12, 15, 12, 2);
+        createSideSeats(xCoord + size * 18, yCoord * 11, 12, 14, 12, 2);
+        createSideSeats(xCoord + size * 18, yCoord * 12, 14, 13, 14, 2);
+        createSideSeats(xCoord + size * 18, yCoord * 13, 13, 12, 13, 2);
+        createSideSeats(xCoord + size * 18, yCoord * 14, 12, 11, 12, 2);
+        createSideSeats(xCoord + size * 18, yCoord * 16, 14, 10, 14, 3);
+        createSideSeats(xCoord + size * 18, yCoord * 17, 13, 9, 13, 3);
+        createSideSeats(xCoord + size * 18, yCoord * 18, 12, 8, 12, 3);
+        createSideSeats(xCoord + size * 18, yCoord * 19, 12, 7, 12, 3);
+        createSideSeats(xCoord + size * 18, yCoord * 20, 12, 6, 12, 3);
+        createSideSeats(xCoord + size * 18, yCoord * 21, 12, 5, 12, 3);
+        createSideSeats(xCoord + size * 20, yCoord * 22, 10, 4, 10, 4);
+        createSideSeats(xCoord + size * 20, yCoord * 23, 10, 3, 10, 4);
+        createSideSeats(xCoord + size * 18, yCoord * 24, 12, 2, 12, 4);
+        createSideSeats(xCoord + size * 18, yCoord * 25, 12, 1, 12, 4);
     }
 
 
@@ -244,8 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (typeHall === '1') {
             seat.setAttribute('r', '7');
-        }
-        else {
+        } else {
             seat.setAttribute('r', '10');
         }
         seat.classList.add('seat');
@@ -291,12 +287,11 @@ document.addEventListener('DOMContentLoaded', function () {
         seat.addEventListener('mouseover', function (event) {
             if (!reservedSeatsData.includes(event.target.getAttribute("data-coords"))) {
 
-                const mouseX = event.target.getAttribute("cx") -70;
+                const mouseX = event.target.getAttribute("cx") - 70;
                 const mouseY = event.target.getAttribute("cy") - 70;
-                if (typeHall === '1'){
+                if (typeHall === '1') {
                     event.target.setAttribute('r', '10');
-                }
-                else {
+                } else {
                     event.target.setAttribute('r', '13');
                 }
 
@@ -320,10 +315,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         seat.addEventListener('mouseout', function (event) {
             if (!reservedSeatsData.includes(event.target.getAttribute("data-coords"))) {
-                if (typeHall === '1'){
+                if (typeHall === '1') {
                     event.target.setAttribute('r', '7');
-                }
-                else if (typeHall === '2'){
+                } else if (typeHall === '2') {
                     event.target.setAttribute('r', '10');
                 }
                 event.target.setAttribute('fill', COLORS[price]);
@@ -346,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (index !== -1) {
                         selectedSeats.splice(index, 1);
                     }
-                    if (selectedSeats.length === 0){
+                    if (selectedSeats.length === 0) {
                         button.disabled = true;
                     }
                     event.target.classList.toggle('selected');

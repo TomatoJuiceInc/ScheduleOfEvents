@@ -7,6 +7,6 @@ import ru.ScheduleOfEvents.models.Ticket;
 import java.util.List;
 
 @Repository
-public interface  TicketRepository extends JpaRepository<Ticket, Integer> {
+public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     List<Ticket> findAllByEventId(int id);
 }

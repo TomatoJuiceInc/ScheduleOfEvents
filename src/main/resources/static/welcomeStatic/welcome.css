@@ -6,6 +6,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
 :root {
     --secondary-color: #e9c675;
     --text-light: #cbd5e1;
@@ -67,6 +68,7 @@ body {
     font-family: var(--header-font);
     color: var(--white);
 }
+
 .section__header span {
     color: white; /* Оранжевый цвет для слова "свое" */
 }
@@ -85,7 +87,6 @@ body {
     transition: 0.3s;
     cursor: pointer;
 }
-
 
 
 .logo a {
@@ -130,7 +131,7 @@ body {
     /*        rgba(255, 255, 255, 0),*/
     /*        var(--primary-color)*/
     /*),*/
-    url("assets/header-1.jpg");
+url("assets/header-1.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -157,12 +158,13 @@ body {
     background-color: black;
 }
 
-.frame-for-text{
+.frame-for-text {
     padding: 20px; /* Добавляем отступ вокруг текста внутри рамки */
     border-radius: 10px; /* Устанавливаем скругление углов рамки */
     background-color: #171616; /* Устанавливаем цвет фона внутри рамки */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавляем тень для элемента */
 }
+
 .header__container {
     position: relative;
     isolation: isolate;
@@ -260,11 +262,6 @@ body {
 .about__content a:hover span {
     transform: translateX(10px);
 }
-
-
-
-
-
 
 
 @media (width > 768px) {

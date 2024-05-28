@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Вход в аккаунт</title>
     <link rel="stylesheet" type="text/css" href="/securityStatic/login.css">
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -31,12 +32,22 @@
             <p>Ещё не зарегистрировались? <a class="registration" href="/registration">Регистрация</a></p>
         </div>
 
-        <div th:if="${param.error}" style="color: red">
-            <p>Неправильные логин или пароль</p>
+        <div th:if="${param.error}" class="message-box-error">
+            <span>
+                Неверный логин или пароль
+            </span>
         </div>
 
-        <div th:if="${param.success}" style="color: red">
-            Вы успешно зарегистрировались, повторите введённые данные
+        <div th:if="${param.success}" class="message-box-success">
+            <span>
+                Вы успешно зарегистрировались, повторите введённые данные
+            </span>
+        </div>
+
+        <div th:if="${param.logout}" class="message-box-logout">
+            <span>
+                Вы вышли из аккаунта
+            </span>
         </div>
     </form>
 </div>

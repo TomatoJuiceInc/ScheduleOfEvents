@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.ScheduleOfEvents.models.BankCard;
 
 @Repository
-public interface BankRepository  extends JpaRepository<BankCard, Integer> {
+public interface BankRepository extends JpaRepository<BankCard, Integer> {
     BankCard findBankCardByCardNumber(String number);
 }

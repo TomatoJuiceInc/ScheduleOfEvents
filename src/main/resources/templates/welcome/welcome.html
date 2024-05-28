@@ -2,15 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="basehead">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Tomato Juice</title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"  rel="stylesheet"/>
-<!--    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/welcomeStatic/welcome.css" />
-
+    <link rel="stylesheet" href="/welcomeStatic/welcome.css"/>
 </head>
-<header th:insert="base/base :: baseheader">
+<header th:insert="~{base/base::baseheader}">
 </header>
 <body>
 <header class="header" id="home">
@@ -19,15 +17,15 @@
 
             <h1 class="section__header" style="font-size: 35px">
                 ПРОВОДИТЕ
-                <span>СВОЕ</span> ВРЕМЯ  <span>С НАМИ</span>
+                <span>СВОЕ</span> ВРЕМЯ <span>С НАМИ</span>
             </h1>
             <h3 class="section__subheader">билеты на концерты, вечеринки, матчи
                 и многое другое!</h3>
             <form th:action="@{/events}">
-                <button type="submit"  class="btn-event" id="confirm-purchase">перейти к мероприятиям</button>
+                <button type="submit" class="btn-event" id="confirm-purchase">перейти к мероприятиям</button>
             </form>
 
-            <div class="scroll__btn" >
+            <div class="scroll__btn">
                 <a href="#about" style="color: #cbd5e1">
                     У нас можно
                     <span><i class="ri-arrow-down-line"></i></span>
@@ -40,7 +38,7 @@
 <section class="about">
     <div class="section__container about__container">
         <div class="about__image about__image-1" id="about">
-            <img src="/welcomeStatic/asset1.jpg"  alt="about" />
+            <img src="/welcomeStatic/asset1.jpg" alt="about"/>
         </div>
         <div class="about__content about__content-1">
             <h3 class="section__subheader">ПОКУПКА БИЛЕТОВ</h3>
@@ -59,7 +57,7 @@
             </div>
         </div>
         <div class="about__image about__image-2" id="equipment">
-            <img src="/welcomeStatic/asset2.jpg" alt="about" />
+            <img src="/welcomeStatic/asset2.jpg" alt="about"/>
         </div>
         <div class="about__content about__content-2">
             <h3 class="section__subheader">Следите за мероприятиями</h3>
@@ -79,9 +77,9 @@
             </div>
         </div>
         <div class="about__image about__image-3" id="blog">
-            <img src="/welcomeStatic/asset3.jpg" alt="about" />
+            <img src="/welcomeStatic/asset3.jpg" alt="about"/>
         </div>
-        <div class="about__content about__content-3" >
+        <div class="about__content about__content-3">
             <h3 class="section__subheader">Организация мероприятия</h3>
             <div class="frame-for-text">
                 <p>
@@ -103,5 +101,5 @@
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="/welcomeStatic/welcome.js"></script>
 </body>
-<footer th:insert="base/base::basefooter"></footer>
+<footer th:insert="~{base/base::basefooter}"></footer>
 </html>

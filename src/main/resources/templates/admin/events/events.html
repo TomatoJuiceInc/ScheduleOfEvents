@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <title>Current</title>
+    <title>Events</title>
     <script src="/adminStatic/eventPageScript.js"></script></head>
 
 <link rel="stylesheet" type="text/css" href="/adminStatic/events.css">
@@ -13,18 +13,24 @@
 <header th:insert="~{base/base::baseheader}">
 </header>
 <div th:class="second-header">
-    <form th:id="eventsForm" th:method="GET" th:action="@{/admin/events}">
-        <button th:type="submit" name="choice" th:value="past">Past</button>
-        <button th:type="submit" name="choice" th:value="current">Current</button>
-    </form>
-    <a th:id="requestsLink" th:href="@{/admin/events/requests}">Requests</a>
+    <a th:id="pastLink" href="/admin/events?choice=past">Прошедшие</a>
+    <a th:id="currentLink" href="/admin/events?choice=current">Ближайшие</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/application}">Запросы</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/vip-application}">VIP -Запросы</a>
+</div>
+
+<div th:class="filter" onclick="openSortOptions()" >
+    <img src="/adminStatic/filter_icon.png" alt="filter">
+    <div th:class="text">
+        <a>фильтр</a>
+    </div>
 </div>
 
 <div th:class="table-background">
     <table>
         <thead>
         <tr>
-            <th th:id="idCol">ID клиента</th>
+            <th th:id="idCol">ID события</th>
             <th th:id="nameCol">Название мероприятия</th>
             <th th:id="emailCol">email</th>
             <th th:id="descriptionCol">Описание</th>
@@ -38,7 +44,7 @@
         <tr th:each="event : ${events}">
             <td th:text="${event.getId()}"></td>
             <td th:text="${event.getName()}"></td>
-            <td th:text="${event.getOwner()}"></td>             <!-- TODO Add .getEmail() -->
+            <td th:text="${event.getOwner().getEmail()}"></td>             <!-- TODO Add .getEmail() -->
             <td th:text="${event.getDescription()}"></td>
             <td th:text="${event.getHall()}"></td>
             <td th:text="${#dates.format(event.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
@@ -50,8 +56,20 @@
         </tr>
         </tbody>
     </table>
-
 </div>
+
+<div id="sortModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSortOptions()">&times;</span>
+        <div th:class="container">
+            <button onclick="sortTableByStatus()">по статусу</button>
+            <button onclick="sortTableByDate()">по дате</button>
+        </div>
+        <a>Нажмите на кнопку несколько раз для сортировки в другом направлении</a>
+    </div>
+</div>
+
+<div id="sortMessage">Мероприятия отсортированы</div>
 
 <button onclick="topFunction()" id="scrollBtn" title="Go to top">TOP</button>
 <footer th:insert="~{base/base::basefooter}"></footer>

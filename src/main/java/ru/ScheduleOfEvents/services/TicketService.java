@@ -18,15 +18,16 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
-    public Ticket findOne(int id){
+    public Ticket findOne(int id) {
         return ticketRepository.findById(id).orElse(null);
     }
+
     @Transactional
-    public void  save(Ticket ticket){
-         ticketRepository.save(ticket);
+    public void save(Ticket ticket) {
+        ticketRepository.save(ticket);
     }
 
-    public List<Ticket> findAllWhereEventId(int eventId){
+    public List<Ticket> findAllWhereEventId(int eventId) {
         return ticketRepository.findAllByEventId(eventId);
 
     }

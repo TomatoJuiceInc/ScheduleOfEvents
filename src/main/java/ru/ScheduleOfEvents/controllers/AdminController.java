@@ -1,16 +1,17 @@
 package ru.ScheduleOfEvents.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ScheduleOfEvents.models.Event;
+import ru.ScheduleOfEvents.models.VipApplication;
 import ru.ScheduleOfEvents.services.ApplicationService;
 import ru.ScheduleOfEvents.services.EventsService;
 import ru.ScheduleOfEvents.services.HallsService;
-import ru.ScheduleOfEvents.services.UserDetailsServiceImpl;
+import ru.ScheduleOfEvents.services.VipClientApplicationService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,26 +21,13 @@ import java.util.Date;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/admin/events")
 public class AdminController {
-
-
     private final ApplicationService applicationService;
-
+    private final VipClientApplicationService vipClientApplicationService;
     private final EventsService eventsService;
-
     private final HallsService hallsService;
-    private final UserDetailsServiceImpl userDetailsService;
-
-
-//    @Autowired
-//    public AdminController(ApplicationService applicationService, EventsService eventsService, HallsService hallsService, UserDetailsServiceImpl userDetailsService) {
-//        this.applicationService = applicationService;
-//        this.eventsService = eventsService;
-//        this.hallsService = hallsService;
-//        this.userDetailsService = userDetailsService;
-//    }
-
 
     @GetMapping()
     public String events(Model model, @RequestParam(value = "choice", required = false) String choice) {
@@ -48,6 +36,7 @@ public class AdminController {
         } else {
             switch (choice) {
                 case "past":
+                    System.out.println(eventsService.findEventByDateBefore().size());
                     model.addAttribute("events", eventsService.findEventByDateBefore());
                     break;
                 case "current":
@@ -58,31 +47,25 @@ public class AdminController {
         return "admin/events/events";
     }
 
-
     // checked
     @GetMapping("/application")
-    public String successPage(Model model)  {
+    public String successPage(Model model) {
         model.addAttribute("applications", applicationService.findAll());
         return "admin/application";
     }
+    @GetMapping("/vip-application")
+    public String showVipApplication(Model model) {
+        System.out.println("ds");
+        model.addAttribute("applications", vipClientApplicationService.findAll());
+        return "admin/vip-application";
+    }
 
-
-
-    // checked
     @PostMapping("/approve/{id}")
     public String approve(@PathVariable("id") int id, Model model) {
         applicationService.approveApplication(id);
         model.addAttribute("message", "Application with ID " + id + " approved successfully!");
         return "redirect:/admin/events/application";  // Повторно отображаем страницу с сообщением
     }
-    /*// checked
-    @GetMapping("/past")
-    public String past(Model model) {
-        model.addAttribute("pastEvents", eventsService.findEventByDateBefore());
-        return "admin/events/past";
-    }
-*/
-    // checked
 
     @PostMapping("/reject/{id}")
     public String reject(@PathVariable("id") int id, Model model) {
@@ -92,14 +75,9 @@ public class AdminController {
     }
 
     @GetMapping("/requests")
-    public String requests() { return "admin/events/requests"; }
-
-
-    /*@GetMapping()
-    public String events(Model model) {
-        model.addAttribute("events", eventsService.findEventByDateAfter());
-        return "admin/events/events";
-    }*/
+    public String requests() {
+        return "admin/events/requests";
+    }
 
 
     @GetMapping("/{id}/edit")
@@ -128,8 +106,9 @@ public class AdminController {
                         .atZone(ZoneId.systemDefault())
                         .toInstant())
         );
+        updatedEvent.setOwner(eventsService.findEventById(id).getOwner());
         eventsService.updateEvent(id, updatedEvent);
-        return "redirect:/admin/events";
+        return updatedEvent.getDate().after(new Date()) ? "redirect:/admin/events?choice=current" : "redirect:/admin/events?choice=past";
     }
 
     @PostMapping("/{id}")
@@ -142,6 +121,18 @@ public class AdminController {
     public String delete(@PathVariable int id) {
         eventsService.delete(eventsService.findEventById(id));
         return "redirect:/admin/events";
+    }
+
+    @PostMapping("/approve-vip/{id}")
+    public String approveVip(@PathVariable("id") int id, Model model) {
+        vipClientApplicationService.approveApplication(id);
+        return "redirect:/admin/events/vip-application";  // Повторно отображаем страницу с сообщением
+    }
+
+    @PostMapping("/reject-vip/{id}")
+    public String rejectVip(@PathVariable("id") int id, Model model) {
+        vipClientApplicationService.rejectApplication(id);
+        return "redirect:/admin/events/vip-application";
     }
 
 }

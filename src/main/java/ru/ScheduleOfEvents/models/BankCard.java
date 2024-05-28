@@ -43,5 +43,4 @@ public class BankCard {
     private int balance;
 
 
-
 }

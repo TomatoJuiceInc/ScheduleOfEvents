@@ -28,33 +28,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public User findOne(long id){
+    public User findOne(long id) {
         return userRepository.findById(id).orElse(null);
     }
-    public List<User> findAll(){
+
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @Transactional
-    public void save(User person){
+    public void save(User person) {
         userRepository.save(person);
     }
 
-    public User findByUsername(String username){
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
-    }
-
-    @Transactional
-    public void update(long id, User updatedUser) {
-        User userToBeUpdated = findOne(id);
-
-        userToBeUpdated.setFamilyName(updatedUser.getFamilyName());
-        userToBeUpdated.setName(updatedUser.getName());
-        userToBeUpdated.setSurname(updatedUser.getSurname());
-        userToBeUpdated.setEmail(updatedUser.getEmail());
-        if (!(updatedUser.getPassword() == null || updatedUser.getPassword().isEmpty())) {
-            userToBeUpdated.setPassword(updatedUser.getPassword());
-        }
     }
 
     // сортировка билетов
@@ -63,12 +51,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .sorted(Comparator.comparing(ticket -> ticket.getEvent().getDate()))
                 .collect(Collectors.toList()));
     }
-
-//    // добавление билета в пользователя (тестовое)
-//    public void addTestTickets(long id) {
-//        User userToBeUpdated = findOne(id);
-//        sortTickets(userToBeUpdated);
-//    }
 
     @Transactional
     public void delete(long id) {

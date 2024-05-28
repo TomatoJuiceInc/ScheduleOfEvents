@@ -2,33 +2,40 @@ html {
     position: relative;
     min-height: 100%;
 }
-.nav-link{
+
+.nav-link {
     color: #fff;
     display: flex;
     align-items: center;
 }
-.navbar{
+
+.navbar {
     height: 68px;
     display: flex;
     align-items: center;
 }
-body{
+
+body {
     height: 100vh;
     background-color: white;
 }
-.navbar-nav{
+
+.navbar-nav {
     margin-left: 90px;
     display: flex;
     align-items: center;
 }
-.bi-door-open{
+
+.bi-door-open {
     color: orange;
     font-size: large;
     margin-right: 4px;
 }
-.navbar-custom{
+
+.navbar-custom {
     background-color: black;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -38,7 +45,8 @@ body{
     background-color: #202529;
     color: #fff;
 }
-.bi-ticket-perforated{
+
+.bi-ticket-perforated {
     color: orange;
     font-size: x-large;
     margin-right: 4px;

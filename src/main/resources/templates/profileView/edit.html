@@ -1,11 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="base/base :: basehead">
+<head>
     <meta charset="UTF-8">
     <title>Info</title>
-
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
 </head>
 <body style="height: 600px;">
-<header th:insert="base/base :: baseheader">
+<header th:insert="~{base/base::baseheader}">
 </header>
 <main style="margin-top: 70px; background-color: #000000">
     <link rel="stylesheet" type="text/css" href="/profileViewStatic/css/edit.css"/>
@@ -25,18 +25,19 @@
                 <div class="text-editing">
                     <p class="familyName-text">Фамилия</p>
                     <label for="familyName" style="display: none"></label>
-                    <input type="text" th:field="*{familyName}" id="familyName"/>
+                    <input type="text" th:field="*{familyName}" id="familyName" placeholder="Ввести..."/>
 
                     <p class="name-text">Имя</p>
                     <label for="name" style="display: none"></label>
-                    <input type="text" th:field="*{name}" id="name"/>
+                    <input type="text" th:field="*{name}" id="name" placeholder="Ввести..."/>
 
                     <p class="surname-text">Отчество</p>
                     <label for="surname" style="display: none"></label>
-                    <input type="text" th:field="*{surname}" id="surname"/>
+                    <input type="text" th:field="*{surname}" id="surname" placeholder="Ввести..."/>
 
                     <label for="username" style="display: none"></label>
-                    <input type="text" class="input-username" th:field="*{username}" id="username" style="display: none"/>
+                    <input type="text" class="input-username" th:field="*{username}" id="username"
+                           style="display: none"/>
 
                     <p class="email-text">Почта</p>
                     <label for="new-email" style="display: none"></label>
@@ -47,19 +48,22 @@
                     <p class="password-text">Пароль</p>
 
                     <label for="oldPassword" style="display: none"></label>
-                    <input type="hidden" th:field="*{password}" id="oldPassword" />
-                    <!---->
+                    <input type="hidden" th:field="*{password}" id="oldPassword"/>
+
                     <label for="input-password" style="display: none"></label>
-                    <input type="password" id="input-password" class="input-new-password" placeholder="Новый пароль"/><br>
+                    <input type="password" id="input-password" class="input-new-password"
+                           placeholder="Новый пароль"/><br>
 
                     <label for="repeat-password" style="display: none"></label>
-                    <input type="password" id="repeat-password" class="input-repeat-new-password" placeholder="Повторите новый пароль"/>
+                    <input type="password" id="repeat-password" class="input-repeat-new-password"
+                           placeholder="Повторите новый пароль"/>
                     <br>
                     <span id="repeat-password-error" style="color: red;"></span>
                 </div>
                 <div class="image-editing">
                     <div class="boom">
-                        <img th:src="@{'/profileViewStatic/images/' + ${user.avatarFileName}}" alt="Картинка" class="image">
+                        <img th:src="@{'/profileViewStatic/images/' + ${user.avatarFileName}}" alt="Картинка"
+                             class="image">
                         <br>
                         <div class="image-edit-button">
                             <label for="file-upload" class="custom-button">

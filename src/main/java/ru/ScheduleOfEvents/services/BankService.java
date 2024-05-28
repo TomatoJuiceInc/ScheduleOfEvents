@@ -17,13 +17,13 @@ public class BankService {
         this.bankRepository = bankRepository;
     }
 
-    public BankCard findByCardNumber(String cardNumber){
+    public BankCard findByCardNumber(String cardNumber) {
         return bankRepository.findBankCardByCardNumber(cardNumber);
     }
 
 
     @Transactional()
-    public void pay(String cardNum,  int price){
+    public void pay(String cardNum, int price) {
         BankCard bankCard = findByCardNumber(cardNum);
         bankCard.setBalance(bankCard.getBalance() - price);
 

@@ -3,7 +3,8 @@ package ru.ScheduleOfEvents.util;
 public class InputTextExtractor {
     private String name;
     private String category;
-    public InputTextExtractor(String name,String category) {
+
+    public InputTextExtractor(String name, String category) {
         this.name = name;
         this.category = category;
     }
@@ -25,5 +26,6 @@ public class InputTextExtractor {
         this.category = category;
     }
 
-    public InputTextExtractor(){}
+    public InputTextExtractor() {
+    }
 }

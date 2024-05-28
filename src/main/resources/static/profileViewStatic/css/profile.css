@@ -1,198 +1,206 @@
-main{
-	margin: 50px;
-	margin-top: 70px;
-	background-color: #000000;
-	display: grid;
-	place-items: center;
-	zoom: 90%;
+main {
+    margin: 70px 50px 50px;
+    background-color: #000000;
+    display: grid;
+    place-items: center;
+    zoom: 90%;
 }
 
-.profile-info{
-	margin-top: 20px;
+.profile-info {
+    margin-top: 20px;
 }
 
-.text-container{
-	margin-left: 20px;
+.text-container {
+    margin-left: 20px;
 }
 
-.text-field{
-	width: 495px;
-  	height: 50px;
-  	background-color: #3E3E3E;
-  	padding: 10px;
-  	border-radius: 10px;
-  	margin-bottom: 20px;
+.text-field {
+    width: 495px;
+    height: 50px;
+    background-color: #3E3E3E;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.current-password{
-	display: flex;
+.current-password {
+    display: flex;
 }
 
-/*.current-password-field{*/
-/*	width: 435px;*/
-/*	height: 50px;*/
-/*	background-color: #3E3E3E;*/
-/*	padding: 10px;*/
-/*	border-radius: 10px;*/
-/*}*/
-
-/*.look-password-button{*/
-/*	width: 50px;*/
-/*	font-size: 20px;*/
-/*	margin-left: 10px;*/
-/*	border-radius: 50%;*/
-/*	background-color: #3E3E3E;*/
-/*	color: #EC7F00;*/
-/*	border: none;*/
-/*}*/
-
-/*.look-password-button:active{*/
-/*	background-color: #EC7F00;*/
-/*	color: #3E3E3E;*/
-/*}*/
-
-.area-for-lastName-text, .area-for-name-text, .area-for-secondLastName-text, .area-for-phone-number-text, .area-for-mail-text, .username-text{
-	font-size: 20px;
-	color: #FFFFFF;
+.area-for-lastName-text, .area-for-name-text, .area-for-secondLastName-text, .area-for-phone-number-text, .area-for-mail-text, .username-text {
+    font-size: 20px;
+    color: #FFFFFF;
 }
 
-.profile-info{
-	display: flex;
+.area-for-default-name-text, .area-for-default-secondLastName-text, .area-for-default-lastName-name-text, .area-for-default-mail-text {
+    font-size: 20px;
+    color: #adadad;
 }
 
-.line-after-profile-info{
-	width: 1400px;
-	height: 3px;
-	background-color: #EC7F00;
-	margin-top: 40px;
-	margin-bottom: 20px;
+.profile-info {
+    display: flex;
 }
 
-.username-field{
-	width: 250px;
-  	height: 40px;
-  	background-color: #EC7F00;
-  	padding-top: 3px;
-  	border-radius: 10px;
-  	text-align: center;
-  	margin-top: 20px;
+.line-after-profile-info {
+    width: 1400px;
+    height: 3px;
+    background-color: #EC7F00;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
-.info-text, .history-text{
-	font-size: 45px;
+.username-field {
+    width: 250px;
+    height: 40px;
+    background-color: #EC7F00;
+    padding-top: 3px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
 }
 
-.exit-button{
-	margin-left: 500px;
-	border-radius: 10px;
-	border: none;
-	background-color: #f52020;
-	color: white;
-	align-items: center;
-	height: 40px;
-	width: 130px;
+.info-text, .history-text {
+    font-size: 45px;
 }
 
-.exit-button:hover{
-	background-color: #b02323;
+.exit-button {
+    border-radius: 10px;
+    border: none;
+    background-color: #f52020;
+    color: white;
+    align-items: center;
+    height: 40px;
+    width: 130px;
 }
 
-.image{
-	width: 250px;
-	height: 330px;
-	border-radius: 20px;
+.action-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 640px;
+    height: 67px;
 }
 
-.add-image{
-	width: 295px;
-	height: 390px;
-	border-radius: 20px;
-	margin-left: 340px;
+.requests-button {
+    margin-top: 18px;
+    margin-right: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ec7f00;
+    color: white;
+    align-items: center;
+    height: 40px;
+    width: 160px;
 }
 
-.edit-link{
-	font-size: 25px;
-	color: #717171;
-	text-decoration: none;
-	margin-left: 80px;
+.profile-nav {
+    display: flex;
 }
 
-.event-bar li{
-	list-style-type: none;
-	display: inline-block;
-	margin-right: 40px;
+.exit-button:hover {
+    background-color: #b02323;
 }
 
-.event-bar{
-	width: 1000px;
-  	height: 45px;
-  	background-color: #3E3E3E;
-  	border-radius: 20px;
-  	color: #FFFFFF;
+.image {
+    width: 250px;
+    height: 330px;
+    border-radius: 20px;
 }
 
-.event-link-button{
-	width: 200px;
-  	height: 45px;
-  	background-color: #EC7F00;
-  	padding: 10px;
-  	border-radius: 20px;
-  	color: #FFFFFF;
-  	border: none;
-  	margin-left: 20px;
+.add-image {
+    width: 295px;
+    height: 390px;
+    border-radius: 20px;
+    margin-left: 340px;
 }
 
-.event-link-button:hover{
-	background-color: #DA6606;
+.edit-link {
+    font-size: 25px;
+    color: #717171;
+    text-decoration: none;
+    margin-left: 80px;
+    margin-top: 17px;
 }
 
-.list-element{
-	display: flex;
+.event-bar li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.event-bar {
+    width: 1000px;
+    height: 45px;
+    background-color: #3E3E3E;
+    border-radius: 20px;
+    color: #FFFFFF;
+}
+
+.event-link-button {
+    width: 200px;
+    height: 45px;
+    background-color: #EC7F00;
+    padding: 10px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    border: none;
+    margin-left: 20px;
+}
+
+.exit-form {
+    margin-top: 20px;
+}
+
+.event-link-button:hover {
+    background-color: #DA6606;
+}
+
+.list-element {
+    display: flex;
 }
 
 .name-event-info {
-	width: 135px;
+    width: 135px;
 }
 
-.name-place-info{
-	width: 175px;
+.name-place-info {
+    width: 175px;
 }
 
-.date-info{
-	width: 200px;
+.date-info {
+    width: 200px;
 }
 
-.seat-place-info{
-	width: 160px;
+.seat-place-info {
+    width: 160px;
 }
 
-.price-info{
-	width: 70px;
+.price-info {
+    width: 70px;
 }
 
-.name-event-info, .name-place-info, .date-info, .seat-place-info, .price-info{
-	color: #FFFFFF;
+.name-event-info, .name-place-info, .date-info, .seat-place-info, .price-info {
+    color: #FFFFFF;
 }
 
-.bi-geo-alt-fill, .bi-calendar3, .bi-ticket-perforated, .bi-tag-fill{
-	color: #EC7F00;
+.bi-geo-alt-fill, .bi-calendar3, .bi-ticket-perforated, .bi-tag-fill {
+    color: #EC7F00;
 }
 
-.bi-ticket-perforated{
-	position: relative;
-	top: 3px;
+.bi-ticket-perforated {
+    position: relative;
+    top: 3px;
 }
 
-.all-events-link-button{
-	width: 200px;
-  	height: 45px;
-  	background-color: #EC7F00;
-  	padding: 10px;
-  	border-radius: 20px;
-  	color: #FFFFFF;
-  	border: none;
+.all-events-link-button {
+    width: 200px;
+    height: 45px;
+    background-color: #EC7F00;
+    padding: 10px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    border: none;
 }
 
 .all-events-link-button:hover {
-	background-color: #DA6606;
+    background-color: #DA6606;
 }

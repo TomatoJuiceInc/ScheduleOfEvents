@@ -16,15 +16,14 @@ public class PriceService {
         this.pricePepository = pricePepository;
     }
 
-    public Price findOne(int id){
+    public Price findOne(int id) {
         return pricePepository.findById(id).orElse(null);
     }
+
     @Transactional
-    public void save(Price price){
-         pricePepository.save(price);
+    public void save(Price price) {
+        pricePepository.save(price);
     }
-
-
 
 
 }
