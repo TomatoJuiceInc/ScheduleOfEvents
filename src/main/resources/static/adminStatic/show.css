@@ -1,8 +1,8 @@
 div.container.mt-5 {
     display: flex;
     justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    min-height: 100vh; /* Makes sure the container fills the screen height */
+    align-items: center;    /* Centers vertically */
+    min-height: 100vh;      /* Makes sure the container fills the screen height */
 }
 
 html {
@@ -21,7 +21,7 @@ body {
     border: none; /* Remove default card border */
     border-radius: 10px; /* Round the corners */
     overflow: hidden; /* Ensure the image stays within the rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
 }
 
 .card-img-top {
@@ -33,7 +33,7 @@ body {
     position: absolute;
     top: 7px; /* Положение возрастного ценза относительно верхнего края */
     right: 10px; /* Положение возрастного ценза относительно правого края */ /* Цвет фона возрастного ценза */
-    color: orange; /* Цвет текста возрастного ценза */
+    color: #ec7f00; /* Цвет текста возрастного ценза */
     padding: 5px; /* Отступ внутри возрастного ценза */
     border-radius: 5px; /* Скругление углов возрастного ценза */
     font-size: 19px; /* Размер шрифта возрастного ценза */
@@ -64,30 +64,25 @@ body {
     margin-right: 6px; /* Space between icon and text */
 }
 
-.bi-calendar4-week {
-    color: orange;
+.bi-calendar4-week{
+    color: #ec7f00;
     font-size: x-large;
 }
-
-.bi-clock {
-    color: orange;
+.bi-clock{
+    color: #ec7f00;
     font-size: x-large;
     padding-left: 30px;
 }
-
-.card-subtitle {
+.card-subtitle{
     color: gray;
 }
-
 .text-decoration-none:hover {
-    color: orange /* Оранжевый цвет текста */
+    color: #ec7f00 /* Оранжевый цвет текста */
 }
-
 .text-decoration-none {
     color: white;
     transition: color 0.3s;
 }
-
 .custom-form {
     /* Add styles for the form */
     margin-bottom: 10px;
@@ -101,5 +96,5 @@ body {
 }
 
 .transparent-button:hover {
-    color: orange; /* Цвет текста при наведении */
+    color: #ec7f00; /* Цвет текста при наведении */
 }

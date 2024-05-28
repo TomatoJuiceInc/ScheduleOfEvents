@@ -56,11 +56,11 @@ public class EventsService {
     }
 
     public List<Event> findEventByDateBefore() {
-        return eventRepository.findEventsByDateBefore(new Date());
+        return eventRepository.findByDateBeforeOrderByDateAsc(new Date());
     }
 
     public List<Event> findEventByDateAfter() {
-        return eventRepository.findEventsByDateAfter(new Date());
+        return eventRepository.findByDateAfterOrderByDateAsc(new Date());
     }
 
     public Event findEventById(Integer id) {

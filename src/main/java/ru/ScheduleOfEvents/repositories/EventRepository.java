@@ -20,5 +20,9 @@ public interface EventRepository extends JpaRepository<Event, Integer>, PagingAn
 
     List<Event> findEventsByDateAfter(Date date);
 
+    List<Event> findByDateAfterOrderByDateAsc(Date date);
+
+    List<Event> findByDateBeforeOrderByDateAsc(Date date); /*findByDateBeforeOrderByDateDesc*/
+
     Event findEventById(Integer id);
 }

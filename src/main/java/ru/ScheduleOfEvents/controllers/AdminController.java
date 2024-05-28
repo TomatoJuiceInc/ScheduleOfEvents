@@ -106,7 +106,7 @@ public class AdminController {
                         .toInstant())
         );
         eventsService.updateEvent(id, updatedEvent);
-        return "redirect:/admin/events";
+        return updatedEvent.getDate().after(new Date()) ? "redirect:/admin/events?choice=current" : "redirect:/admin/events?choice=past";
     }
 
     @PostMapping("/{id}")
