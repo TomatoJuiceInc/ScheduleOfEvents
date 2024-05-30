@@ -1,13 +1,13 @@
 body {
-    background-color: #1c1b1b;
-    position: relative;
-    min-height: 100%;
+    height: 100% !important;
+    min-width: 924px;
+    width: 100%;
 }
 
 svg {
     display: block;
     /*margin: 20px auto 0;*/
-    margin-left: 50px;
+    margin: 50px auto;
     background-color: #1c1b1b;
 
 }
@@ -15,7 +15,6 @@ svg {
 .seat {
     /*fill: #00c5ff;*/
     user-select: none;
-
 }
 
 .seat.selected {
@@ -26,11 +25,6 @@ svg {
     cursor: pointer;
 }
 
-.submit-container {
-    position: absolute;
-    right: 100px;
-
-}
 
 #tooltip {
     position: absolute;
@@ -47,6 +41,7 @@ svg {
     flex-direction: column;
     align-items: center; /* Выравнивание по центру по вертикали */
     justify-content: center; /* Выравнивание по центру по горизонтали */
+    margin-bottom: 70px;
 }
 
 .svg-container {
@@ -103,6 +98,7 @@ th, td {
     text-align: center;
     font-size: 40px;
     margin-bottom: 20px;
+    margin-top: 100px;
 }
 
 /* Style the event date */
@@ -112,10 +108,6 @@ th, td {
     color: #666;
 }
 
-/*todo диалоговое окно*/
-/* Стили для модального окна */
-
-/* Стили для модального окна */
 .modal {
     display: none; /* Скрыть окно по умолчанию */
     position: fixed; /* Оставаться в верхней части */

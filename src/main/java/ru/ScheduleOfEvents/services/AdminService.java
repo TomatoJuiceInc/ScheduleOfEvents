@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.ScheduleOfEvents.models.Hall;
 import ru.ScheduleOfEvents.models.Role;
 import ru.ScheduleOfEvents.models.User;
 
@@ -13,6 +14,7 @@ import ru.ScheduleOfEvents.models.User;
 public class AdminService {
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsServiceImpl userDetailsService;
+    private final HallsService hallsService;
 
     @PostConstruct
     @Transactional
@@ -23,6 +25,22 @@ public class AdminService {
             admin.setPassword(passwordEncoder.encode("admin"));
             admin.setRole(Role.ADMIN);
             userDetailsService.save(admin);
+        }
+        if (userDetailsService.findByUsername("admin") == null) {
+            User admin = new User();
+            admin.setUsername("admin");
+            admin.setPassword(passwordEncoder.encode("admin"));
+            admin.setRole(Role.ADMIN);
+            userDetailsService.save(admin);
+        }
+        if (hallsService.findAll().isEmpty()){
+            Hall hall = new Hall("Большой зал");
+            hall.setCount_seats(1060);
+            hallsService.save(hall);
+            Hall hall1 = new Hall("Малый зал");
+            hall1.setCount_seats(390);
+            hallsService.save(hall1);
+
         }
     }
 
@@ -36,5 +54,6 @@ public class AdminService {
             vip.setRole(Role.VIP);
             userDetailsService.save(vip);
         }
+
     }
 }

@@ -21,4 +21,9 @@ public class HallsService {
     public List<Hall> findAll() {
         return hallRepository.findAll();
     }
+
+    @Transactional
+    public void  save(Hall hall) {
+         hallRepository.save(hall);
+    }
 }
