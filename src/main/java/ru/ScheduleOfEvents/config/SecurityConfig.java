@@ -30,6 +30,7 @@ public class SecurityConfig {
                                 "/scheduleEvents/**", "/scheduleEventsStatic/**", "/events/**",
                                 "/base/**", "/baseStatic/**",
                                 "/error/**", "/errorStatic/**",
+                                "/aboutUs/**", "/aboutUsStatic/**", "/about",
                                 "/branding/**").permitAll()
                         .requestMatchers("/security/**", "/securityStatic/**", "/registration", "/login").anonymous()
                         .anyRequest().authenticated())

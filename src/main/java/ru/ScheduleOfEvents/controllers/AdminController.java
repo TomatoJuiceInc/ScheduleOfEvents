@@ -55,7 +55,6 @@ public class AdminController {
     }
     @GetMapping("/vip-application")
     public String showVipApplication(Model model) {
-        System.out.println("ds");
         model.addAttribute("applications", vipClientApplicationService.findAll());
         return "admin/vip-application";
     }
