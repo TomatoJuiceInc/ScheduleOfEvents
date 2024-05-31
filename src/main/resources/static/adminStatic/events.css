@@ -3,14 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ec7f00;
+    background-color: #5A5560;
     padding: 25px;
     margin-top: 65px;
     margin-bottom: 10px;
 }
 
 #eventsForm button {
-    background-color: #ec7f00;
+    background-color: #5A5560;
     border: 0;
     text-decoration: none;
     color: #fff;
@@ -47,7 +47,7 @@
     justify-content: center;
     align-items: center;
     padding: 30px 5px;
-    background-color: #ec7f00;
+    background-color: #5A5560;
     border-radius: 10px;
     scrollbar-width: none;
     margin-bottom: 100px !important;
@@ -76,7 +76,7 @@ image block
 .filter {
     font-weight: bold;
     color: #000000;
-    background-color: #ec7f00;
+    background-color: #5A5560;
     display: flex;
     align-items: center;
     margin: 10px auto;
@@ -114,7 +114,7 @@ table {
 }
 
 th {
-    background-color: #ec7f00; /* Orange header */
+    background-color: #5A5560; /* Orange header */
     color: #222;
     padding: 10px;
     text-align: center;
@@ -168,7 +168,7 @@ tr:nth-child(even) {
     font-size: 20px;
     border: none;
     outline: none;
-    background-color: #ec7f00;
+    background-color: #5A5560;
     opacity: 0.25;
     color: white;
     cursor: pointer;
@@ -197,7 +197,7 @@ tr:nth-child(even) {
 }
 
 .modal-content {
-    background-color: #ec7f00 !important;
+    background-color: #5A5560 !important;
     margin: 20% auto !important;
     padding: 20px;
     width: 40% !important;
@@ -249,7 +249,7 @@ tr:nth-child(even) {
     position: fixed;
     bottom: 60px;
     right: 30px;
-    background-color: #ec7f00;
+    background-color: #5A5560;
     color: #2ec4a5;
     padding: 10px;
     border-radius: 5px;

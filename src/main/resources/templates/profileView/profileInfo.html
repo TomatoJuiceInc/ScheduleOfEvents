@@ -36,6 +36,7 @@
             </div>
         </div>
         <br>
+        <br>
         <div class="profile-info">
             <div class="avatar-username">
                 <img th:src="@{'/profileViewStatic/images/user_pic.jpg'}" alt="Картинка" class="image">
@@ -72,7 +73,7 @@
 
     <p class="history-text" style="color: #FFFFFF;">История покупок</p>
     <ul class="history-list" th:each="ticket : ${user.getTickets()}" th:if="${user.getTickets().indexOf(ticket) < 5}">
-        <div class="list-element">
+        <div class="list-element" style="">
             <ul class="event-bar">
                 <li class="name-event-info">
                     <span class="name-concert" th:text="${ticket.getEvent().getName()}">

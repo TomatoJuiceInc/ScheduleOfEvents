@@ -21,7 +21,7 @@ html {
 .wrapper {
     margin: 120px auto 50px;
     width: 80%;
-    background-color: #ec7f00;
+    background-color: #5A5560;
     border-radius: 10px;
 }
 
@@ -49,7 +49,7 @@ html {
     left: 0;
     height: 3px;
     width: 40px;
-    background: #ec7f00;
+    background: #5A5560;
 }
 
 .event-container form .event-details {
@@ -129,7 +129,7 @@ input::-webkit-inner-spin-button {
 .event-details .description-box textarea:focus,
 .event-details .input-box select:focus,
 .event-details .input-box input:focus {
-    border: 2px solid #ec7f00;
+    border: 2px solid #5A5560;
 }
 
 #deleteButton,
@@ -148,7 +148,7 @@ input::-webkit-inner-spin-button {
 #deleteButton:hover,
 #editButton:hover {
     background-color: grey;
-    border: 2px #ec7f00 solid;
+    border: 2px #5A5560 solid;
 }
 
 form {

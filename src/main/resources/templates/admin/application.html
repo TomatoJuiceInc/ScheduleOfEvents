@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #FFF3E0;
+            background-color: #5A5560;
         }
 
         .container {
@@ -25,6 +25,30 @@
             text-align: center;
             vertical-align: middle;
         }
+        .second-header {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #5A5560;
+            padding: 25px;
+            margin-top: 65px;
+            margin-bottom: 10px;
+        }
+        .second-header a, button  {
+            font-weight: bolder !important;
+            font-size: 25px !important;
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+            padding: 16px 60px;
+            border-radius: 2px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .second-header a:hover, button:hover {
+            color: grey;
+        }
 
         .header-back {
             display: flex;
@@ -40,12 +64,19 @@
 </head>
 <header th:insert="~{base/base::baseheader}">
 </header>
+<div th:class="second-header">
+    <a th:id="pastLink" href="/admin/events?choice=past">Прошедшие</a>
+    <a th:id="currentLink" href="/admin/events?choice=current">Ближайшие</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/application}">Запросы</a>
+    <a th:id="requestsLink" th:href="@{/admin/events/vip-application}">VIP -Запросы</a>
+</div>
+
 <body>
 
 
 <br>
 <br>
-<div class="container" style=" background-color: #FFE0B2;">
+<div class="container" style=" background-color: #5A5560;">
     <div class="header-back">Запросы</div>
     <table class="table">
         <thead>

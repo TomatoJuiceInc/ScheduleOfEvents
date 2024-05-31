@@ -26,6 +26,15 @@ public class BankCard {
     @Column(name = "cvc")
     private String cvc;
 
+    public BankCard(String cardNumber, String owner, String description, String cvc, String duration, int balance) {
+        this.cardNumber = cardNumber;
+        this.owner = owner;
+        this.description = description;
+        this.cvc = cvc;
+        this.duration = duration;
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return "BankCard{" +

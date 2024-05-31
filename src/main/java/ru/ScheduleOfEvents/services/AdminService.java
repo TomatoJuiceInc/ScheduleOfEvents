@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.ScheduleOfEvents.models.BankCard;
 import ru.ScheduleOfEvents.models.Hall;
 import ru.ScheduleOfEvents.models.Role;
 import ru.ScheduleOfEvents.models.User;
@@ -15,6 +16,7 @@ public class AdminService {
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsServiceImpl userDetailsService;
     private final HallsService hallsService;
+    private final BankService bankService;
 
     @PostConstruct
     @Transactional
@@ -40,6 +42,12 @@ public class AdminService {
             Hall hall1 = new Hall("Малый зал");
             hall1.setCount_seats(390);
             hallsService.save(hall1);
+
+        }
+        if (bankService.findAll().isEmpty()){
+            BankCard bankCard = new BankCard("2222 2222 2222 2222", "IVANOV IVAN", "test", "123", "11/11", Integer.MAX_VALUE);
+            bankService.save(bankCard);
+
 
         }
     }
