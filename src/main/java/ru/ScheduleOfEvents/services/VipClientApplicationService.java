@@ -27,12 +27,8 @@ public class VipClientApplicationService {
     @Transactional
     public void approveApplication(int applicationId) {
         VipApplication application = vipClientApplicationRepository.findById(applicationId).orElseThrow(() -> new RuntimeException("Application not found!"));
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String name = userDetails.getUsername();
-        User user1 = userDetailsService.findByUsername(name);
-        user1.setRole(Role.VIP);
-        userDetailsService.save(user1);
+        application.getApplicantName().setRole(Role.VIP);
+        userDetailsService.save(application.getApplicantName());
         vipClientApplicationRepository.deleteById(applicationId);
 
     }
